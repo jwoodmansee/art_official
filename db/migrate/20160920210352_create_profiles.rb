@@ -4,6 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :zip_code
       t.text :bio
       t.string :inspirations
+      t.belongs_to :user
 
       t.timestamps
     end
