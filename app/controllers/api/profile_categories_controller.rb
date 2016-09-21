@@ -18,7 +18,7 @@ class Api::ProfileCategoriesController < ApplicationController
   end
 
   def update
-    if @profile_categories(profile_categories_params)
+    if @profile_categories.update(profile_categories_params)
       render json: @profile_categories
     else
       render json: {errors: profile_categories.errors}, status: 401
@@ -34,6 +34,10 @@ class Api::ProfileCategoriesController < ApplicationController
 
   def profile_categories_params
     params.require(:profile_categories).permit(:music, :photography, :videography, :muralist, :painting, :drawing, :sculpture, :graphic_design, :performance, :literature, :hand_made, :profile_id)
+  end
+
+  def set_profile
+    @profile = Profile.find(params[:id])
   end
 
   def set_profile_categories
