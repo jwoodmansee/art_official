@@ -27,6 +27,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'paperclip', '~> 5.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.1'
 gem 'cloudinary', '~> 1.2', '>= 1.2.3'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'dotenv-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

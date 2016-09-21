@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920211358) do
+ActiveRecord::Schema.define(version: 20160921202137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "subject"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_conversations_on_user_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body",            null: false
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "profile_categories", force: :cascade do |t|
+    t.boolean  "music"
+    t.boolean  "photography"
+    t.boolean  "videography"
+    t.boolean  "muralist"
+    t.boolean  "painting"
+    t.boolean  "drawing"
+    t.boolean  "sculpture"
+    t.boolean  "graphic_design"
+    t.boolean  "performance"
+    t.boolean  "literature"
+    t.boolean  "hand_made"
+    t.integer  "profile_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["profile_id"], name: "index_profile_categories_on_profile_id", using: :btree
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "zip_code"
@@ -25,10 +61,28 @@ ActiveRecord::Schema.define(version: 20160920211358) do
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
+  create_table "project_categories", force: :cascade do |t|
+    t.boolean  "music"
+    t.boolean  "photography"
+    t.boolean  "videography"
+    t.boolean  "muralist"
+    t.boolean  "painting"
+    t.boolean  "drawing"
+    t.boolean  "sculpture"
+    t.boolean  "graphic_design"
+    t.boolean  "performance"
+    t.boolean  "literature"
+    t.boolean  "hand_made"
+    t.boolean  "other"
+    t.integer  "projects_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["projects_id"], name: "index_project_categories_on_projects_id", using: :btree
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "category"
     t.boolean  "collab"
     t.boolean  "active"
     t.integer  "profile_id"
@@ -57,4 +111,9 @@ ActiveRecord::Schema.define(version: 20160920211358) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "conversations", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "profile_categories", "profiles"
+  add_foreign_key "project_categories", "projects", column: "projects_id"
 end
