@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = { lat: 0, long: 0 };
+    this.state = { lat: 39.32098, long: -111.09373 };
   }
 
   // componentWillMount() {
@@ -18,8 +18,8 @@ class Map extends Component {
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       let markers = handler.addMarkers([
         {
-          "lat": 0,
-          "lng": 0,
+          "lat": 39.32098,
+          "lng": -111.09373,
           "picture": {
             "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
             "width":  32,
