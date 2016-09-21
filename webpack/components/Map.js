@@ -3,21 +3,20 @@ import React, { Component } from 'react';
 class Map extends Component {
   constructor(props) {
     super(props);
-    // this.state.handler = this.state.handler.bind(this);
     this.state = { lat: 0, long: 0 };
   }
 
-  componentWillMount() {
-    // make ajax call to get specific lat and long for map
-    // set state and render the map
-    // HTML5 location services if you need to get current users location
-    //
-  }
+  // componentWillMount() {
+  //   // make ajax call to get specific lat and long for map
+  //   // set state and render the map
+  //   // HTML5 location services if you need to get current users location
+  //   //
+  // }
 
   componentDidMount() {
-    handler = Gmaps.build('Google');
+    let handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
+      let markers = handler.addMarkers([
         {
           "lat": 0,
           "lng": 0,
@@ -36,8 +35,8 @@ class Map extends Component {
 
   render() {
     return(
-      <div>
-        <div id="map"></div>
+      <div style={{width: '800px'}}>
+       <div id='map' style={{width: '800px', height: '400px'}}> </div>
       </div>
     );
   }
