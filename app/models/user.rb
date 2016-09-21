@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile, dependent: :destroy
-  has_many :conversations
+  has_many :conversations, dependent: :destroy
 
-  validates_presence_of :first_name, :last_name, :username, :email, :password
+  validates_presence_of :first_name, :last_name, :username
   validates_uniqueness_of :username
 
 end
