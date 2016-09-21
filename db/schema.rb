@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20160921202137) do
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "category"
     t.boolean  "collab"
     t.boolean  "active"
     t.integer  "profile_id"

@@ -40,16 +40,12 @@ before_action :configure_account_update_params, only: [:update]
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:last_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :username])
   end
 
   # The path used after sign up.
@@ -61,5 +57,5 @@ before_action :configure_account_update_params, only: [:update]
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  
+
 end
