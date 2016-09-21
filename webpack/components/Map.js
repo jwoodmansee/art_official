@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Map extends Component {
   constructor(props) {
     super(props);
+    // this.state.handler = this.state.handler.bind(this);
     this.state = { lat: 0, long: 0 };
-    this.state.handler = this.state.handler.bind(this);
   }
 
   componentWillMount() {
