@@ -12,6 +12,30 @@ export const loggedIn = (id, apiKey) => {
   }
 }
 
+const getToken = () => {
+  return Math.random().toString(36).substring(7);
+}
+
+export const handleSignup = (email, password, redirect, history) => {
+  return(dispatch) => {
+    $.ajax({
+      url: '/users',
+      type: 'POST',
+      data: { user: { email, password }},
+      dataType: 'JSON'
+    }).done( user => {
+      let { id } = user;
+      let api_key = getToken();
+      localStorage.setItem('apiKey', api_key);
+      localStorage.setItem('userId', id);
+      dispatch(loggedIn(id, api_key));
+      history.push(redirect);
+    }).fail( res => {
+      console.log(res);
+    });
+  }
+}
+
 // add first_name, last_name, username
 export const handleLogin = (email, password, redirect, history) => {
   return(dispatch) => {
@@ -21,7 +45,8 @@ export const handleLogin = (email, password, redirect, history) => {
       data: { user: { email, passoword }},
       dataType: 'JSON'
     }).done( user => {
-      let { api_key, id } = user;
+      let { id } = user;
+      let api_key = getToken();
       localStorage.setItem('apiKey', api_Key);
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
