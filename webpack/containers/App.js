@@ -1,9 +1,10 @@
 import React from 'react';
 import Map from '../components/Map';
+import Navbar from '../components/Navbar';
 
 const App = ({ children }) => (
   <div>
-    <h1>Art Official</h1>
+    <Navbar />
     <Map />
     { children }
   </div>
