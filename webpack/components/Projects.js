@@ -16,7 +16,7 @@ class Projects extends React.Component {
         this.setState({projects});
       }).fail(data => {
         console.log(data);
-      });  
+      });
   }
 
   displayProjects() {
@@ -24,8 +24,8 @@ class Projects extends React.Component {
       return(<li key={project.id}>
                 <Link to={`/projects/${project.id}`}>
                   {project.name}
-                </Link> 
-             </li>    
+                </Link>
+             </li>
             );
     });
     return projects;
