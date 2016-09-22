@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute, browserHistory } from 'react-router';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import App from './containers/App';
-import Projects from './components/Home';
+import Home from './components/Home';
 import Projects from './components/Projects';
 import Profiles from './components/Profiles';
 import Login from './components/auth/Login';

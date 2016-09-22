@@ -22,7 +22,7 @@ class Signup extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input ref="email" required placeholder="Email" />
           <input ref="password" type="password" required placeholder="Password" />
-          <button type
+          <button type='submit' className='btn'>Sign Up</button>
         </form>
       </div>
 
