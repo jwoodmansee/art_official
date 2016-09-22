@@ -1,15 +1,15 @@
-import React, { Component } form 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-class Project extends React.Component {
-  constructo(props) {
+class Projects extends React.Component {
+  constructor(props) {
     super(props);
     this.state = { projects: [] };
   }
 
   componentWillMount() {
       $.ajax({
-        url: '/api/projects',
+        url: `/api/profiles/${profile.id}/projects`,
         type: 'GET',
         dataType: 'JSON'
       }).done(projects => {
@@ -20,11 +20,12 @@ class Project extends React.Component {
   }
 
   displayProjects() {
-    let projects = this.state.projects.map( project => {
+    let projects = this.state.projects.map( projects => {
       return(<li key={project.id}>
                 <Link to={`/projects/${project.id}`}>
                   {project.name}
-                </Link>  
+                </Link> 
+             </li>    
             );
     });
     return projects;
