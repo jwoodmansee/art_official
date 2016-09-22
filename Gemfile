@@ -41,12 +41,14 @@ gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.7'
   gem 'annotate', '~> 2.7', '>= 2.7.1'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
+  gem 'simplecov'
   gem 'faker', '~> 1.6', '>= 1.6.6'
+  gem 'database_cleaner'
 end
 
 group :development do
