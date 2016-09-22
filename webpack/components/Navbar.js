@@ -9,7 +9,7 @@ class Navbar extends React.Component {
     super(props);
     this.logout = this.logout.bind(this);
   }
-  
+
   logout(e) {
     e.preventDefault();
     this.props.dispatch(handleLogout(this.props.history));
@@ -62,4 +62,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default connect()(Navbar);
