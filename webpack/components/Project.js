@@ -1,4 +1,4 @@
-import React, { Component } form 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class Project extends React.Component {
@@ -16,7 +16,7 @@ class Project extends React.Component {
         this.setState({projects});
       }).fail(data => {
         console.log(data);
-      });  
+      });
   }
 
   displayProjects() {
@@ -24,7 +24,7 @@ class Project extends React.Component {
       return(<li key={project.id}>
                 <Link to={`/projects/${project.id}`}>
                   {project.name}
-                </Link>  
+                </Link>
             );
     });
     return projects;
