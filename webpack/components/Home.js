@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import musicCollab from '../images/musicCollab.jpeg';
-//import nameOfImage from './images/nameOfImage.jpg'
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,10 +10,10 @@ class Home extends React.Component {
   render() {
     return(
       <div>
-        <img source={{/*nameOfImage*/}} style={styles.container} />
-          <Text style={styles.welcome}>
+        <img src={musicCollab} style={styles.container} />
+          <h1 style={styles.welcome}>
             Welcome to CollabART
-          </Text>
+          </h1>
       </div>
     );
   }

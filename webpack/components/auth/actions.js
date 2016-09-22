@@ -40,7 +40,7 @@ export const handleSignup = (email, password, redirect, history) => {
 export const handleLogin = (email, password, redirect, history) => {
   return(dispatch) => {
     $.ajax({
-      url: '/user/sign_in',
+      url: '/users/sign_in',
       type: 'POST',
       data: { user: { email, passoword }},
       dataType: 'JSON'

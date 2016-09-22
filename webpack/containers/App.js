@@ -19,6 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar auth={this.props.auth} history={this.props.history} />
+        { this.props.children }
       </div>
     )
   }

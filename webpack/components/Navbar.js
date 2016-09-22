@@ -41,18 +41,13 @@ class Navbar extends React.Component {
             <ul className="nav navbar-nav">
               <li>
                 <Link to='/'>
-                  Home // unauthenticated routes
+                  Home 
                 </Link>
                 <Link to='/about'>
-                  About // unauthenticated routes
+                  About 
                 </Link>
               </li>
               { this.authLink() }
-              <li>
-                <Link to='/'>
-                  login
-                </Link>
-              </li>
             </ul>
           </div>
 

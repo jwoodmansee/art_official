@@ -3,6 +3,7 @@ import { Route, IndexRoute, browserHistory } from 'react-router';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import App from './containers/App';
 import Home from './components/Home';
+import About from './components/About';
 import Projects from './components/Projects';
 import Profiles from './components/Profiles';
 import Login from './components/auth/Login';
@@ -22,9 +23,8 @@ export default (
       <IndexRoute component={Home} />
       <Route path='about' component={About} />
       <Route path='login' component={Login} />
-      <Route path='signup' component={Signup} />
-      <Route path='admin' component={UserIsAuthendticated(Admin)} />
-      <Route path="*" status={404} component={NoMatch}/>
+      <Route path='sign_up' component={Signup} />
+      <Route path="*" status={404} component={NoMatch} />
     </Route>
   </Route>
 )

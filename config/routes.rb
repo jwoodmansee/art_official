@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   end # End of namespace
 
   # Leave this as the last route at the bottom
-  get '#unmatched_route', to: 'home#index'
+  get '*unmatched_route', to: 'home#index'
 end
