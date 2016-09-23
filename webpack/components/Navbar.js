@@ -59,6 +59,7 @@ class Navbar extends React.Component {
             <ul className="nav navbar-nav">
               <li onMouseEnter={this.hover} ><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
+              <li><Link to='/all_projects'>All Projects</Link></li>
               { this.authLink() }
             </ul>
           </div>

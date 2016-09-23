@@ -6,8 +6,11 @@ import Home from './components/Home';
 import About from './components/About';
 import Projects from './components/Projects';
 import Profiles from './components/Profiles';
+import Profile from './components/Profile';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import AllProjects from './components/AllProjects';
+import Blurb from './components/Blurb';
 import NoMatch from './components/NoMatch';
 
 const UserIsAuthendticated = UserAuthWrapper({
@@ -21,6 +24,8 @@ export default (
   <Route>
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
+      <Route path='profile' component={Profile} />
+      <Route path='all_projects' component={AllProjects} />
       <Route path='about' component={About} />
       <Route path='login' component={Login} />
       <Route path='sign_up' component={Signup} />
