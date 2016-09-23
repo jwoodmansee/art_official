@@ -9,11 +9,14 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div>
-        <img src={musicCollab} style={styles.container} />
-          <h1 style={styles.welcome}>
-            Welcome to CollabART
-          </h1>
+      <div className='container'>
+        <div className='row col-sx-12 col-sm-6'>
+          <img src={musicCollab} className='img-responsive img-rounded' />
+              <h1 style={styles.welcome}>
+                We Are A Collaborative Community
+              </h1>
+
+        </div>
       </div>
     );
   }
@@ -21,15 +24,12 @@ class Home extends React.Component {
 
 const styles = {
   container: {
-    flex: 1,
-    width: null,
-    height: null,
     backgroundColor: 'rgba(0,0,0,0)',
+    borderRadius: '10px',
   },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    float: 'left',
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 };
 

@@ -3,11 +3,24 @@ import { Link } from 'react-router';
 import { handleLogout } from './auth/actions';
 import { connect } from 'react-redux';
 
+const styles = {
+  nav: {
+    backgroundColor: '#292929',
+    borderColor: 'black',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+};
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.hover = this.hover.bind(this);
+    this.state = { hover: false };
   }
 
   logout(e) {
@@ -15,11 +28,16 @@ class Navbar extends React.Component {
     this.props.dispatch(handleLogout(this.props.history));
   }
 
+  hover() {
+    this.setState({ hover: true })
+    console.log('is this working');
+  }
+
   authLink() {
     if (this.props.auth) {
       return (
         [
-          <li key="auth-link-0"><Link to="/admin">Admin</Link></li>,
+          <li key="auth-link-0"><Link to="/profile">Profile</Link></li>,
           <li key="auth-link-1"><a href="#" onClick={this.logout}>Logout</a></li>
         ]
       )
@@ -30,27 +48,20 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default" style={styles.nav}>
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to='/' className="navbar-brand">
-              collabART
+              c o || art
             </Link>
           </div>
           <div className="nav navbar-nav navbar-right">
             <ul className="nav navbar-nav">
-              <li>
-                <Link to='/'>
-                  Home 
-                </Link>
-                <Link to='/about'>
-                  About 
-                </Link>
-              </li>
+              <li onMouseEnter={this.hover} ><Link to='/'>Home</Link></li>
+              <li><Link to='/about'>About</Link></li>
               { this.authLink() }
             </ul>
           </div>
-
         </div>
       </nav>
     )
