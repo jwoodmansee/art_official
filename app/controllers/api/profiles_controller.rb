@@ -6,6 +6,7 @@ class Api::ProfilesController < ApplicationController
   end
 
   def show
+    binding.pry
     render json: @profile
   end
 

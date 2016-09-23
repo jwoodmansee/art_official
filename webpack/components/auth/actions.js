@@ -50,7 +50,7 @@ export const handleLogin = (email, password, redirect, history) => {
       localStorage.setItem('apiKey', api_key);
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
-      history.push('/');
+      history.push('/profile');
     }).fail( res => {
       //TODO show something on page
     });

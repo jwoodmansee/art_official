@@ -24,7 +24,7 @@ class Profile extends Component {
         <form ref='addProfileForm'>
           <input ref="zipCode" autofocus='true' placeholder='My Zip Code' />
           <input ref="bio" type='text' placeholder='About Me and My Art Styles' />
-          <input ref="inspirations"
+          <input ref="inspirations" />
         </form>
       </div>
     )
@@ -49,7 +49,7 @@ class Profile extends Component {
     return(
       <div>
       {/* TODO figure out whether or not we're doing a username */}
-        <h3>{ user_id {/*Would rather have username*/}}</h3>
+
         <p>{ bio }</p>
         <p>{ inspirations }</p>
       </div>
@@ -57,4 +57,4 @@ class Profile extends Component {
   }
 }
 
-export default Movie;
+export default Profile;

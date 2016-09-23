@@ -6,9 +6,9 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = { error: false, redirectRoute: '/' }
+      this.state = { error: false, redirectRoute: '/profile' }
   }
-  
+
   handleSubmit(e) {
     e.preventDefault();
     let first_name = this.refs.first_name.value;
