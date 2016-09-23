@@ -20,8 +20,10 @@ class Signup extends React.Component {
       <div>
         <h3>Sign Up</h3>
         <form onSubmit={this.handleSubmit}>
-          <input ref="email" required placeholder="Email" />
-          <input ref="password" type="password" required placeholder="Password" />
+          <input ref='first_name' required placeholder='First Name' />
+          <input ref='last_name' required placeholder='Last Name' />
+          <input ref='email' required placeholder='Email' />
+          <input ref='password' type='password' required placeholder='Password' />
           <button type='submit' className='btn'>Sign Up</button>
         </form>
       </div>
