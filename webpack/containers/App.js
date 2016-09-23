@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
 import { loggedIn, logout } from '../components/auth/actions';
 
+
 class App extends React.Component {
   componentWillMount() {
     let userId = localStorage.getItem('userId');

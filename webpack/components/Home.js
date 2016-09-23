@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import musicCollab from '../images/musicCollab.jpeg';
+import Blurb from '../components/Blurb';
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,13 +10,19 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div className='container'>
-        <div className='row col-sx-12 col-sm-6'>
-          <img src={musicCollab} className='img-responsive img-rounded' />
+      <div>
+        <div className='container'>
+          <div className='row col-sx-12 col-sm-6'>
+            <img src={musicCollab} className='img-responsive img-rounded' />
               <h1 style={styles.welcome}>
                 We Are A Collaborative Community
               </h1>
-
+          </div>
+        </div>
+        <div>
+          <br />
+          <br />
+          <Blurb />
         </div>
       </div>
     );
