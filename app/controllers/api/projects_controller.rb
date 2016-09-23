@@ -1,8 +1,12 @@
 class Api::ProjectsController < ApplicationController
-  before_action :set_profile, except: [:index, :update, :destroy]
-  before_action :set_project, except: [:index, :create]
+  before_action :set_profile, except: [:index, :update, :destroy, :all_projects]
+  before_action :set_project, except: [:index, :create, :all_projects]
 
   def index
+    render json: @profile.projects.all
+  end
+
+  def all_projects
     render json: Project.all
   end
 

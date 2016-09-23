@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
+    get 'all_projects', to: 'projects#all_projects'
     resources :profiles do
       resources :profile_categories
       resources :projects do

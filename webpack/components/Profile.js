@@ -49,7 +49,7 @@ class Profile extends Component {
     return(
       <div>
       {/* TODO figure out whether or not we're doing a username */}
-
+        <h3>{ user_id }</h3>
         <p>{ bio }</p>
         <p>{ inspirations }</p>
       </div>

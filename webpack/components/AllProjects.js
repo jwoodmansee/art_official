@@ -12,10 +12,21 @@ class AllProjects extends Component {
       url: '/api/all_projects',
       type: 'GET',
       dataType: 'JSON'
-    }).done( profects => {
+    }).done( projects => {
       this.setState({ projects });
     }).fail( data => {
       console.log(data);
+    });
+  }
+
+  displayProjects() {
+    let projects = this.state.projects.map( projects => {
+      return(<li key={project.id}>
+                <Link to={`/projects/${project.id}`}>
+                  {project.name}
+                </Link>
+             </li>
+            );
     });
   }
 
@@ -23,6 +34,7 @@ class AllProjects extends Component {
     return(
       <div>
         All Projects View
+        { this.displayProjects() }
       </div>
     )
   }
