@@ -16,12 +16,12 @@ const getToken = () => {
   return Math.random().toString(36).substring(7);
 }
 
-export const handleSignup = (email, password, redirect, history) => {
+export const handleSignup = (first_name, last_name, username, email, password, redirect, history) => {
   return(dispatch) => {
     $.ajax({
       url: '/users',
       type: 'POST',
-      data: { user: { email, password }},
+      data: { user: { first_name, last_name, username, email, password }},
       dataType: 'JSON'
     }).done( user => {
       let { id } = user;
@@ -42,15 +42,15 @@ export const handleLogin = (email, password, redirect, history) => {
     $.ajax({
       url: '/users/sign_in',
       type: 'POST',
-      data: { user: { email, passoword }},
+      data: { user: { email, password }},
       dataType: 'JSON'
     }).done( user => {
       let { id } = user;
       let api_key = getToken();
-      localStorage.setItem('apiKey', api_Key);
+      localStorage.setItem('apiKey', api_key);
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
-      history.push(redirect);
+      history.push('/');
     }).fail( res => {
       //TODO show something on page
     });
