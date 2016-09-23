@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import musicCollab from '../images/musicCollab.jpeg';
+import Blurb from '../components/blurb';
 
 class Home extends React.Component {
   constructor(props) {
