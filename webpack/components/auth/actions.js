@@ -49,7 +49,7 @@ export const handleLogin = (email, password, redirect, history) => {
       localStorage.setItem('apiKey', api_key);
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
-      history.push('redirect');
+      history.push(redirect);
     }).fail( res => {
       //TODO show something on page
     });

@@ -3,21 +3,10 @@ class Api::ProfilesController < ApplicationController
   before_action :set_profile, except: [:index, :create]
 
   def index
-    render json: current_user.profile
+    render json: Profile.all
   end
 
   def show
-    render json: @profile
-  end
-
-  def create
-    @profile = current_user.profile.new(profile_params)
-    @profile.user_id = current_user.id
-    if @profile.save
-      render json: @profile
-    else
-      render json: {errors: @profile.errors}, status: 401
-    end
   end
 
   def update
@@ -36,11 +25,11 @@ class Api::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:movie).permit(:zip_code, :bio, :inspirations, :user_id)
+    params.require(:profile).permit(:zip_code, :bio, :inspirations)
   end
 
   def set_profile
-    @profile = current_user.profiles.find(params[:id])
+    @profile = Profile.includes(:user).find(params[:id])
   end
 
 end

@@ -27,10 +27,10 @@ class Navbar extends React.Component {
   }
 
   authLink() {
-    if (this.props.auth) {
+    if (this.props.isAuthenticated) {
       return (
         [
-          <li key="auth-link-0"><Link to={`/profile/${this.props.params.id}`}>Profile</Link></li>,
+          <li key="auth-link-0"><Link to={`/profiles/${this.props.userId}`}>Profile</Link></li>,
             // profile needs to be /profile/id
             // where do we get the id?
           <li key="auth-link-1"><a href="#" onClick={this.logout}>Logout</a></li>
@@ -64,4 +64,11 @@ class Navbar extends React.Component {
   }
 }
 
-export default connect()(Navbar);
+const mapStateToProps = (state) => {
+  return { 
+    isAuthenticated: state.auth.isAuthenticated,
+    userId: state.auth.id 
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);

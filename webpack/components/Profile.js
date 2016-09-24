@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = { profile: {} };
+    this.state = { profile: {}, user: {} };
   }
 
   componentWillMount() {
@@ -11,8 +11,8 @@ class Profile extends Component {
       url: `/api/profiles/${this.props.params.id}`,
       type: 'GET',
       dataType: 'JSON'
-    }).done( profile =>{
-      this.setState({ profile });
+    }).done( data =>{
+      this.setState({ profile: data.profile, user: data.user });
     }).fail( data => {
       console.log(data)
     });
@@ -45,13 +45,16 @@ class Profile extends Component {
   }
 
   render() {
-    let { zip_code, bio, inspirations, user_id } = this.state.profile;
+    let { zip_code, bio, inspirations, url } = this.state.profile;
+    let { id, username, first_name, last_name, email } = this.state.user;
+    console.log(this.state)
     return(
       <div>
-      {/* TODO figure out whether or not we're doing a username */}
-        <h3>{ user_id }</h3>
-        <p>{ bio }</p>
-        <p>{ inspirations }</p>
+        <h3>Username: { username }</h3>
+        <p>Bio: { bio }</p>
+        <p>Inspirations: { inspirations }</p>
+        <h4>Projects</h4>
+        {/* you can then render the <Projects user_id={id} /> react component here! */}
       </div>
     )
   }

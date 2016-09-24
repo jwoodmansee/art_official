@@ -7,16 +7,15 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    let location = this.props.location.query.redirect;
-    let redirectLocation = location ? location: '/';
-    this.state = { error: false, redirectRoute: redirectLocation}
+    this.location = this.props.location.query.redirect ? this.props.location.query.redirect : '/'
+    this.state = { error: false }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     let email = this.refs.email.value;
     let password = this.refs.password.value;
-    this.props.dispatch(handleLogin(email, password, this.state.redirectLocation, this.props.history)
+    this.props.dispatch(handleLogin(email, password, this.location, this.props.history)
     );
   }
 

@@ -12,4 +12,12 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :username
 
+  # model callback
+  after_create :create_profile
+
+  private
+    def create_profile
+      self.profile = Profile.create
+    end
+
 end
