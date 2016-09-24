@@ -6,6 +6,8 @@ json.profile do
   json.url api_profile_url(@profile)
 end
 
+
+
 json.user do
   user = @profile.user
   json.username user.username
