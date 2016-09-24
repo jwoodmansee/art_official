@@ -1,6 +1,6 @@
-class Api::ProjectsController < ApplicationController
-  before_action :set_profile, except: [:index, :update, :destroy, :all_projects]
-  before_action :set_project, except: [:index, :create, :all_projects]
+class Api::ProjectsController < ApiController
+  before_action :set_profile, except: [:all_projects]
+  before_action :set_project, only: [:show, :update, :destroy]
 
   def index
     render json: @profile.projects.all
@@ -15,7 +15,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    project = @profile.project.new(project_params)
+    project = @profile.projects.new(project_params)
     if project.save
       render json: project 
     else
@@ -27,7 +27,7 @@ class Api::ProjectsController < ApplicationController
     if @project.update(project_params)
       render json: @project
     else
-      render json: {errors: project.errors}, status: 401
+      render json: {errors: @project.errors}, status: 401
     end
   end
 
@@ -39,7 +39,7 @@ class Api::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :category, :collab, :active, :profile_id)
+    params.require(:project).permit(:name, :description, :category, :collab, :active)
   end
 
   def set_profile
@@ -47,7 +47,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = Profile.project.find(params[:id])
+    @project = @profile.projects.find(params[:id])
   end
 
 end

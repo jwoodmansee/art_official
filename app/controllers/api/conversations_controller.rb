@@ -1,4 +1,4 @@
-class Api::ConversationsController < ApplicationController
+class Api::ConversationsController < ApiController
   before_action :set_user, except: [:index, :update, :destroy]
   before_action :set_conversation, except: [:index, :create]
   def index

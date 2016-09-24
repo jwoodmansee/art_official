@@ -7,7 +7,6 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.location = this.props.location.query.redirect ? this.props.location.query.redirect : '/'
     this.state = { error: false }
   }
 
@@ -15,7 +14,7 @@ class Login extends React.Component {
     e.preventDefault();
     let email = this.refs.email.value;
     let password = this.refs.password.value;
-    this.props.dispatch(handleLogin(email, password, this.location, this.props.history)
+    this.props.dispatch(handleLogin(email, password, this.props.history)
     );
   }
 

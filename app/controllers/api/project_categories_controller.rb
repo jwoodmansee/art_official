@@ -1,4 +1,4 @@
-class Api::ProjectCategoriesController < ApplicationController
+class Api::ProjectCategoriesController < ApiController
 
   def index
     render json: Project_categories.all

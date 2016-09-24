@@ -1,4 +1,4 @@
-class Api::ProfileCategoriesController < ApplicationController
+class Api::ProfileCategoriesController < ApiController
 
   def index
     render json: Profile_categories.all

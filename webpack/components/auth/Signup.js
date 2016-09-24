@@ -6,7 +6,7 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = { error: false, redirectRoute: `/` }
+      this.state = { error: false }
   }
 
   handleSubmit(e) {
@@ -16,7 +16,7 @@ class Signup extends React.Component {
     let username = this.refs.username.value;
     let email = this.refs.email.value;
     let password = this.refs.password.value;
-    this.props.dispatch(handleSignup(first_name, last_name, username, email, password, this.state.redirectRoute, this.props.history))
+    this.props.dispatch(handleSignup(first_name, last_name, username, email, password, this.props.history))
   }
   render() {
     return (

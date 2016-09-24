@@ -9,7 +9,6 @@ import Profiles from './components/Profiles';
 import Profile from './components/Profile';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-import AllProjects from './components/AllProjects';
 import Blurb from './components/Blurb';
 import NoMatch from './components/NoMatch';
 
@@ -25,7 +24,7 @@ export default (
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
       <Route path='profiles' component={Profiles} />
-      <Route path='all_projects' component={AllProjects} />
+      <Route path='all_projects' component={Projects} />
       <Route path='about' component={About} />
       <Route path='login' component={Login} />
       <Route path='sign_up' component={Signup} />

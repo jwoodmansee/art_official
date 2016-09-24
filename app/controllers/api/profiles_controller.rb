@@ -1,4 +1,4 @@
-class Api::ProfilesController < ApplicationController
+class Api::ProfilesController < ApiController
   # before_action require: :user
   before_action :set_profile, except: [:index, :create]
 
@@ -11,15 +11,10 @@ class Api::ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      render json: @profile
+      render :show
     else
       render json: {errors: @profile.errors}, status: 401
     end
-  end
-
-  def destroy
-    @profile.destroy
-    render json: {message: 'Destroyed!'}
   end
 
   private

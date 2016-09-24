@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-class Projects extends React.Component {
+class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = { projects: [] };
   }
 
   componentWillMount() {
+      let url;
+      if(this.props.profileId)
+        url = `/api/profiles/${this.props.profileId}/projects`;
+      else
+        url = '/api/all_projects';
       $.ajax({
-        url: `/api/profiles/${profile.id}/projects`,
+        url: url,
         type: 'GET',
         dataType: 'JSON'
       }).done(projects => {
@@ -20,7 +25,7 @@ class Projects extends React.Component {
   }
 
   displayProjects() {
-    let projects = this.state.projects.map( projects => {
+    let projects = this.state.projects.map( project => {
       return(<li key={project.id}>
                 <Link to={`/projects/${project.id}`}>
                   {project.name}

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Projects from './Projects';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = { profile: {}, user: {} };
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.editProfile = this.editProfile.bind(this);
+    this.state = { profile: {}, user: {}, edit: false };
   }
 
   componentWillMount() {
@@ -30,33 +33,53 @@ class Profile extends Component {
     )
   }
 
-  editProfile() {
-    this.props.history.push(`/profiles/${this.state.profile.id}/edit`);
+  toggleEdit() {
+    this.setState({ edit: !this.state.edit });
   }
 
-  deleteProfile() {
+  editProfile(e) {
+    e.preventDefault();
+    let bio = this.refs.bio.value;
+    let inspirations = this.refs.inspirations.value;
     $.ajax({
-      url: `/api/profiles/${id}`,
-      type: 'DELETE',
-      dataType: 'JSON'
-    }).done( () => {
-      this.props.history.push('/');
-    })
+      url: `/api/profiles/${this.props.params.id}`,
+      type: 'PUT',
+      dataType: 'JSON',
+      data: { profile: { bio, inspirations }}
+    }).done( data => {
+      this.setState({ profile: data.profile })
+      this.toggleEdit();
+    }).fail( data => {
+      console.log(data)
+    });
   }
 
   render() {
     let { zip_code, bio, inspirations, url } = this.state.profile;
     let { id, username, first_name, last_name, email } = this.state.user;
-    console.log(this.state)
-    return(
-      <div>
-        <h3>Username: { username }</h3>
-        <p>Bio: { bio }</p>
-        <p>Inspirations: { inspirations }</p>
-        <h4>Projects</h4>
-        {/* you can then render the <Projects user_id={id} /> react component here! */}
-      </div>
-    )
+    if(this.state.edit) {
+      return(
+        <div>
+          <button className='btn pull-right btn-danger' onClick={this.toggleEdit}>Cancel</button>
+          <form onSubmit={this.editProfile}>
+            <p>Bio: <textarea ref='bio' defaultValue={bio}></textarea></p>
+            <p>Inspirations: <input ref='inspirations' type='text' defaultValue={inspirations} /></p>
+            <input type='submit' className='btn' />
+          </form>
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <button className='btn pull-right' onClick={this.toggleEdit}>Edit Profile</button>
+          <h3>Username: { username }</h3>
+          <p>Bio: { bio }</p>
+          <p>Inspirations: { inspirations }</p>
+          <h4>Projects</h4>
+          <Projects profileId={this.props.params.id} /> 
+        </div>
+      )
+    }
   }
 }
 

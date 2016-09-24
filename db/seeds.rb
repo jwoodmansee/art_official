@@ -6,9 +6,10 @@ u = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_
 u.profile.update(bio: Faker::Lorem.paragraph, zip_code: Faker::Address.zip_code, 
                         inspirations: Faker::Lorem.sentence)
 
-puts 'User and Profile Seeded!'
+true_false = [true, false]
+30.times do
+  u.profile.projects.create!(name: Faker::Name.name, description: Faker::Lorem.paragraph,
+                             collab: true_false.sample, active: true_false.sample)
+end
 
-# leave this for when you start doing projects react stuff
-# 30.times do
-#   profile.projects.create!(name: Faker::Name.name)
-# end
+puts 'User, Profile, and Projects Seeded!'

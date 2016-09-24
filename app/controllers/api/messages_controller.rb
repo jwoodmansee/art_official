@@ -1,4 +1,4 @@
-class Api::MessagesController < ApplicationController
+class Api::MessagesController < ApiController
   before_action :set_converation, only: :create
   before_action :set_message, except: [:index, :create]
   def index
