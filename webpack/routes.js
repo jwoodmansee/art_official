@@ -5,6 +5,7 @@ import App from './containers/App';
 import Home from './components/Home';
 import About from './components/About';
 import Projects from './components/Projects';
+import Project from './components/Project';
 import Profiles from './components/Profiles';
 import Profile from './components/Profile';
 import Login from './components/auth/Login';
