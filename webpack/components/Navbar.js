@@ -7,6 +7,7 @@ const styles = {
   nav: {
     backgroundColor: '#292929',
     borderColor: 'black',
+    padding: '10px',
   },
   welcome: {
     fontSize: 20,
@@ -30,7 +31,7 @@ class Navbar extends React.Component {
     if (this.props.isAuthenticated) {
       return (
         [
-          <li key="auth-link-0"><Link to={`/profiles/${this.props.userId}`}>Profile</Link></li>,
+          <li key="auth-link-0"><Link to={`/profiles/${this.props.userId}`}>My Profile</Link></li>,
             // profile needs to be /profile/id
             // where do we get the id?
           <li key="auth-link-1"><a href="#" onClick={this.logout}>Logout</a></li>
@@ -52,7 +53,7 @@ class Navbar extends React.Component {
           </div>
           <div className="nav navbar-nav navbar-right">
             <ul className="nav navbar-nav">
-              <li onMouseEnter={this.hover} ><Link to='/'>Home</Link></li>
+              <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
               <li><Link to='/all_projects'>All Projects</Link></li>
               { this.authLink() }
@@ -65,9 +66,9 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     isAuthenticated: state.auth.isAuthenticated,
-    userId: state.auth.id 
+    userId: state.auth.id
   }
 }
 

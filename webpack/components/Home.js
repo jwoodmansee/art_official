@@ -11,12 +11,16 @@ class Home extends React.Component {
   render() {
     return(
       <div>
-        <div className='container'>
-          <div className='row col-sx-12 col-sm-6'>
-            <img src={musicCollab} className='img-responsive img-rounded' />
-              <h1 style={styles.welcome}>
-                We Are A Collaborative Community
-              </h1>
+        <div className='row'>
+          <div className='col-sm-12'>
+            <div className='col-xs-12 col-sm-8'>
+              <img src={musicCollab} className='img-responsive img-rounded' />
+            </div>
+              <div className='col-xs-12 col-sm-4'>
+                <h1 style={styles.welcome}>
+                  We Are A Collaborative Community
+                </h1>
+              </div>
           </div>
         </div>
         <div>
@@ -25,6 +29,7 @@ class Home extends React.Component {
           <Blurb />
         </div>
       </div>
+
     );
   }
 }

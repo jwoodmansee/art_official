@@ -21,7 +21,7 @@ class App extends React.Component {
       <div>
         <Navbar auth={this.props.auth} history={this.props.history} />
 
-        <div className='container'>
+        <div>
           { this.props.children }
         </div>
       </div>
