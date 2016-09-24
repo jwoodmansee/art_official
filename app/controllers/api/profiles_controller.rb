@@ -1,21 +1,22 @@
 class Api::ProfilesController < ApplicationController
+  # before_action require: :user
   before_action :set_profile, except: [:index, :create]
 
   def index
-    render json: Profile.all
+    render json: current_user.profile
   end
 
   def show
-    binding.pry
     render json: @profile
   end
 
   def create
-    profile = Profile.new(profile_params)
-    if profile.save
-      render json: profile
+    @profile = current_user.profile.new(profile_params)
+    @profile.user_id = current_user.id
+    if @profile.save
+      render json: @profile
     else
-      render json: {errors: profile.errors}, status: 401
+      render json: {errors: @profile.errors}, status: 401
     end
   end
 
@@ -23,7 +24,7 @@ class Api::ProfilesController < ApplicationController
     if @profile.update(profile_params)
       render json: @profile
     else
-      render json: {errors: profile.errors}, status: 401
+      render json: {errors: @profile.errors}, status: 401
     end
   end
 
@@ -39,7 +40,7 @@ class Api::ProfilesController < ApplicationController
   end
 
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profiles.find(params[:id])
   end
 
 end

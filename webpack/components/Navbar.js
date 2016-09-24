@@ -19,8 +19,6 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
-    this.hover = this.hover.bind(this);
-    this.state = { hover: false };
   }
 
   logout(e) {
@@ -28,16 +26,13 @@ class Navbar extends React.Component {
     this.props.dispatch(handleLogout(this.props.history));
   }
 
-  hover() {
-    this.setState({ hover: true })
-    console.log('is this working');
-  }
-
   authLink() {
     if (this.props.auth) {
       return (
         [
-          <li key="auth-link-0"><Link to="/profile">Profile</Link></li>,
+          <li key="auth-link-0"><Link to={`/profile/${this.props.params.id}`}>Profile</Link></li>,
+            // profile needs to be /profile/id
+            // where do we get the id?
           <li key="auth-link-1"><a href="#" onClick={this.logout}>Logout</a></li>
         ]
       )

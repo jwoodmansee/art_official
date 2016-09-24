@@ -6,7 +6,7 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = { error: false, redirectRoute: '/profile' }
+      this.state = { error: false, redirectRoute: `/` }
   }
 
   handleSubmit(e) {

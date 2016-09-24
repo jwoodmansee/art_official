@@ -39,13 +39,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(App);
-
-// const App = ({ children }) => (
-//   <div>
-//     <Navbar />
-//     <Map />
-//     { children }
-//   </div>
-// )
-//
-// export default App;

@@ -16,7 +16,7 @@ import NoMatch from './components/NoMatch';
 const UserIsAuthendticated = UserAuthWrapper({
   authSelector: state => state.auth,
   predicate: auth => auth.isAuthenticated,
-  redirectAction: () => history.push,
+  redirectAction: history.push,
   wrapperDisplayName: 'UserIsAuthendticated'
 });
 
@@ -24,11 +24,12 @@ export default (
   <Route>
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
-      <Route path='profile' component={Profile} />
+      <Route path='profiles' component={Profiles} />
       <Route path='all_projects' component={AllProjects} />
       <Route path='about' component={About} />
       <Route path='login' component={Login} />
       <Route path='sign_up' component={Signup} />
+      <Route path='profiles/:id' component={UserIsAuthendticated(Profile)} />
       <Route path="*" status={404} component={NoMatch} />
     </Route>
   </Route>

@@ -19,7 +19,7 @@ const getToken = () => {
 export const handleSignup = (first_name, last_name, username, email, password, redirect, history) => {
   return(dispatch) => {
     $.ajax({
-      url: '/users',
+      url: '/user',
       type: 'POST',
       data: { user: { first_name, last_name, username, email, password }},
       dataType: 'JSON'
@@ -36,7 +36,6 @@ export const handleSignup = (first_name, last_name, username, email, password, r
   }
 }
 
-// add first_name, last_name, username
 export const handleLogin = (email, password, redirect, history) => {
   return(dispatch) => {
     $.ajax({
@@ -50,7 +49,7 @@ export const handleLogin = (email, password, redirect, history) => {
       localStorage.setItem('apiKey', api_key);
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
-      history.push('/profile');
+      history.push('redirect');
     }).fail( res => {
       //TODO show something on page
     });
@@ -68,6 +67,6 @@ export const handleLogout = (history) => {
       localStorage.removeItem('userId');
       dispatch(logout());
       history.push('/');
-    }).fail( )
+    });
   }
 }
