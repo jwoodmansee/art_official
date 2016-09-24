@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 class Projects extends Component {
   constructor(props) {
     super(props);
+    this.displayProjects = this.displayProjects.bind(this);
     this.state = { projects: [] };
   }
 
@@ -25,11 +26,13 @@ class Projects extends Component {
   }
 
   displayProjects() {
+    debugger;
     let projects = this.state.projects.map( project => {
-      return(<li key={project.id}>
-                <Link to={`/projects/${project.id}`}>
-                  {project.name}
-                </Link>
+      return(<li className="list-unstyled" key={project.id}>
+                <h4><Link to={`/api/profiles/${this.props.profileId}/projects/${this.props.projectId}`}>
+                {project.name}
+                </Link></h4>
+              <p><strong>Description:</strong> {project.description}</p>
              </li>
             );
     });
@@ -39,7 +42,8 @@ class Projects extends Component {
   render() {
     return(
       <div>
-        <h1>All Projects</h1>
+        <h1>All Open Projects</h1>
+        <hr />
         <ul>
           { this.displayProjects() }
         </ul>

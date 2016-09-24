@@ -5,22 +5,42 @@ import { Link } from 'react-router';
 class Project extends Component {
   constructor(props) {
     super(props);
-    this.state = { project: {} };
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.editProject = this.editProject.bind(this);
+    this.state = { project: {}, user: {}, edit: false };
   }
 
   componentWillMount() {
     $.ajax({
-      url: `/api/`
-    })
+      url: `/api/profiles/${this.props.profileId}/projects/${this.props.projectId}`,
+      type: 'GET',
+      dataType: 'JSON'
+    }).done( data =>{
+      this.setState({ project: data.project, user: data.user });
+    }).fail( data => {
+      console.log(data)
+    });
   }
 
-  createProject() {
-    return(
-      <h4>Create your profile and be found</h4>
-      <div>
-        <AddProject />
-      </div>
-    )
+  editProject(e) {
+    e.preventDefault();
+    let name = this.refs.name.value;
+    let description = this.refs.description.value;
+    $.ajax({
+      url: `/api/profiles/${this.props.profileId}/projects/${this.props.projectId}`,
+      type: 'PUT',
+      dataType: 'JSON',
+      data: { project: { name, description }}
+    }).done( data => {
+      this.setState({ project: data.project })
+      this.toggleEdit();
+    }).fail( data => {
+      console.log('Failure')
+    });
+  }
+
+  toggleEdit() {
+    this.setState({ edit: !this.state.edit });
   }
 
   displayProjects() {
@@ -45,18 +65,30 @@ class Project extends Component {
   }
 
   render() {
-    return(
-      <div>
-        <ul>
-          if (projects) {
-            { this.displayProjects() }
-        </ul>
+    let { name, description, active, collab, url } = this.state.project;
+    let { id, username, first_name, last_name, email } = this.state.user;
+    if(this.state.edit) {
+      return(
         <div>
-          } else {
-            { this.createProject() }
-          }
+          <button className='btn pull-right btn-danger' onClick={this.toggleEdit}>Cancel</button>
+          <form onSubmit={this.editProject}>
+            <p>Project Name: <input ref='name' defaultValue={name} /></p>
+            <p>Description: <input ref='description' type='text' defaultValue={description} /></p>
+            <input type='submit' className='btn' />
+          </form>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return(
+        <div>
+          <button className='btn pull-right' onClick={this.toggleEdit}>Edit Profile</button>
+          <h3>Username: { username }</h3>
+          <p>Project Name: { name }</p>
+          <p>Description: { description }</p>
+        </div>
+      )
+    }
   }
 }
+
+export default Project;
