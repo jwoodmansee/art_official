@@ -4,10 +4,11 @@ import foamgeode from '../images/foamgeode.jpg';
 
 const styles = {
   row: {
-    backgroundColor: '#E8E6ED',
+    backgroundColor: '#EDEDEF',
     minHeight: '300px',
   },
   textLink: {
+    color: '#015FB6',
     cursor: 'pointer',
   }
 };
@@ -31,18 +32,6 @@ class Profile extends Component {
     }).fail( data => {
       console.log(data)
     });
-  }
-
-  newProfile() {
-    return(
-      <div>
-        <form ref='addProfileForm'>
-          <input ref="zipCode" autofocus='true' placeholder='My Zip Code' />
-          <input ref="bio" type='text' placeholder='About Me and My Art Styles' />
-          <input ref="inspirations" />
-        </form>
-      </div>
-    )
   }
 
   toggleEdit() {
@@ -137,14 +126,17 @@ class Profile extends Component {
                 <form onSubmit={this.editProfile}>
                   <dl className='dl-horizontal'>
                     <dt> bio </dt>
-                    <dd><textarea className='form-control' ref='bio' defaultValue={ bio }></textarea></dd>
+                    <dd>
+                      <textarea className='form-control' ref='bio' defaultValue={ bio }>
+                      </textarea>
+                    </dd>
                     <dt> inspirations </dt>
                     <dd><input className='form-control'
                                ref='inspirations' type='text'
                                defaultValue={inspirations} /></dd>
+                    <dt><button type='button' className='btn btn-primary btn-xs' onClick={this.toggleCategory}>Categories</button></dt>
+                    <dd> { this.checkboxes() } </dd>
                   </dl>
-                  <button type='button' className='btn btn-primary btn-xs' onClick={this.toggleCategory}>Categories</button>
-                  { this.checkboxes() }
                   <input type='submit' className='btn btn-primary btn-xs' />
                 </form>
               </div>
@@ -163,14 +155,14 @@ class Profile extends Component {
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
-                <p onClick={this.toggleEdit} style={styles.textLink}>Edit Profile</p>
                 <dl className='dl-horizontal'>
+                  <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
                   <dt> bio </dt>
-                  <dd> { bio } </dd>
+                  <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
                   <dt> inspirations </dt>
-                  <dd> { inspirations } </dd>
+                  <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
                   <dt> categories</dt>
-                  <dd> { category } </dd>
+                  <dd> { category ? category : 'let others search you by your interests, ADD CATEGORIES'} </dd>
                 </dl>
               </div>
             </div>

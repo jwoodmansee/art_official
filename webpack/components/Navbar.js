@@ -5,9 +5,12 @@ import { connect } from 'react-redux';
 
 const styles = {
   nav: {
-    backgroundColor: '#292929',
+    backgroundColor: '#282828',
     borderColor: 'black',
     padding: '10px',
+  },
+  logo: {
+    fontFamily: 'Bungee',
   },
   welcome: {
     fontSize: 20,
@@ -47,7 +50,7 @@ class Navbar extends React.Component {
       <nav className="navbar navbar-default" style={styles.nav}>
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to='/' className="navbar-brand">
+            <Link to='/' className="navbar-brand" style={styles.logo}>
               c o || art
             </Link>
           </div>
@@ -73,3 +76,20 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Navbar);
+
+
+// var Navbar = React.createClass({
+//   getInitialState() {
+//     return {
+//       currentUser: this.props.current_user
+//     };
+//   render: function() {
+//     return (
+//       <ul>
+//         <li>
+//           <a href={"localhost:3000/profile/"+ this.state.currentUser.id}>Profile</a>
+//         <li>
+//       <ul>
+//     );
+//   }
+// },

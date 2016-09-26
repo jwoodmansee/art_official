@@ -26,7 +26,6 @@ class Projects extends Component {
   }
 
   displayProjects() {
-    debugger;
     let projects = this.state.projects.map( project => {
       return(<li className="list-unstyled" key={project.id}>
                 <h4><Link to={`/api/profiles/${this.props.profileId}/projects/${this.props.projectId}`}>

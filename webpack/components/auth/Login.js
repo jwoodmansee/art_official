@@ -20,18 +20,42 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div>
-        <h3>Login</h3>
-        <form onSubmit={ this.handleSubmit }>
-          <input ref='email' required placeholder='Email' />
-          <input ref='password' required placeholder='Password' type='password' />
-          <button className='btn' type='submit'>Login</button>
-        </form>
-        <Link to='/sign_up'>Sign Up</Link>
+      <div className='row'>
+        <div className='col-xs-12 col-sm-6 col-sm-offset-6'>
+          <h3>Login</h3>
+            <form className='form-horizontal' onSubmit={ this.handleSubmit }>
+              <div className='form-group'>
+                <label className='col-sm-2 control-label'>Email</label>
+                <div className='col-sm-6'>
+                  <input ref='email' className='form-control' placeholder='Email' />
+                </div>
+              </div>
+              <div className='form-group'>
+                <label className='col-sm-2 control-label'>Password</label>
+                <div className='col-sm-6'>
+                  <input ref='password' type='password' className='form-control' placeholder='Password' />
+                </div>
+              </div>
+              <div className='form-group'>
+                <div className='col-sm-offset-2 col-sm-10'>
+                  <div className='checkbox'>
+                    <label>
+                      <input type='checkbox' /> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className='form-grou'>
+                <div className='col-sm-offset-2 col-sm-10'>
+                  <button type='submit' className='btn btn-default'>Login</button>
+                </div>
+              </div>
+            </form>
+            <Link to='/sign_up'>Sign Up</Link>
+        </div>
       </div>
     )
   }
 }
 
 export default connect()(Login);
-
