@@ -4,7 +4,7 @@ json.profile do
   json.zip_code @profile.zip_code
   json.inspirations @profile.inspirations
   json.url api_profile_url(@profile)
-  json.profile_categories @profile.profile_category
+  json.categories @profile.category
 end
 
 

@@ -19,9 +19,9 @@ class Profile extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
-    this.state = { profile: {profile_categories: {} }, 
-                   user: {}, 
-                   edit: false, 
+    this.state = { profile: {categories: {} },
+                   user: {},
+                   edit: false,
                    category: false,
                    allCategories: { music: ['Rock', 'R&B', 'HipHop', 'Rap'], photography: ['Landscape']}};
   }
@@ -51,7 +51,7 @@ class Profile extends Component {
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
     let music = this.refs.music.value;
-    
+
     {/*let photography = this.refs.photography.value;
     let videography = this.refs.videography.value;
     let muralist = this.refs.muralist.value;
@@ -77,7 +77,7 @@ class Profile extends Component {
 
   generateCategoryOptions(key) {
     let options = [<option key={key}>-- Select</option>];
-    let userCategory = this.state.profile.profile_categories[key];
+    let userCategory = this.state.profile.categories[key];
     this.state.allCategories[key].forEach( subCategory => {
       let active = userCategory === subCategory ? true : false;
       options.push(<option selected={active} key={subCategory}>{subCategory}</option>);
@@ -123,7 +123,7 @@ class Profile extends Component {
 
   render() {
     let { zip_code, bio, inspirations, url } = this.state.profile;
-    let { music } = this.state.profile.profile_categories
+    let { music } = this.state.profile.categories
     if(this.state.edit) {
       return(
         <div>

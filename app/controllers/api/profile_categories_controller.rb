@@ -1,5 +1,5 @@
 class Api::ProfileCategoriesController < ApiController
-  before_action :categories only: 
+  before_action :categories only:
   def index
     render json: Profile_categories.all
   end

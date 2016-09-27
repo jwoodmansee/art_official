@@ -5,6 +5,7 @@ json.project do
   json.collab @project.collab
   json.active @project.active
   json.url api_project_url(@project)
+  json.categories @project.category
 end
 
 json.user do

@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921202137) do
+ActiveRecord::Schema.define(version: 20160927210313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.text     "music",          default: [],              array: true
+    t.text     "photography",    default: [],              array: true
+    t.text     "videography",    default: [],              array: true
+    t.text     "muralist",       default: [],              array: true
+    t.text     "painting",       default: [],              array: true
+    t.text     "drawing",        default: [],              array: true
+    t.text     "sculpture",      default: [],              array: true
+    t.text     "graphic_design", default: [],              array: true
+    t.text     "performance",    default: [],              array: true
+    t.text     "literature",     default: [],              array: true
+    t.text     "hand_made",      default: [],              array: true
+    t.string   "cat_type"
+    t.integer  "cat_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["cat_type", "cat_id"], name: "index_categories_on_cat_type_and_cat_id", using: :btree
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.string   "subject"
@@ -33,24 +52,6 @@ ActiveRecord::Schema.define(version: 20160921202137) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
-  create_table "profile_categories", force: :cascade do |t|
-    t.string   "music"
-    t.string   "photography"
-    t.string   "videography"
-    t.string   "muralist"
-    t.string   "painting"
-    t.string   "drawing"
-    t.string   "sculpture"
-    t.string   "graphic_design"
-    t.string   "performance"
-    t.string   "literature"
-    t.string   "hand_made"
-    t.integer  "profile_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["profile_id"], name: "index_profile_categories_on_profile_id", using: :btree
-  end
-
   create_table "profiles", force: :cascade do |t|
     t.string   "zip_code"
     t.text     "bio"
@@ -59,24 +60,6 @@ ActiveRecord::Schema.define(version: 20160921202137) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
-  end
-
-  create_table "project_categories", force: :cascade do |t|
-    t.string   "music"
-    t.string   "photography"
-    t.string   "videography"
-    t.string   "muralist"
-    t.string   "painting"
-    t.string   "drawing"
-    t.string   "sculpture"
-    t.string   "graphic_design"
-    t.string   "performance"
-    t.string   "literature"
-    t.string   "hand_made"
-    t.integer  "projects_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["projects_id"], name: "index_project_categories_on_projects_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
@@ -113,6 +96,4 @@ ActiveRecord::Schema.define(version: 20160921202137) do
   add_foreign_key "conversations", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
-  add_foreign_key "profile_categories", "profiles"
-  add_foreign_key "project_categories", "projects", column: "projects_id"
 end

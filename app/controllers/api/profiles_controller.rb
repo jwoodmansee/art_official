@@ -11,7 +11,7 @@ class Api::ProfilesController < ApiController
 
   def update
     if @profile.update(profile_params)
-      @profile.profile_category.update(music: params[:music])
+      @profile.category.update(params.require[:categories])
       render :show
     else
       render json: {errors: @profile.errors}, status: 401
