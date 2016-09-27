@@ -1,5 +1,5 @@
 class Api::ProfileCategoriesController < ApiController
-
+  before_action :categories only: 
   def index
     render json: Profile_categories.all
   end
@@ -41,6 +41,11 @@ class Api::ProfileCategoriesController < ApiController
   end
 
   def set_profile_categories
-    @profile_categories = Profile_categories.find(params[:id])
+    @profile_categories = @profile.profile_categories.find(params[:id])
   end
+
+  # def categories
+  #   @categories = Profile_categories.categories
+  # end
+
 end

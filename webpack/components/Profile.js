@@ -19,7 +19,11 @@ class Profile extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
-    this.state = { profile: {}, user: {}, profile_category: {}, edit: false, category: false };
+    this.state = { profile: {profile_categories: {} }, 
+                   user: {}, 
+                   edit: false, 
+                   category: false,
+                   allCategories: { music: ['Rock', 'R&B', 'HipHop', 'Rap'], photography: ['Landscape']}};
   }
 
   componentWillMount() {
@@ -28,7 +32,7 @@ class Profile extends Component {
       type: 'GET',
       dataType: 'JSON'
     }).done( data =>{
-      this.setState({ profile: data.profile, user: data.user });
+      this.setState({ profile: data.profile, user: data.user});
     }).fail( data => {
       console.log(data)
     });
@@ -47,7 +51,8 @@ class Profile extends Component {
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
     let music = this.refs.music.value;
-    let photography = this.refs.photography.value;
+    
+    {/*let photography = this.refs.photography.value;
     let videography = this.refs.videography.value;
     let muralist = this.refs.muralist.value;
     let painting = this.refs.painting.value;
@@ -56,15 +61,12 @@ class Profile extends Component {
     let graphic_design = this.refs.graphic_design.value;
     let preformance = this.refs.preformance.value;
     let literature = this.refs.literature.value;
-    let hand_made = this.refs.hand_made.value;
+    let hand_made = this.refs.hand_made.value; */}
     $.ajax({
       url: `/api/profiles/${this.props.params.id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { profile: { bio, inspirations, music, photography,
-                        videography, muralist, painting,
-                        drawing, sculpture, graphic_design, preformance,
-                        literature, hand_made }}
+      data: { profile: { bio, inspirations }, music }
     }).done( data => {
       this.setState({ profile: data.profile })
       this.toggleEdit();
@@ -73,19 +75,25 @@ class Profile extends Component {
     });
   }
 
+  generateCategoryOptions(key) {
+    let options = [<option key={key}>-- Select</option>];
+    let userCategory = this.state.profile.profile_categories[key];
+    this.state.allCategories[key].forEach( subCategory => {
+      let active = userCategory === subCategory ? true : false;
+      options.push(<option selected={active} key={subCategory}>{subCategory}</option>);
+    });
+    return options;
+  }
+
   checkboxes() {
-    if (this.state.category) {
-      return['music', 'photography', 'videography', 'muralist', 'painting',
-              'drawing', 'sculpture', 'graphic_design', 'preformance',
-              'literature', 'hand_made'
-             ].map( (item, i) => {
-        return (
-          <label key={i} className="text-capitalize">
-           <input type="checkbox" ref={item} />{ item.split("_").join(" ") }
-          </label>
-        )
-      })
-    }
+    let categoryDropdowns = Object.keys(this.state.allCategories).map( categoryKey => {
+      return(
+        <div key={categoryKey}>
+          <label>{categoryKey}</label>
+          <select ref={categoryKey}>{this.generateCategoryOptions(categoryKey)}</select>
+        </div>);
+    });
+    return categoryDropdowns;
   }
 
   displayUserInfo() {
@@ -114,7 +122,8 @@ class Profile extends Component {
   }
 
   render() {
-    let { zip_code, bio, inspirations, category, url } = this.state.profile;
+    let { zip_code, bio, inspirations, url } = this.state.profile;
+    let { music } = this.state.profile.profile_categories
     if(this.state.edit) {
       return(
         <div>
@@ -162,7 +171,7 @@ class Profile extends Component {
                   <dt> inspirations </dt>
                   <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
                   <dt> categories</dt>
-                  <dd> { category ? category : 'let others search you by your interests, ADD CATEGORIES'} </dd>
+                  <dd> { music ? music : 'let others search you by your interests, ADD CATEGORIES'} </dd>
                 </dl>
               </div>
             </div>

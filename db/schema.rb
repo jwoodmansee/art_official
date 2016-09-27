@@ -34,17 +34,17 @@ ActiveRecord::Schema.define(version: 20160921202137) do
   end
 
   create_table "profile_categories", force: :cascade do |t|
-    t.boolean  "music"
-    t.boolean  "photography"
-    t.boolean  "videography"
-    t.boolean  "muralist"
-    t.boolean  "painting"
-    t.boolean  "drawing"
-    t.boolean  "sculpture"
-    t.boolean  "graphic_design"
-    t.boolean  "performance"
-    t.boolean  "literature"
-    t.boolean  "hand_made"
+    t.string   "music"
+    t.string   "photography"
+    t.string   "videography"
+    t.string   "muralist"
+    t.string   "painting"
+    t.string   "drawing"
+    t.string   "sculpture"
+    t.string   "graphic_design"
+    t.string   "performance"
+    t.string   "literature"
+    t.string   "hand_made"
     t.integer  "profile_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -62,18 +62,17 @@ ActiveRecord::Schema.define(version: 20160921202137) do
   end
 
   create_table "project_categories", force: :cascade do |t|
-    t.boolean  "music"
-    t.boolean  "photography"
-    t.boolean  "videography"
-    t.boolean  "muralist"
-    t.boolean  "painting"
-    t.boolean  "drawing"
-    t.boolean  "sculpture"
-    t.boolean  "graphic_design"
-    t.boolean  "performance"
-    t.boolean  "literature"
-    t.boolean  "hand_made"
-    t.boolean  "other"
+    t.string   "music"
+    t.string   "photography"
+    t.string   "videography"
+    t.string   "muralist"
+    t.string   "painting"
+    t.string   "drawing"
+    t.string   "sculpture"
+    t.string   "graphic_design"
+    t.string   "performance"
+    t.string   "literature"
+    t.string   "hand_made"
     t.integer  "projects_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
