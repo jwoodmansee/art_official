@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Projects from './Projects';
 import foamgeode from '../images/foamgeode.jpg';
+import categoryOptions from './categoryOptions';
 
 const styles = {
   row: {
@@ -19,11 +20,13 @@ class Profile extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
-    this.state = { profile: {categories: {} },
+    this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+    this.state = { profile: { categories: {} },
                    user: {},
                    edit: false,
                    category: false,
-                   allCategories: { music: ['Rock', 'R&B', 'HipHop', 'Rap'], photography: ['Landscape']}};
+                 };
+    this.categoryOptions = categoryOptions();
   }
 
   componentWillMount() {
@@ -51,22 +54,36 @@ class Profile extends Component {
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
     let music = this.refs.music.value;
-
-    {/*let photography = this.refs.photography.value;
+    let photography = this.refs.photography.value;
     let videography = this.refs.videography.value;
     let muralist = this.refs.muralist.value;
     let painting = this.refs.painting.value;
     let drawing = this.refs.drawing.value;
     let sculpture = this.refs.sculpture.value;
     let graphic_design = this.refs.graphic_design.value;
-    let preformance = this.refs.preformance.value;
+    let performance = this.refs.performance.value;
     let literature = this.refs.literature.value;
-    let hand_made = this.refs.hand_made.value; */}
+    let hand_made = this.refs.hand_made.value;
     $.ajax({
       url: `/api/profiles/${this.props.params.id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { profile: { bio, inspirations }, music }
+      data: {
+        profile: { bio, inspirations },
+        cat: {
+          music,
+          photography,
+          videography,
+          muralist,
+          painting,
+          drawing,
+          sculpture,
+          graphic_design,
+          performance,
+          literature,
+          hand_made
+        }
+      }
     }).done( data => {
       this.setState({ profile: data.profile })
       this.toggleEdit();
@@ -76,21 +93,24 @@ class Profile extends Component {
   }
 
   generateCategoryOptions(key) {
-    let options = [<option key={key}>-- Select</option>];
-    let userCategory = this.state.profile.categories[key];
-    this.state.allCategories[key].forEach( subCategory => {
-      let active = userCategory === subCategory ? true : false;
-      options.push(<option selected={active} key={subCategory}>{subCategory}</option>);
+    let options = [];
+    let selected = [];
+    let userCategory = this.categoryOptions[key];
+    userCategory.forEach( subCategory => {
+      if (this.state.profile.categories[key].indexOf(subCategory) !== -1)
+        selected.push(subCategory);
+      options.push(<option key={subCategory}>{subCategory}</option>)
     });
-    return options;
+    return { options: options, selected: selected };
   }
 
   checkboxes() {
-    let categoryDropdowns = Object.keys(this.state.allCategories).map( categoryKey => {
+    let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
+      let { options, selected } = this.generateCategoryOptions(categoryKey)
       return(
         <div key={categoryKey}>
-          <label>{categoryKey}</label>
-          <select ref={categoryKey}>{this.generateCategoryOptions(categoryKey)}</select>
+          <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
+          <select defaultValue={selected} multiple={true} ref={categoryKey}>{options}</select>
         </div>);
     });
     return categoryDropdowns;
@@ -123,7 +143,7 @@ class Profile extends Component {
 
   render() {
     let { zip_code, bio, inspirations, url } = this.state.profile;
-    let { music } = this.state.profile.categories
+    let { categories } = this.state.profile.categories
     if(this.state.edit) {
       return(
         <div>
@@ -171,7 +191,7 @@ class Profile extends Component {
                   <dt> inspirations </dt>
                   <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
                   <dt> categories</dt>
-                  <dd> { music ? music : 'let others search you by your interests, ADD CATEGORIES'} </dd>
+                  {/* <dd> { music ? music : 'let others search you by your interests, ADD CATEGORIES'} </dd> */}
                 </dl>
               </div>
             </div>
