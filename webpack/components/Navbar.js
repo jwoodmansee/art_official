@@ -59,6 +59,7 @@ class Navbar extends React.Component {
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
               <li><Link to='/all_projects'>All Projects</Link></li>
+              <li><Link to='/featured'>Featured</Link></li>
               { this.authLink() }
             </ul>
           </div>

@@ -4,6 +4,7 @@ import { UserAuthWrapper } from 'redux-auth-wrapper';
 import App from './containers/App';
 import Home from './components/Home';
 import About from './components/About';
+import Featured from './components/Featured';
 import Projects from './components/Projects';
 import Project from './components/Project';
 import Profiles from './components/Profiles';
@@ -28,6 +29,7 @@ export default (
       <Route path='profiles/:id/projects/:id' component={Projects} />
       <Route path='all_projects' component={Projects} />
       <Route path='about' component={About} />
+      <Route path='featured' component={Featured} />
       <Route path='login' component={Login} />
       <Route path='sign_up' component={Signup} />
       <Route path='profiles/:id' component={UserIsAuthendticated(Profile)} />
