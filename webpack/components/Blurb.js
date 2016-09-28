@@ -12,6 +12,8 @@ class Blurb extends React.Component {
         <h1>
           We provide a community for artists to Connect, Collaborate, and Create.
         </h1>
+        <br />
+        <h3>Learn more >>></h3>
       </div>
     );
   }

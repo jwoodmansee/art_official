@@ -11,13 +11,12 @@ class Api::ProjectsController < ApiController
   end
 
   def show
-    render json: @project
   end
 
   def create
     project = @profile.projects.new(project_params)
     if project.save
-      render json: project 
+      render json: project
     else
       render json: {errors: project.errors}, status: 401
     end

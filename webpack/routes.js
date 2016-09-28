@@ -26,7 +26,7 @@ export default (
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
       <Route path='profiles' component={Profiles} />
-      <Route path='profiles/:id/projects/:id' component={Projects} />
+      <Route path='project/:id' component={Project} />
       <Route path='all_projects' component={Projects} />
       <Route path='about' component={About} />
       <Route path='featured' component={Featured} />

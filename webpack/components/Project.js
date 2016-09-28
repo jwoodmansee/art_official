@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Projects from './Projects';
 
 
 class Project extends Component {
@@ -12,7 +13,7 @@ class Project extends Component {
 
   componentWillMount() {
     $.ajax({
-      url: `/api/profiles/${this.props.profileId}/projects/${this.props.projectId}`,
+      url: `/api/profiles/${this.props.params.id}/projects/${this.props.params.id}`,
       type: 'GET',
       dataType: 'JSON'
     }).done( data =>{
@@ -41,27 +42,6 @@ class Project extends Component {
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
-  }
-
-  displayProjects() {
-    let projects = this.state.projects.map( project => {
-      return(
-        <div key={project.id}>
-          <li>
-            <Link to={`/projects/${project.id}`}>
-              <h3>
-                { project.name }
-              </h3>
-              <p>
-                description: { project.description }
-              </p>
-              { project.active ? 'Project Open' : 'Project Closed'}
-            </Link>
-          </li>
-        </div>
-      )
-    });
-    return projects;
   }
 
   render() {

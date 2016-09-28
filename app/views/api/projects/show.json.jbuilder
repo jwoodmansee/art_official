@@ -4,8 +4,7 @@ json.project do
   json.description @project.description
   json.collab @project.collab
   json.active @project.active
-  json.url api_project_url(@project)
-  json.categories @project.category
+  json.url api_profile_project_url(@profile, @project)
 end
 
 json.user do
