@@ -36,25 +36,26 @@ class Projects extends Component {
     let projects = this.state.projects.map( project => {
       return(<li className="list-unstyled" key={project.id}>
               <div>
-                <button className='jumbotron' onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
+                <div className='jumbotron' style={styles.hover1} onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
                   <h3>
                   {project.name}
                   </h3>
                   <p><strong>Tags:</strong> {project.description}</p>
-                </button>
+                  <button className="btn btn-primary">More Info</button>
+                </div>
                 <div className="modal fade" id={"project-" + project.id} >
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
                         <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
-                        <h4 className="modal-title">Modal title</h4>
+                        <h4 className="modal-title">{project.name}</h4>
                       </div>
                       <div className="modal-body">
                         <p><strong>Description:</strong> {project.description}</p>
                       </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary">Request to Collab</button>
                       </div>
                     </div>
                   </div>
@@ -78,5 +79,12 @@ class Projects extends Component {
     )
   }
 }
+
+
+const styles = {
+  hover1: {
+    cursor: 'pointer'
+  },
+};
 
 export default Projects;
