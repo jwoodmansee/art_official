@@ -16,17 +16,17 @@ ActiveRecord::Schema.define(version: 20160927210313) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.text     "music",          default: [],              array: true
-    t.text     "photography",    default: [],              array: true
-    t.text     "videography",    default: [],              array: true
-    t.text     "muralist",       default: [],              array: true
-    t.text     "painting",       default: [],              array: true
-    t.text     "drawing",        default: [],              array: true
-    t.text     "sculpture",      default: [],              array: true
-    t.text     "graphic_design", default: [],              array: true
-    t.text     "performance",    default: [],              array: true
-    t.text     "literature",     default: [],              array: true
-    t.text     "hand_made",      default: [],              array: true
+    t.json     "music",          default: []
+    t.json     "photography",    default: []
+    t.json     "videography",    default: []
+    t.json     "muralist",       default: []
+    t.json     "painting",       default: []
+    t.json     "drawing",        default: []
+    t.json     "sculpture",      default: []
+    t.json     "graphic_design", default: []
+    t.json     "performance",    default: []
+    t.json     "literature",     default: []
+    t.json     "hand_made",      default: []
     t.string   "cat_type"
     t.integer  "cat_id"
     t.datetime "created_at",                  null: false

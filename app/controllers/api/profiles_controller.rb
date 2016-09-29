@@ -26,17 +26,17 @@ class Api::ProfilesController < ApiController
 
   def category_params
     params.require(:cat).permit(
-      :music,
-      :photography,
-      :videography,
-      :muralist,
-      :painting,
-      :drawing,
-      :sculpture,
-      :graphic_design,
-      :performance,
-      :literature,
-      :hand_made)
+      :music => [],
+      :photography => [],
+      :videography => [],
+      :muralist => [],
+      :painting => [],
+      :drawing => [],
+      :sculpture => [],
+      :graphic_design => [],
+      :performance => [],
+      :literature => [],
+      :hand_made => [])
   end
 
   def set_profile

@@ -4,7 +4,19 @@ json.profile do
   json.zip_code @profile.zip_code
   json.inspirations @profile.inspirations
   json.url api_profile_url(@profile)
-  json.categories @profile.category
+  json.categories do
+    json.music @profile.category.music
+    json.photography @profile.category.photography
+    json.videography @profile.category.videography
+    json.muralist @profile.category.muralist
+    json.painting @profile.category.painting
+    json.drawing @profile.category.drawing
+    json.sculpture @profile.category.sculpture
+    json.graphic_design @profile.category.graphic_design
+    json.performance @profile.category.performance
+    json.literature @profile.category.literature
+    json.hand_made @profile.category.hand_made
+  end
 end
 
 

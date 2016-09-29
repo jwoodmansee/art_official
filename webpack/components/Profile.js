@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Projects from './Projects';
 import foamgeode from '../images/foamgeode.jpg';
 import categoryOptions from './categoryOptions';
+import Select from 'react-select';
 
 const styles = {
   row: {
@@ -21,10 +22,25 @@ class Profile extends Component {
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
-    this.state = { profile: { categories: {} },
+    this.state = { profile: {
+                   categories: {}
+                   },
                    user: {},
                    edit: false,
                    category: false,
+                   selectedCategories: {
+                     music: [],
+                     photography: [],
+                     videography: [],
+                     muralist: [],
+                     painting: [],
+                     drawing: [],
+                     sculpture: [],
+                     graphic_design: [],
+                     performance: [],
+                     literature: [],
+                     hand_made: []
+                   }
                  };
     this.categoryOptions = categoryOptions();
   }
@@ -35,7 +51,11 @@ class Profile extends Component {
       type: 'GET',
       dataType: 'JSON'
     }).done( data =>{
-      this.setState({ profile: data.profile, user: data.user});
+      this.setState({
+        profile: data.profile,
+        user: data.user,
+        selectedCategories: {...data.profile.categories}
+      });
     }).fail( data => {
       console.log(data)
     });
@@ -53,36 +73,13 @@ class Profile extends Component {
     e.preventDefault();
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
-    let music = this.refs.music.value;
-    let photography = this.refs.photography.value;
-    let videography = this.refs.videography.value;
-    let muralist = this.refs.muralist.value;
-    let painting = this.refs.painting.value;
-    let drawing = this.refs.drawing.value;
-    let sculpture = this.refs.sculpture.value;
-    let graphic_design = this.refs.graphic_design.value;
-    let performance = this.refs.performance.value;
-    let literature = this.refs.literature.value;
-    let hand_made = this.refs.hand_made.value;
     $.ajax({
       url: `/api/profiles/${this.props.params.id}`,
       type: 'PUT',
       dataType: 'JSON',
       data: {
         profile: { bio, inspirations },
-        cat: {
-          music,
-          photography,
-          videography,
-          muralist,
-          painting,
-          drawing,
-          sculpture,
-          graphic_design,
-          performance,
-          literature,
-          hand_made
-        }
+        cat: this.state.selectedCategories
       }
     }).done( data => {
       this.setState({ profile: data.profile })
@@ -97,20 +94,31 @@ class Profile extends Component {
     let selected = [];
     let userCategory = this.categoryOptions[key];
     userCategory.forEach( subCategory => {
-      if (this.state.profile.categories[key].indexOf(subCategory) !== -1)
-        selected.push(subCategory);
-      options.push(<option key={subCategory}>{subCategory}</option>)
+      options.push({ value: subCategory, label: subCategory });
     });
-    return { options: options, selected: selected };
+    return options
+  }
+
+  updateSelected(val, key) {
+    let obj = {};
+    obj[key] = val.split(",");
+    let newObj = Object.assign({}, this.state.selectedCategories, obj);
+    this.setState({ selectedCategories: newObj })
   }
 
   checkboxes() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
-      let { options, selected } = this.generateCategoryOptions(categoryKey)
+      let options = this.generateCategoryOptions(categoryKey)
       return(
         <div key={categoryKey}>
           <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
-          <select defaultValue={selected} multiple={true} ref={categoryKey}>{options}</select>
+          <Select
+            name="form-field-name"
+            value={this.state.selectedCategories[categoryKey]}
+            multi={true}
+            options={options}
+            onChange={ (val) => this.updateSelected(val, categoryKey) }
+          />
         </div>);
     });
     return categoryDropdowns;
@@ -175,6 +183,19 @@ class Profile extends Component {
         </div>
       )
     } else {
+      let cat = this.state.selectedCategories;
+      let categories = Object.keys(cat).map( key => {
+        let category = cat[key]
+        return (
+          <div>
+          { category.length ?
+            <dd key={key} className="text-capitalize">
+              <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
+            </dd> : null
+          }
+          </div>
+        )
+      });
       return(
         <div>
           <div className='container'>
@@ -191,7 +212,7 @@ class Profile extends Component {
                   <dt> inspirations </dt>
                   <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
                   <dt> categories</dt>
-                  {/* <dd> { music ? music : 'let others search you by your interests, ADD CATEGORIES'} </dd> */}
+                  {categories}
                 </dl>
               </div>
             </div>
