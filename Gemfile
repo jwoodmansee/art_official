@@ -26,6 +26,7 @@ gem 'cloudinary', '~> 1.2', '>= 1.2.3'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'dotenv-rails'
+gem 'aws-sdk', '~> 2.3'
 
 group :development, :test do
   gem 'pry'

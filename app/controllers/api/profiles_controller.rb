@@ -1,5 +1,8 @@
 class Api::ProfilesController < ApiController
   # before_action require: :user
+  has_attached_file :avatar, styles: {medium: "300x300>", thumb: "100x100>"}, default_url: "images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   before_action :set_profile, except: [:index, :create]
 
   def index
@@ -21,7 +24,7 @@ class Api::ProfilesController < ApiController
   private
 
   def profile_params
-    params.require(:profile).permit(:zip_code, :bio, :inspirations)
+    params.require(:profile).permit(:avatar, :zip_code, :bio, :inspirations)
   end
 
   def category_params
