@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from '../components/Map';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { connect } from 'react-redux';
 import { loggedIn, logout } from '../components/auth/actions';
 
@@ -21,9 +22,14 @@ class App extends React.Component {
       <div>
         <Navbar auth={this.props.auth} history={this.props.history} />
 
-        <div>
-          { this.props.children }
+        <div id='wrap'>
+          <div id='main'>
+            { this.props.children }
+          </div>
         </div>
+        <footer className="footer gray-bg">
+          <Footer history={this.props.history} />
+        </footer>
       </div>
     )
   }
