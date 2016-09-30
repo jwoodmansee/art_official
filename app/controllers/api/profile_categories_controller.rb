@@ -1,4 +1,12 @@
 class Api::ProfileCategoriesController < ApiController
+  s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+    s3_bucket = ENV['S3_BUCKET']
+    file = params[:file]
+    name = file.original_filename
+    begin
+      obj = s3.bucket(s3_bucket).object(name)
+      obj.upload_file(file.tempfile)
+
   # before_action :categories only:
   def index
     render json: Profile_categories.all

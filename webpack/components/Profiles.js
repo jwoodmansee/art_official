@@ -16,7 +16,7 @@ class Profiles extends React.Component {
     this.setState({profiles});
    }).fail(data => {
     console.log(data);
-   });     
+   });
   }
 
   displayProfiles() {

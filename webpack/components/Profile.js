@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import Projects from './Projects';
-import foamgeode from '../images/foamgeode.jpg';
+
 import categoryOptions from './categoryOptions';
 import Select from 'react-select';
+import DropZone from 'react-dropzone';
+import request from 'superagent';
+require('superagent-rails-csrf')(request);
+
 
 const styles = {
   row: {
@@ -22,6 +26,7 @@ class Profile extends Component {
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+    this.addImage = this.addImage.bind(this);
     this.state = { profile: {
                    categories: {}
                    },
@@ -61,6 +66,21 @@ class Profile extends Component {
     });
   }
 
+  addImage(files) {
+    let file = files[0];
+    let req = request.put('/my_route');
+    req.setCsrfToken();
+    req.attach('whateverIWantTheParamToBe', file);
+    req.end( (err, res) => {
+      if (err) {
+        //Notify user of error
+      } else {
+        //set state from json object
+      }
+    });
+  }
+
+
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
@@ -78,7 +98,7 @@ class Profile extends Component {
       type: 'PUT',
       dataType: 'JSON',
       data: {
-        profile: { avatar, bio, inspirations },
+        profile: { bio, inspirations },
         cat: this.state.selectedCategories
       }
     }).done( data => {
@@ -151,7 +171,6 @@ class Profile extends Component {
 
   render() {
     let { zip_code, bio, inspirations, url } = this.state.profile;
-    let { avatar } = this.state.profile.avatar
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
       return(
@@ -187,6 +206,7 @@ class Profile extends Component {
       let cat = this.state.selectedCategories;
       let categories = Object.keys(cat).map( key => {
         let category = cat[key]
+
         return (
           <div>
           { category.length ?
@@ -202,7 +222,13 @@ class Profile extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
-                <img src={foamgeode} className='img-responsive img-rounded' />
+              <DropZone
+                onDrop={this.addImage}
+                accept='image/*'>
+                <div>
+                  <span> Drop image or click to upload </span>
+                </div>
+              </DropZone>
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
@@ -215,6 +241,9 @@ class Profile extends Component {
                   <dt> categories</dt>
                   {categories}
                 </dl>
+              </div>
+              <div>
+
               </div>
             </div>
           </div>
