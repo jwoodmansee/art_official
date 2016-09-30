@@ -78,7 +78,7 @@ class Profile extends Component {
       type: 'PUT',
       dataType: 'JSON',
       data: {
-        profile: { bio, inspirations },
+        profile: { avatar, bio, inspirations },
         cat: this.state.selectedCategories
       }
     }).done( data => {
@@ -151,6 +151,7 @@ class Profile extends Component {
 
   render() {
     let { zip_code, bio, inspirations, url } = this.state.profile;
+    let { avatar } = this.state.profile.avatar
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
       return(

@@ -22,7 +22,7 @@ class Api::ProfilesController < ApiController
   private
 
   def profile_params
-    params.require(:profile).permit(:avatar, :zip_code, :bio, :inspirations)
+    params.require(:profile).permit(:zip_code, :bio, :inspirations)
   end
 
   def category_params
