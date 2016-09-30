@@ -9,7 +9,7 @@ class Blurb extends React.Component {
   render() {
     return(
       <div className='blurb_box'>
-        <h1>
+        <h1 className='alt-font'>
           We provide a community for artists to Connect, Collaborate, and Create.
         </h1>
         <br />
