@@ -1,6 +1,5 @@
 class Api::ProfilesController < ApiController
   # before_action require: :user
-
   before_action :set_profile, except: [:index, :create]
 
   def index
