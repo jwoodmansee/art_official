@@ -125,10 +125,11 @@ class Profile extends Component {
   }
 
   displayUserInfo() {
-    let { first_name, last_name } = this.state.user;
+    let { first_name, last_name, username } = this.state.user;
     return(
       <div>
         <h2> { first_name } { last_name } </h2>
+        <h4><strong><i> { username } </i></strong></h4>
       </div>
     )
   }
