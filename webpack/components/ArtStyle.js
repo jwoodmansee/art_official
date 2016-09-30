@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import Projects from './Projects';
-
+import foamgeode from '../images/foamgeode.jpg';
 import categoryOptions from './categoryOptions';
 import Select from 'react-select';
-import DropZone from 'react-dropzone';
-import request from 'superagent';
-require('superagent-rails-csrf')(request);
-
 
 const styles = {
   row: {
@@ -25,9 +21,7 @@ class Profile extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
-    this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
-    this.addImage = this.addImage.bind(this);
     this.state = { profile: {
                    categories: {}
                    },
@@ -66,21 +60,6 @@ class Profile extends Component {
       console.log(data)
     });
   }
-
-  addImage(files) {
-    let file = files[0];
-    let req = request.put('/my_route');
-    req.setCsrfToken();
-    req.attach('whateverIWantTheParamToBe', file);
-    req.end( (err, res) => {
-      if (err) {
-        //Notify user of error
-      } else {
-        //set state from json object
-      }
-    });
-  }
-
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
@@ -127,36 +106,20 @@ class Profile extends Component {
     this.setState({ selectedCategories: newObj })
   }
 
-  catSelect(categoryKey) {
-    let options = this.generateCategoryOptions(categoryKey);
-    let subCat = this.categoryOptions[categoryKey];
-    return(
-      <Select
-        name="form-field-name"
-        value={this.state.selectedCategories[categoryKey]}
-        multi={true}
-        options={options}
-        onChange={ (val) => this.updateSelected(val, categoryKey) }
-      />
-    )
-  }
-
   artStyle() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
-      let select = this.catSelect(categoryKey);
+      let options = this.generateCategoryOptions(categoryKey)
       return(
         <div key={categoryKey}>
-          <label onClick={ () => select } className='text-capitalize'>
-            <p onClick={this.toggleCategory} > {categoryKey.split("_").join(" ")} </p>
-          </label>
-
-          { this.state.category ?
-            select
-            : null
-          }
-
-        </div>
-      );
+          <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
+          <Select
+            name="form-field-name"
+            value={this.state.selectedCategories[categoryKey]}
+            multi={true}
+            options={options}
+            onChange={ (val) => this.updateSelected(val, categoryKey) }
+          />
+        </div>);
     });
     return categoryDropdowns;
   }
@@ -223,7 +186,6 @@ class Profile extends Component {
       let cat = this.state.selectedCategories;
       let categories = Object.keys(cat).map( key => {
         let category = cat[key]
-
         return (
           <div>
           { category.length ?
@@ -239,13 +201,7 @@ class Profile extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
-              <DropZone
-                onDrop={this.addImage}
-                accept='image/*'>
-                <div>
-                  <span> Drop image or click to upload </span>
-                </div>
-              </DropZone>
+                <img src={foamgeode} className='img-responsive img-rounded' />
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
@@ -258,9 +214,6 @@ class Profile extends Component {
                   <dt> categories</dt>
                   {categories}
                 </dl>
-              </div>
-              <div>
-
               </div>
             </div>
           </div>
