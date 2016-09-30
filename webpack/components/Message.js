@@ -17,10 +17,11 @@ class Message extends Component {
     e.preventDefault();
     let subject = this.refs.subject.value;
     let body = this.refs.body.value;
+    let timestamp = Date.now();
     $.ajax({
       url:
       type: 'POST'
-      
+      data
     })
   }
 
