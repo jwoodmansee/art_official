@@ -11,7 +11,7 @@ html, body {
   padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
-.footer {
+.footer-wrapper {
   position: relative;
   margin-top: -75px; /* negative value of footer height */
   height: 75px;
@@ -19,7 +19,19 @@ html, body {
   padding-top:20px;
 }
 
+.top-align {
+  vertical-align: top;
+}
+
 .rotate {
-  text-align: right;
   transform: rotate(-90deg);
+}
+
+.navbar-bottom {
+  border-bottom: 25px solid #282828;
+  padding-bottom: 10px;
+}
+
+.no-margin {
+  margin: 0px;
 }

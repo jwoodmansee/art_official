@@ -27,9 +27,9 @@ class App extends React.Component {
             { this.props.children }
           </div>
         </div>
-        <footer id='main-footer' className="gray-bg">
+        <div className="footer-wrapper">
           <Footer history={this.props.history} />
-        </footer>
+        </div>
       </div>
     )
   }
