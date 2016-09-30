@@ -30,7 +30,7 @@ const Featured = () => (
           'Live from Compton Blvd'
         </h4>
         <div>
-          <img src={concert} className='img-responsive img-rounded' />
+          <img src={concert} className='img-responsive img-rounded'/>
         </div>
       </div>
     </div>
