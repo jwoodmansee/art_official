@@ -3,6 +3,7 @@ import Projects from './Projects';
 import foamgeode from '../images/foamgeode.jpg';
 import categoryOptions from './categoryOptions';
 import Select from 'react-select';
+import ProfileInfo from './ProfileInfo';
 
 const styles = {
   row: {
@@ -183,40 +184,10 @@ class Profile extends Component {
         </div>
       )
     } else {
-      let cat = this.state.selectedCategories;
-      let categories = Object.keys(cat).map( key => {
-        let category = cat[key]
-        return (
-          <div>
-          { category.length ?
-            <dd key={key} className="text-capitalize">
-              <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
-            </dd> : null
-          }
-          </div>
-        )
-      });
+      let { zip_code, bio, inspirations, url } = this.state.profile.bind(this);
       return(
         <div>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xs-12 col-sm-6'>
-                <img src={foamgeode} className='img-responsive img-rounded' />
-              </div>
-              <div className='col-xs-12 col-sm-6 pull-right'>
-                { this.displayUserInfo() }
-                <dl className='dl-horizontal'>
-                  <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
-                  <dt> bio </dt>
-                  <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
-                  <dt> inspirations </dt>
-                  <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
-                  <dt> categories</dt>
-                  {categories}
-                </dl>
-              </div>
-            </div>
-          </div>
+          <ProfileInfo toggleEdit={this.toggleEdit}/>
           { this.displayProjects() }
         </div>
       )

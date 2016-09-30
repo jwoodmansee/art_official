@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import foamgeode from '../images/foamgeode.jpg';
+import categoryOptions from './categoryOptions';
+import Select from 'react-select';
 
 
 class ProfileInfo extends Component {
   render() {
+    let cat = this.props.selectedCategories;
     let { zip_code, bio, inspirations, url } = this.props.profile;
-    let { categories } = this.props.profile.categories;
+    let categories = Object.keys(cat).map( key => {
+      let category = cat[key]
+      return (
+        <div>
+        { category.length ?
+          <dd key={key} className="text-capitalize">
+            <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
+          </dd> : null
+        }
+        </div>
+      )
+    });
     return(
       <div>
         <div className='container'>
@@ -22,7 +36,7 @@ class ProfileInfo extends Component {
                 <dt> inspirations </dt>
                 <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
                 <dt> categories</dt>
-                {/* <dd> { music ? music : 'let others search you by your interests, ADD CATEGORIES'} </dd> */}
+                {categories}
               </dl>
             </div>
           </div>
@@ -31,5 +45,6 @@ class ProfileInfo extends Component {
     )
   }
 }
+
 
 export default ProfileInfo;
