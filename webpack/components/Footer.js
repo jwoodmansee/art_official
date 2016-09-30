@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import FooterMenu from './FooterMenu';
 
 
 class Footer extends Component {
   constructor(props) {
     super(props);
-    this.showMenu = this.showMenu.bind(this);
+    this.showHide = this.showHide.bind(this);
     this.state = { hover: false };
   }
 
-  showMenu() {
-    return(
-      <div>This is not working yet</div>
-    )
-    console.log(data);
+  showHide() {
+    this.setState({ hover: !this.state.hover })
   }
 
   render() {
     return(
-      <div>
+      <div className='footer'>
         <div className='container'>
-          <section className='row'>
-            <div className='col-sm-6 col-md-3'>
-              <div className='inner rotate'>
-                <h4 onMouseOver={() => showMenu()}> Menu </h4>
+          <div className='row'>
+            <div className='col-xs-12s col-md-3'
+                 onMouseEnter={this.showHide}
+                 onMouseLeave={this.showHide}>
+              <div className='col-xs-6 col-md-4 rotate'>
+                <h3 className='no-margin'> menu </h3>
+              </div>
+
+              <div className='col-sm-6 col-md-8'>
+                  { this.state.hover
+                    ? <FooterMenu />
+                  : null
+                  }
               </div>
             </div>
 
@@ -48,7 +55,7 @@ class Footer extends Component {
 
               </p>
             </div>
-          </section>
+          </div>
         </div>
         <div className='nav navbar-bottom'>
           <div className='container'>
