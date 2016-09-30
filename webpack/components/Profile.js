@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Projects from './Projects';
 import foamgeode from '../images/foamgeode.jpg';
 import categoryOptions from './categoryOptions';
+import ProfileInfo from './ProfileInfo';
 import Select from 'react-select';
 
 const styles = {
@@ -198,25 +199,7 @@ class Profile extends Component {
       });
       return(
         <div>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xs-12 col-sm-6'>
-                <img src={foamgeode} className='img-responsive img-rounded' />
-              </div>
-              <div className='col-xs-12 col-sm-6 pull-right'>
-                { this.displayUserInfo() }
-                <dl className='dl-horizontal'>
-                  <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
-                  <dt> bio </dt>
-                  <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
-                  <dt> inspirations </dt>
-                  <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
-                  <dt> categories</dt>
-                  {categories}
-                </dl>
-              </div>
-            </div>
-          </div>
+          <ProfileInfo toggleEdit={this.state.toggleEdit} displayUserInfo={this.state.displayUserInfo} profile={this.state.profile} />
           { this.displayProjects() }
         </div>
       )
