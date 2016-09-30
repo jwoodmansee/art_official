@@ -9,7 +9,6 @@ RSpec.describe Conversation, type: :model do
     it { should respond_to(:subject) }
     it { should respond_to(:user_id) }
     it { should belong_to(:user) }
-    binding.pry
     it { should have_many(:messages) }
   end
 end
