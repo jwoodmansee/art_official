@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Blurb from './components/Blurb';
+import Support from './components/Support';
 import NoMatch from './components/NoMatch';
 
 const UserIsAuthendticated = UserAuthWrapper({
@@ -30,6 +31,7 @@ export default (
       <Route path='all_projects' component={Projects} />
       <Route path='about' component={About} />
       <Route path='featured' component={Featured} />
+      <Route path='support' component={Support} />
       <Route path='login' component={Login} />
       <Route path='sign_up' component={Signup} />
       <Route path='profiles/:id' component={UserIsAuthendticated(Profile)} />
