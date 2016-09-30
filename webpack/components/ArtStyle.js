@@ -21,7 +21,6 @@ class Profile extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
-    this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.state = { profile: {
                    categories: {}
@@ -107,36 +106,20 @@ class Profile extends Component {
     this.setState({ selectedCategories: newObj })
   }
 
-  catSelect(categoryKey) {
-    let options = this.generateCategoryOptions(categoryKey);
-    let subCat = this.categoryOptions[categoryKey];
-    return(
-      <Select
-        name="form-field-name"
-        value={this.state.selectedCategories[categoryKey]}
-        multi={true}
-        options={options}
-        onChange={ (val) => this.updateSelected(val, categoryKey) }
-      />
-    )
-  }
-
   artStyle() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
-      let select = this.catSelect(categoryKey);
+      let options = this.generateCategoryOptions(categoryKey)
       return(
         <div key={categoryKey}>
-          <label onClick={ () => select } className='text-capitalize'>
-            <p onClick={this.toggleCategory} > {categoryKey.split("_").join(" ")} </p>
-          </label>
-
-          { this.state.category ?
-            select
-            : null
-          }
-
-        </div>
-      );
+          <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
+          <Select
+            name="form-field-name"
+            value={this.state.selectedCategories[categoryKey]}
+            multi={true}
+            options={options}
+            onChange={ (val) => this.updateSelected(val, categoryKey) }
+          />
+        </div>);
     });
     return categoryDropdowns;
   }
