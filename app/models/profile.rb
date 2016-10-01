@@ -1,7 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_many :projects, dependent: :destroy
-  has_one :category
+  has_one :category, as: :cat
   after_create :create_profile_category
 
   private
