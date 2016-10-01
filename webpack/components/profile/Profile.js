@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import Projects from './Projects';
-import categoryOptions from './categoryOptions';
+import Projects from '../Projects';
+import categoryOptions from '../categoryOptions';
+import ProfileInfo from './ProfileInfo';
+import EditProfile from './EditProfile';
+import { connect } from 'react-redux';
+import { loggedIn } from '../auth/actions';
 import Select from 'react-select';
 import DropZone from 'react-dropzone';
 import request from 'superagent';
@@ -29,6 +33,7 @@ class Profile extends Component {
                    categories: {}
                    },
                    user: {},
+                   files: [],
                    edit: false,
                    category: false,
                    selectedCategories: {
@@ -67,17 +72,17 @@ class Profile extends Component {
 
 
   addImage(files) {
-  let file = files[0];
-  let req = request.put('/my_route');
-  req.setCsrfToken();
-  req.attach('whateverIWantTheParamToBe', file);
-  req.end( (err, res) => {
-    if (err) {
-      //Notify user of error
-    } else {
-      //set state from json object
-    }
-  });
+    let file = files[0];
+    let req = request.put('/my_route');
+    req.setCsrfToken();
+    req.attach('whateverIWantTheParamToBe', file);
+      req.end( (err, res) => {
+        if (err) {
+          //Notify user of error
+        } else {
+          //set state from json object
+        }
+      });
 }
 
 
@@ -160,15 +165,6 @@ class Profile extends Component {
     return categoryDropdowns;
   }
 
-  displayUserInfo() {
-    let { first_name, last_name , username} = this.state.user;
-    return(
-      <div>
-        <h2> { first_name } { last_name } </h2>
-        <h4><strong><i> { username } </i></strong></h4>
-      </div>
-    )
-  }
 
   displayProjects() {
     return(
@@ -180,95 +176,42 @@ class Profile extends Component {
     )
   }
 
-  displayCategories() {
-    this.state.profile_category.map( cat => {
-      <li> cat </li>
-    })
-  }
 
   render() {
-    let { zip_code, bio, inspirations, url } = this.state.profile;
-    let { categories } = this.state.profile.categories
-    if(this.state.edit) {
-      return(
-        <div>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xs-12 col-sm-6 pull-right'>
-                { this.displayUserInfo() }
-                <p onClick={this.toggleEdit} style={styles.textLink}>Back</p>
-                <form onSubmit={this.editProfile}>
-                  <dl className='dl-horizontal'>
-                    <dt> bio </dt>
-                    <dd>
-                      <textarea className='form-control' ref='bio' defaultValue={ bio }>
-                      </textarea>
-                    </dd>
-                    <dt> inspirations </dt>
-                    <dd><input className='form-control'
-                               ref='inspirations' type='text'
-                               defaultValue={inspirations} /></dd>
+    let { first_name, last_name, username } = this.state.user;
+    return (
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-xs-12'>
+            <h2> { first_name } { last_name } </h2>
+            <h4><strong><i> { username } </i></strong></h4>
+            <p onClick={this.props.toggleEdit} style={styles.textLink}>
 
-                    <dt> Art Style </dt>
-                    <dd> { this.artStyle() } </dd>
-                  </dl>
-                  <input type='submit' className='btn btn-primary btn-xs' />
-                </form>
-              </div>
-            </div>
+                Back
+            </p>
           </div>
-          { this.displayProjects() }
-        </div>
-      )
-    } else {
-      let cat = this.state.selectedCategories;
-      let categories = Object.keys(cat).map( key => {
-        let category = cat[key]
-
-        return (
-          <div>
-          { category.length ?
-            <dd key={key} className="text-capitalize">
-              <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
-            </dd> : null
+          { this.state.edit ?
+            <EditProfile profile={this.state.profile}
+                         categories={this.artStyle}
+                         user={this.state.user}
+                         editProfile={this.editProfile}
+                         addImage={this.addImage}
+            />
+            :
+            <ProfileInfo profile={this.state.profile}
+                         categories={categories}
+                         toggleEdit={this.toggleEdit}
+                         user={this.state.user}
+            />
           }
-          </div>
-        )
-      });
-      return(
-        <div>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xs-12 col-sm-6'>
-              <DropZone
-                onDrop={this.addImage}
-                accept='image/*'>
-                <div>
-                  <span> Drop image or click to upload </span>
-                </div>
-              </DropZone>
-              </div>
-              <div className='col-xs-12 col-sm-6 pull-right'>
-                { this.displayUserInfo() }
-                <dl className='dl-horizontal'>
-                  <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
-                  <dt> bio </dt>
-                  <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
-                  <dt> inspirations </dt>
-                  <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
-                  <dt> categories</dt>
-                  {categories}
-                </dl>
-              </div>
-              <div>
 
-              </div>
-            </div>
+          <div>
+            { this.displayProjects() }
           </div>
-          { this.displayProjects() }
         </div>
-      )
-    }
+      </div>
+
+    )
   }
 }
 

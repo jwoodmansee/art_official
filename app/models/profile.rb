@@ -9,4 +9,5 @@ class Profile < ApplicationRecord
   def create_profile_category
     Category.create(cat_type: 'Profile', cat_id: self.id)
   end
+
 end
