@@ -8,7 +8,7 @@ import Featured from './components/Featured';
 import Projects from './components/Projects';
 import Project from './components/Project';
 import Profiles from './components/Profiles';
-import Profile from './components/Profile';
+import Profile from './components/profile/Profile';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Blurb from './components/Blurb';
