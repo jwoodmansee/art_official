@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import Projects from './Projects';
-
 import categoryOptions from './categoryOptions';
 import Select from 'react-select';
-import DropZone from 'react-dropzone';
-import request from 'superagent';
-require('superagent-rails-csrf')(request);
 
 
 const styles = {
@@ -27,7 +23,6 @@ class Profile extends Component {
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
-    this.addImage = this.addImage.bind(this);
     this.state = { profile: {
                    categories: {}
                    },
@@ -63,21 +58,8 @@ class Profile extends Component {
         selectedCategories: {...data.profile.categories}
       });
     }).fail( data => {
+      debugger;
       console.log(data)
-    });
-  }
-
-  addImage(files) {
-    let file = files[0];
-    let req = request.put('/my_route');
-    req.setCsrfToken();
-    req.attach('whateverIWantTheParamToBe', file);
-    req.end( (err, res) => {
-      if (err) {
-        //Notify user of error
-      } else {
-        //set state from json object
-      }
     });
   }
 
@@ -91,6 +73,7 @@ class Profile extends Component {
   }
 
   editProfile(e) {
+    debugger
     e.preventDefault();
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
@@ -162,11 +145,10 @@ class Profile extends Component {
   }
 
   displayUserInfo() {
-    let { first_name, last_name, username } = this.state.user;
+    let { first_name, last_name } = this.state.user;
     return(
       <div>
         <h2> { first_name } { last_name } </h2>
-        <h4><strong><i> { username } </i></strong></h4>
       </div>
     )
   }
@@ -209,6 +191,7 @@ class Profile extends Component {
                     <dd><input className='form-control'
                                ref='inspirations' type='text'
                                defaultValue={inspirations} /></dd>
+
                     <dt> Art Style </dt>
                     <dd> { this.artStyle() } </dd>
                   </dl>
@@ -240,13 +223,7 @@ class Profile extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
-              <DropZone
-                onDrop={this.addImage}
-                accept='image/*'>
-                <div>
-                  <span> Drop image or click to upload </span>
-                </div>
-              </DropZone>
+
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
