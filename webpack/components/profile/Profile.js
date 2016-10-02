@@ -29,7 +29,7 @@ class Profile extends Component {
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
-    this.state = { profile: { categories: {} },
+    this.state = { profile: { categories: {}, projects: {} },
                    user: {},
                    files: [],
                    edit: false,
@@ -185,9 +185,9 @@ class Profile extends Component {
             <h3> { first_name } { last_name } <small>{ username }</small></h3>
             <hr />
             { this.state.edit ?
-              <dd onClick={this.toggleEdit} >BACK</dd>
+              <dd onClick={this.toggleEdit} style={styles.textLink}>BACK</dd>
               :
-              <dd onClick={this.toggleEdit} >EDIT PROFILE</dd>
+              <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
             }
           </div>
             { this.state.edit ?
