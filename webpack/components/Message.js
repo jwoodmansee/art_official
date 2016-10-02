@@ -19,9 +19,12 @@ class Message extends Component {
     let body = this.refs.body.value;
     let timestamp = Date.now();
     $.ajax({
-      url:
+      url: `api/conversations/:conversation_id/messages`
       type: 'POST'
-      data
+      data: { message: { subject, body, timestamp }
+            }
+    }).done( data => {
+      this.setState({ message: data.message })
     })
   }
 
