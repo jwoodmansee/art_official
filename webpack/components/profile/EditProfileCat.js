@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import categoryOptions from '../categoryOptions';
 
 class EditProfileCat extends Component {
+  constructor(props) {
+    super(props);
+    this.catSelect = this.catSelect.bind(this);
+    this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+  }
 
 
   generateCategoryOptions(key) {
@@ -24,12 +29,12 @@ class EditProfileCat extends Component {
         value={this.props.selectedCategories[categoryKey]}
         multi={true}
         options={options}
-        onChange={ (val) => this.updateSelected(val, categoryKey) }
+        onChange={ (val) => this.props.updateSelected(val, categoryKey) }
       />
     )
   }
 
-  dropDowns() {
+  render() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
       let select = this.catSelect(categoryKey);
       return(
@@ -46,14 +51,8 @@ class EditProfileCat extends Component {
         </div>
       );
     });
-    return categoryDropdowns;
   }
 
-  render() {
-    return(
-      <div>this is the Edit Profile Cat</div>
-    )
-  }
 }
 
 export default EditProfileCat;

@@ -29,9 +29,7 @@ class Profile extends Component {
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
-    this.state = { profile: {
-                   categories: {}
-                   },
+    this.state = { profile: { categories: {} },
                    user: {},
                    files: [],
                    edit: false,
@@ -114,6 +112,7 @@ class Profile extends Component {
     });
   }
 
+
   generateCategoryOptions(key) {
     let options = [];
     let selected = [];
@@ -145,7 +144,7 @@ class Profile extends Component {
     )
   }
 
-  artStyle() {
+  catDropDown() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
       let select = this.catSelect(categoryKey);
       return(
@@ -181,25 +180,37 @@ class Profile extends Component {
     let { first_name, last_name, username } = this.state.user;
     return (
       <div className='container-fluid'>
-        <div className='row'>
+        <div className='row profile-row'>
           <div className='col-xs-12'>
-            <h2> { first_name } { last_name } </h2>
-            <h4><strong><i> { username } </i></strong></h4>
+            <h3> { first_name } { last_name } <small>{ username }</small></h3>
+            <hr />
+            { this.state.edit ?
+              <dd onClick={this.toggleEdit} >BACK</dd>
+              :
+              <dd onClick={this.toggleEdit} >EDIT PROFILE</dd>
+            }
           </div>
-          { this.state.edit ?
-            <EditProfile profile={this.state.profile}
-                         selectedCategories={this.state.selectedCategories}
-                         user={this.state.user}
-                         editProfile={this.editProfile}
-                         addImage={this.addImage}
-            />
-            :
-            <ProfileInfo profile={this.state.profile}
-                         toggleEdit={this.toggleEdit}
-                         user={this.state.user}
-                         selectedCategories={this.state.selectedCategories}
-            />
-          }
+            { this.state.edit ?
+              <EditProfile profile={this.state.profile}
+                user={this.state.user}
+                editProfile={this.editProfile}
+                addImage={this.addImage}
+                category={this.state.category}
+
+                />
+              :
+              <div>
+                <ProfileInfo profile={this.state.profile}
+                  toggleEdit={this.toggleEdit}
+                  user={this.state.user}
+                  selectedCategories={this.state.selectedCategories}
+                  />
+                <div className='col-sm-3 thumbnail'>
+                  this will be an image
+                </div>
+              </div>
+            }
+
 
         </div>
         <div>

@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import DropZone from 'react-dropzone';
-import EditProfileCat from './EditProfileCat';
+import categoryOptions from '../categoryOptions';
+import request from 'superagent';
+require('superagent-rails-csrf')(request);
 
+const styles = {
+  textLink: {
+    color: '#015FB6',
+    cursor: 'pointer',
+  }
+};
 
 class EditProfile extends Component {
+
   render() {
     let { bio, inspirations } = this.props.profile;
     return(
-      <div className='col-xs-12'>
-        <DropZone
-          className='col-xs-6'
-          onDrop={this.props.addImage}
-          accept='image/*'>
-          <div>
-            <span> Drop image or click to upload </span>
-          </div>
-        </DropZone>
-        <form onSubmit={this.props.editProfile}>
+      <div>
+        <form onSubmit={this.props.editProfile} className='col-xs-12 col-sm-6'>
           <dl className='dl-horizontal'>
             <dt> bio </dt>
             <dd>
@@ -28,11 +29,17 @@ class EditProfile extends Component {
                        ref='inspirations' type='text'
                        defaultValue={ inspirations } /></dd>
 
-            <dt> Art Style </dt>
-            <dd> <EditProfileCat /> </dd>
           </dl>
           <input type='submit' className='btn btn-primary btn-xs' />
         </form>
+        <DropZone
+          className='col-xs-6 pull-right'
+          onDrop={this.props.addImage}
+          accept='image/*'>
+          <div>
+            <span> Drop image or click to upload </span>
+          </div>
+        </DropZone>
       </div>
 
 
