@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-
+import Profile from './Profile';
+import Project from './Project';
 
 class Message extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Message extends Component {
         
   }
 
-  newMessage() {
+  toggleNewMessage() {
     
   }
 
