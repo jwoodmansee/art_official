@@ -12,6 +12,10 @@ class Message extends Component {
         
   }
 
+  newMessage() {
+    
+  }
+
 
   sendMessage(e) {
     e.preventDefault();
@@ -21,7 +25,7 @@ class Message extends Component {
     $.ajax({
       url: `api/conversations/:conversation_id/messages`
       type: 'POST'
-      data: { message: { subject, body, timestamp }
+      data: { message: { subject, body }
             }
     }).done( data => {
       this.setState({ message: data.message })
