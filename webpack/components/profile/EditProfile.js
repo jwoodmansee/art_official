@@ -40,8 +40,10 @@ class EditProfile extends Component {
     });
   }
 
+
+
   render() {
-    let { bio, inspirations } = this.props.profile;
+    let { bio, inspirations, img } = this.props.profile;
     return(
       <form onSubmit={this.editProfile} className='col-xs-12 col-sm-6'>
         <dl className='dl-horizontal'>
@@ -57,14 +59,6 @@ class EditProfile extends Component {
 
         </dl>
         <input type='submit' className='btn btn-primary btn-xs' />
-        <DropZone
-          className='col-xs-6 pull-right'
-          onDrop={this.props.addImage}
-          accept='image/*'>
-          <div>
-            <span> Drop image or click to upload </span>
-          </div>
-        </DropZone>
         <EditProfileCat
           selectedCategories={this.props.selectedCategories}
           editProfile={this.editProfile}

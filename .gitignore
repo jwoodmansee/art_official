@@ -23,3 +23,5 @@
 #Ignore test coverage info
 /coverage
 npm-debug.log
+
+config/aws.yml

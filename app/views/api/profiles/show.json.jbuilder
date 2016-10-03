@@ -4,6 +4,7 @@ json.profile do
   json.zip_code @profile.zip_code
   json.inspirations @profile.inspirations
   json.url api_profile_url(@profile)
+  json.image_url @profile.image_url
   json.categories do
     json.music @profile.category.music
     json.photography @profile.category.photography

@@ -27,7 +27,9 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.addImage = this.addImage.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
+    this.onDrop = this.onDrop.bind(this);
     this.state = { profile: { categories: {}, projects: {} },
                    user: {},
                    files: [],
@@ -65,19 +67,10 @@ class Profile extends Component {
   }
 
 
-  addImage(files) {
-    let file = files[0];
-    let req = request.put('/my_route');
-    req.setCsrfToken();
-    req.attach('file', file);
-      req.end( (err, res) => {
-        if (err) {
-          //Notify user of error
-        } else {
-          //set state from json object
-        }
-      });
-}
+  addImage(image_url) {
+    let profile = Object.assign({}, this.state.profile, {image_url: image_url})
+    this.setState({ profile });
+  }
 
 
   toggleEdit() {
@@ -109,8 +102,18 @@ class Profile extends Component {
     )
   }
 
+  onDrop(files) {
+    let file = files[0];
+    let req = request.put(`/api/profiles/${this.state.profile.id}/`);
+    req.setCsrfToken();
+    req.attach('file', file);
+    req.end( (err, res) => {
+      this.addImage(res.body.profile.image_url);
+    });
+  }
 
   render() {
+    let src = this.state.profile.image_url || foamgeode
     let { first_name, last_name, username } = this.state.user;
     let editButton = this.state.edit ? 'BACK' : 'EDIT PROFILE';
     return (
@@ -126,8 +129,18 @@ class Profile extends Component {
 
         <div className='row profile-row'>
           <div className='col-xs-4 col-sm-2'>
-            <img src={foamgeode} className='img-responsive img-rounded' />
+            <img src={src} className='img-responsive img-rounded' />
+            <DropZone
+              className='col-xs-6 pull-right'
+              onDrop={this.onDrop}
+              multiple={false}
+              accept='image/*'>
+              <div>
+                <span> Drop image or click to upload </span>
+              </div>
+            </DropZone>
           </div>
+
           { this.state.edit ?
             <EditProfile profile={this.state.profile}
               user={this.state.user}

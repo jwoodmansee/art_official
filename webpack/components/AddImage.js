@@ -13,3 +13,5 @@ export const AddImage = (props) => {
     </div>
   </DropZone>
 }
+
+
