@@ -131,12 +131,13 @@ class Profile extends Component {
           <div className='col-xs-4 col-sm-2'>
             <img src={src} className='img-responsive img-rounded' />
             <DropZone
-              className='col-xs-6 pull-right'
+              className='col-xs-6 pull-left'
               onDrop={this.onDrop}
               multiple={false}
               accept='image/*'>
               <div>
-                <span> Drop image or click to upload </span>
+                <br/>
+                <button type='button' className='btn btn-default'> Upload Avatar Image </button>
               </div>
             </DropZone>
           </div>
