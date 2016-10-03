@@ -1,23 +1,9 @@
-html, body {
-  height: 100%;
-}
 
-#wrap {
-  min-height: 100%;
-}
 
-#main {
-  overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
-}
-
-.footer-wrapper {
-  position: relative;
-  margin-top: -75px; /* negative value of footer height */
-  height: 75px;
-  clear:both;
-  padding-top:20px;
-}
+// #main {
+//   overflow:auto;
+//   padding-bottom:150px; /* this needs to be bigger than footer height*/
+// }
 
 .top-align {
   vertical-align: top;

@@ -19,12 +19,12 @@ class ProfileInfo extends Component {
     });
     let { bio, inspirations } = this.props.profile;
     return(
-      <dl className='dl-horizontal col-xs-12 col-md-8'>
+      <dl className='dl-horizontal col-xs-12 col-md-6'>
         <dt> bio </dt>
-        <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
+        <dd className='profile-list'> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
         <dt> inspirations </dt>
-        <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
-        <dt> categories </dt>
+        <dd className='profile-list'> { inspirations ? inspirations : "let others know what you're about" } </dd>
+        <dt> Art Style </dt>
         { categories }
       </dl>
     )

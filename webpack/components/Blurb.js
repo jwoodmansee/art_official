@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class Blurb extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return(
-      <div className='blurb_box'>
-        <h1 className='alt-font'>
-          We provide a community for artists to Connect, Collaborate, and Create.
-        </h1>
-        <br />
-        <h3>Learn more >>></h3>
+      <div className='container'>
+        <div className='blurb-div'>
+          <p className='alt-font lead'>
+            We provide a community for artists to Connect, Collaborate, and Create.
+          </p>
+          <h5>Learn more >>></h5>
+        </div>
       </div>
     );
   }

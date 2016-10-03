@@ -5,14 +5,28 @@ class EditProfileCat extends Component {
   constructor(props) {
     super(props);
     this.catSelect = this.catSelect.bind(this);
+    this.toggleCategory = this.toggleCategory.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+    this.catDropDown = this.catDropDown.bind(this);
+    this.categoryOptions = categoryOptions();
+    this.state = {category: false};
   }
 
+  toggleCategory() {
+    this.setState({ category: !this.state.category });
+  }
+
+  updateSelected(val, key) {
+    let obj = {};
+    obj[key] = val.split(",");
+    let newObj = Object.assign({}, this.props.selectedCategories, obj);
+    this.props.updateCat( newObj )
+  }
 
   generateCategoryOptions(key) {
     let options = [];
     let selected = [];
-    let userCategory = this.props.categoryOptions[key];
+    let userCategory = this.categoryOptions[key];
     userCategory.forEach( subCategory => {
       options.push({ value: subCategory, label: subCategory });
     });
@@ -29,12 +43,12 @@ class EditProfileCat extends Component {
         value={this.props.selectedCategories[categoryKey]}
         multi={true}
         options={options}
-        onChange={ (val) => this.props.updateSelected(val, categoryKey) }
+        onChange={ (val) => this.updateSelected(val, categoryKey) }
       />
     )
   }
 
-  render() {
+  catDropDown() {
     let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
       let select = this.catSelect(categoryKey);
       return(
@@ -49,10 +63,18 @@ class EditProfileCat extends Component {
           }
 
         </div>
-      );
+      )
     });
+    return categoryDropdowns;
   }
 
+  render() {
+    return(
+      <div>
+        { this.catDropDown() }
+      </div>
+    )
+  }
 }
 
 export default EditProfileCat;

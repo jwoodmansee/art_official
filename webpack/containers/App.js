@@ -20,14 +20,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar auth={this.props.auth} history={this.props.history} />
-
         <div id='wrap'>
-          <div id='main'>
+          <Navbar auth={this.props.auth} history={this.props.history} />
+
+
             { this.props.children }
-          </div>
+
+
         </div>
-        <div className="footer-wrapper">
+        <div className='row'>
           <Footer history={this.props.history} />
         </div>
       </div>

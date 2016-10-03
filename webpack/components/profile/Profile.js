@@ -3,6 +3,8 @@ import Projects from '../Projects';
 import categoryOptions from '../categoryOptions';
 import ProfileInfo from './ProfileInfo';
 import EditProfile from './EditProfile';
+import AddProject from './AddProject';
+import foamgeode from '../../images/foamgeode.jpg';
 import { connect } from 'react-redux';
 import { loggedIn } from '../auth/actions';
 import Select from 'react-select';
@@ -25,15 +27,11 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.toggleCategory = this.toggleCategory.bind(this);
-    this.editProfile = this.editProfile.bind(this);
-    this.catSelect = this.catSelect.bind(this);
-    this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
     this.state = { profile: { categories: {}, projects: {} },
                    user: {},
                    files: [],
-                   edit: false,
-                   category: false,
+                   edit: false, slide: false,
                    selectedCategories: {
                      music: [],
                      photography: [],
@@ -48,7 +46,6 @@ class Profile extends Component {
                      hand_made: []
                    }
                  };
-    this.categoryOptions = categoryOptions();
   }
 
   componentWillMount() {
@@ -63,7 +60,6 @@ class Profile extends Component {
         selectedCategories: {...data.profile.categories}
       });
     }).fail( data => {
-      debugger;
       console.log(data)
     });
   }
@@ -73,7 +69,7 @@ class Profile extends Component {
     let file = files[0];
     let req = request.put('/my_route');
     req.setCsrfToken();
-    req.attach('whateverIWantTheParamToBe', file);
+    req.attach('file', file);
       req.end( (err, res) => {
         if (err) {
           //Notify user of error
@@ -88,80 +84,18 @@ class Profile extends Component {
     this.setState({ edit: !this.state.edit });
   }
 
-  toggleCategory() {
-    this.setState({ category: !this.state.category });
+
+  toggleAdd() {
+    this.setState({ slide: !this.state.slide });
   }
 
-  editProfile(e) {
-    e.preventDefault();
-    let bio = this.refs.bio.value;
-    let inspirations = this.refs.inspirations.value;
-    $.ajax({
-      url: `/api/profiles/${this.props.params.id}`,
-      type: 'PUT',
-      dataType: 'JSON',
-      data: {
-        profile: { bio, inspirations },
-        cat: this.state.selectedCategories
-      }
-    }).done( data => {
-      this.setState({ profile: data.profile })
-      this.toggleEdit();
-    }).fail( data => {
-      console.log(data)
-    });
+  updateProfile(data) {
+    this.setState({ profile: data.profile });
   }
 
 
-  generateCategoryOptions(key) {
-    let options = [];
-    let selected = [];
-    let userCategory = this.categoryOptions[key];
-    userCategory.forEach( subCategory => {
-      options.push({ value: subCategory, label: subCategory });
-    });
-    return options
-  }
-
-  updateSelected(val, key) {
-    let obj = {};
-    obj[key] = val.split(",");
-    let newObj = Object.assign({}, this.state.selectedCategories, obj);
+  updateCat(newObj) {
     this.setState({ selectedCategories: newObj })
-  }
-
-  catSelect(categoryKey) {
-    let options = this.generateCategoryOptions(categoryKey);
-    let subCat = this.categoryOptions[categoryKey];
-    return(
-      <Select
-        name="form-field-name"
-        value={this.state.selectedCategories[categoryKey]}
-        multi={true}
-        options={options}
-        onChange={ (val) => this.updateSelected(val, categoryKey) }
-      />
-    )
-  }
-
-  catDropDown() {
-    let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
-      let select = this.catSelect(categoryKey);
-      return(
-        <div key={categoryKey}>
-          <label onClick={ () => select } className='text-capitalize'>
-            <p onClick={this.toggleCategory} > {categoryKey.split("_").join(" ")} </p>
-          </label>
-
-          { this.state.category ?
-            select
-            : null
-          }
-
-        </div>
-      );
-    });
-    return categoryDropdowns;
   }
 
 
@@ -178,46 +112,45 @@ class Profile extends Component {
 
   render() {
     let { first_name, last_name, username } = this.state.user;
+    let editButton = this.state.edit ? 'BACK' : 'EDIT PROFILE';
     return (
-      <div className='container-fluid'>
-        <div className='row profile-row'>
+      <div>
+
+        <div className='container row'>
           <div className='col-xs-12'>
             <h3> { first_name } { last_name } <small>{ username }</small></h3>
+            <p onClick={this.toggleEdit} style={styles.textLink}>{ editButton }</p>
             <hr />
-            { this.state.edit ?
-              <dd onClick={this.toggleEdit} style={styles.textLink}>BACK</dd>
-              :
-              <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
-            }
           </div>
-            { this.state.edit ?
-              <EditProfile profile={this.state.profile}
+        </div>
+
+        <div className='row profile-row'>
+          <div className='col-xs-4 col-sm-2'>
+            <img src={foamgeode} className='img-responsive img-rounded' />
+          </div>
+          { this.state.edit ?
+            <EditProfile profile={this.state.profile}
+              user={this.state.user}
+              addImage={this.addImage}
+              toggleEdit={this.toggleEdit}
+              updateProfile={this.updateProfile}
+              updateCat={this.updateCat}
+              selectedCategories={this.state.selectedCategories}
+              />
+            :
+            <div>
+              <ProfileInfo profile={this.state.profile}
+                toggleEdit={this.toggleEdit}
                 user={this.state.user}
-                editProfile={this.editProfile}
-                addImage={this.addImage}
-                category={this.state.category}
-
+                selectedCategories={this.state.selectedCategories}
                 />
-              :
-              <div>
-                <ProfileInfo profile={this.state.profile}
-                  toggleEdit={this.toggleEdit}
-                  user={this.state.user}
-                  selectedCategories={this.state.selectedCategories}
-                  />
-                <div className='col-sm-3 thumbnail'>
-                  this will be an image
-                </div>
-              </div>
-            }
-
-
+            </div>
+          }
         </div>
         <div>
           { this.displayProjects() }
         </div>
       </div>
-
     )
   }
 }

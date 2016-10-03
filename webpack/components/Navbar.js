@@ -49,13 +49,24 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar navbar-default" style={styles.nav}>
         <div className="container-fluid">
+
+          {/*Logo Display*/}
           <div className="navbar-header">
+            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#mobile-nav' aria-expanded='false'>
+              <span className='sr-only'>Toggle Nav</span>
+              <span className='icon-bar'></span>
+              <span className='icon-bar'></span>
+              <span className='icon-bar'></span>
+              <span className='icon-bar'></span>
+            </button>
             <Link to='/' className="navbar-brand" style={styles.logo}>
               c o || art
             </Link>
           </div>
-          <div className="nav navbar-nav navbar-right">
-            <ul className="nav navbar-nav">
+
+
+          <div className="collapse navbar-collapse" id='mobile-nav'>
+            <ul className="nav navbar-nav navbar-right">
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
               <li><Link to='/all_projects'>All Projects</Link></li>
@@ -77,20 +88,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Navbar);
-
-
-// var Navbar = React.createClass({
-//   getInitialState() {
-//     return {
-//       currentUser: this.props.current_user
-//     };
-//   render: function() {
-//     return (
-//       <ul>
-//         <li>
-//           <a href={"localhost:3000/profile/"+ this.state.currentUser.id}>Profile</a>
-//         <li>
-//       <ul>
-//     );
-//   }
-// },
