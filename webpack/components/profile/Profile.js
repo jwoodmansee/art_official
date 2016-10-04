@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import foamgeode from '../../images/foamgeode.jpg';
 import Projects from '../Projects';
 import categoryOptions from '../categoryOptions';
 import AddProject from './AddProject';
