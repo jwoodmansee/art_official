@@ -151,6 +151,26 @@ class Profile extends Component {
     )
   }
 
+  artStyle() {
+  let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
+    let select = this.catSelect(categoryKey);
+    return(
+      <div key={categoryKey}>
+        <label onClick={ () => select } className='text-capitalize'>
+          <p onClick={this.toggleCategory} > {categoryKey.split("_").join(" ")} </p>
+        </label>
+
+        { this.state.category ?
+          select
+          : null
+        }
+
+      </div>
+    );
+  });
+  return categoryDropdowns;
+}
+
   onDrop(files) {
     let file = files[0];
     let req = request.put(`/api/profiles/${this.state.profile.id}/`);
@@ -161,7 +181,7 @@ class Profile extends Component {
     });
   }
 
-  render() {
+  displayUserInfo() {
     let src = this.state.profile.image_url || foamgeode
     let { first_name, last_name, username } = this.state.user;
     return(
