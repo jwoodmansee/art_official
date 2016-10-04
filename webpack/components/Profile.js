@@ -265,7 +265,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          { this.displayProjects() }
+          { this.displayMyProjects() }
         </div>
       )
     }
