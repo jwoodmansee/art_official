@@ -28,11 +28,10 @@ class EditProfile extends Component {
     $.ajax({
       url: `/api/profiles/${id}`,
       type: 'PUT',
+      dataType: 'JSON',
       data: { profile: { bio, inspirations},
-              cat: this.props.selectedCategories },
-      dataType: 'JSON'
+              cat: this.props.selectedCategories }
     }).done( data => {
-      debugger
       this.props.updateProfile(data);
       this.props.toggleEdit();
     }).fail( data => {
@@ -56,8 +55,15 @@ class EditProfile extends Component {
           <dd><input className='form-control'
                      ref='inspirations' type='text'
                      defaultValue={ inspirations } /></dd>
+          <dt> Art Style </dt>
+            <EditProfileCat
+                  selectedCategories={this.props.selectedCategories}
+                  editProfile={this.editProfile}
+                  updateCat={this.props.updateCat}
+                  profileId={ this.props.profile.id}/>
 
         </dl>
+
         <input type='submit' className='btn btn-primary btn-xs' />
         <EditProfileCat
           selectedCategories={this.props.selectedCategories}
