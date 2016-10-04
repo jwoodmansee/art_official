@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Projects from './Projects';
+import { connect } from 'react-redux'
 
 
 
@@ -66,10 +67,17 @@ class Project extends Component {
           <h3>Username: { username }</h3>
           <p>Project Name: { name }</p>
           <p>Description: { description }</p>
+          { this.props.currentUser === this.state.user.id ?
+            null : null
+          }
         </div>
       )
     }
   }
+}
+
+const mapStateToProps = (state) => {
+  return { currentUser: state.auth.id }
 }
 
 export default Project;

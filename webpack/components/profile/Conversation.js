@@ -20,6 +20,8 @@ class Conversation extends Component {
     }).fail()     
   }
 
+  
+
   displayConversations() {
     let conversations = this.state.conversations.map( conversation => {
       return(<li className='list_unstyled' key={conversation.id}>
@@ -38,7 +40,7 @@ class Conversation extends Component {
                         <h5 className='modal-title'>{conversation.subject}</h5>
                       </div>
                       <div className='modal-body'>
-                        <p>{converation.body}</p>
+                        <p>{convesration.body}</p>
                       </div>
                       <div className='modal-footer'>
                         <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>

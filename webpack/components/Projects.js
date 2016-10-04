@@ -191,7 +191,7 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  return { currentUser: parsInt(state.auth.id)}
+  return { currentUser: parseInt(state.auth.id) }
 }
 
 export default connect(mapStateToProps)(Projects);

@@ -7,7 +7,7 @@ class Api::ProjectsController < ApiController
   end
 
   def all_projects
-    render json: Project.all
+    @projects = Project.order(created_at: :desc)
   end
 
   def show
