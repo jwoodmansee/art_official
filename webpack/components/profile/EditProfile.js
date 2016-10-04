@@ -56,6 +56,10 @@ class EditProfile extends Component {
                      defaultValue={ inspirations } /></dd>
 
         </dl>
+        <EditProfileCat
+          selectedCategories={this.props.selectedCategories}
+          editProfile={this.editProfile}
+          updateCat={this.props.updateCat}/>
         <input type='submit' className='btn btn-primary btn-xs' />
         <DropZone
           className='col-xs-6 pull-right'
@@ -65,10 +69,6 @@ class EditProfile extends Component {
             <span> Drop image or click to upload </span>
           </div>
         </DropZone>
-        <EditProfileCat
-          selectedCategories={this.props.selectedCategories}
-          editProfile={this.editProfile}
-          updateCat={this.props.updateCat}/>
       </form>
     )
   }

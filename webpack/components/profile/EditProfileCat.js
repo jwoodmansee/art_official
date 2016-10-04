@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import categoryOptions from '../categoryOptions';
+import Select from 'react-select';
 
 class EditProfileCat extends Component {
   constructor(props) {
@@ -9,11 +10,6 @@ class EditProfileCat extends Component {
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.catDropDown = this.catDropDown.bind(this);
     this.categoryOptions = categoryOptions();
-    this.state = {category: false};
-  }
-
-  toggleCategory() {
-    this.setState({ category: !this.state.category });
   }
 
   updateSelected(val, key) {
@@ -69,6 +65,20 @@ class EditProfileCat extends Component {
   }
 
   render() {
+    let cat = this.props.selectedCategories;
+    let categories = Object.keys(cat).map( key => {
+      let category = cat[key]
+
+      return (
+        <div>
+        { category.length ?
+          <dd key={key} className="text-capitalize">
+            <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
+          </dd> : null
+        }
+        </div>
+      )
+    });
     return(
       <div>
         { this.catDropDown() }
