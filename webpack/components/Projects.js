@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NewConversation from './NewConversation';
+import categoryOptions from './categoryOptions';
+
 
 class Projects extends Component {
  constructor(props) {
@@ -12,9 +14,26 @@ class Projects extends Component {
    this.addProject = this.addProject.bind(this);
    this.projectForm = this.projectForm.bind(this);
    this.toggleAdd = this.toggleAdd.bind(this);
-   this.state = { projects: [], project: false, conversationView: false,
-                  toggleAdd: false
+   this.state = { projects: [],
+                  categories: {},
+                  project: false,
+                  conversationView: false,
+                  toggleAdd: false,
+                  selectedCategories: {
+                    music: [],
+                    photography: [],
+                    videography: [],
+                    muralist: [],
+                    painting: [],
+                    drawing: [],
+                    sculpture: [],
+                    graphic_design: [],
+                    performance: [],
+                    literature: [],
+                    hand_made: []
+                  }
                 };
+    this.categoryOptions = categoryOptions();
  }
 
  componentWillMount() {
@@ -26,8 +45,8 @@ class Projects extends Component {
      $.ajax({
        url: url,
        type: 'GET',
-       dataType: 'JSON'
-     }).done(projects => {
+       dataType: 'JSON',
+     }).done( projects => {
        this.setState({ projects });
      }).fail(data => {
        console.log(data);
@@ -47,12 +66,14 @@ toggleProject() {
    $.ajax({
      url: `/api/profiles/${this.props.profileId}/projects/`,
      type: 'POST',
-     data: {project: {  name, description, active }},
+     data: {project: {  name, description, active },
+            cat: this.state.selectedCategories
+            },
      dataType: 'JSON'
    }).done (data => {
      let projects = this.state.projects;
      projects.push(data);
-     this.setState({ projects: projects });
+     this.setState({ projects: { data }});
    }).fail(data => {
      console.log(data)
    });
@@ -121,7 +142,7 @@ toggleProject() {
          </div>
          <div className="modal-footer">
            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-           { this.props.currentUser !== projectUser ? null
+           { this.props.currentUser === projectUser ? null
              :
              <button
                onClick={() => { this.setState({ conversationView: true })} }
@@ -135,6 +156,52 @@ toggleProject() {
        </div>
      )
    }
+ }
+
+ generateCategoryOptions(key) {
+   let options = [];
+   let selected = [];
+   let userCategory = this.categoryOptions[key];
+   userCategory.forEach( subCategory => {
+     options.push({ value: subCategory, label: subCategory });
+   });
+   return options
+ }
+
+ updateSelected(val, key) {
+   let obj = {};
+   obj[key] = val.split(",");
+   let newObj = Object.assign({}, this.state.selectedCategories, obj);
+   this.setState({ selectedCategories: newObj })
+ }
+
+ catSelect(categoryKey) {
+   let options = this.generateCategoryOptions(categoryKey);
+   let subCat = this.categoryOptions[categoryKey];
+   return(
+     <Select
+       name="form-field-name"
+       value={this.state.selectedCategories[categoryKey]}
+       multi={true}
+       options={options}
+       onChange={ (val) => this.updateSelected(val, categoryKey) }
+     />
+   )
+ }
+
+ artStyle() {
+   let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
+     let select = this.catSelect(categoryKey);
+     return(
+       <div key={categoryKey}>
+         <label onClick={ () => select } className='text-capitalize'>
+           {categoryKey.split("_").join(" ")}
+         </label>
+           select
+       </div>
+     );
+   });
+   return categoryDropdowns;
  }
 
  displayProjects() {
@@ -173,6 +240,8 @@ toggleProject() {
         <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
          <ul>
            { this.displayProjects() }
+           <dt> add cat </dt>
+           <dd> {this.artStyle() }</dd>
          </ul>
        </div>
      )

@@ -28,6 +28,9 @@ class Api::ProjectsController < ApiController
   def create
     project = @profile.projects.new(project_params)
     if project.save
+      if params[:cat]
+        project.category.update(category_params)
+      end
       render json: project
     else
       render json: {errors: project.errors}, status: 401
@@ -36,7 +39,10 @@ class Api::ProjectsController < ApiController
 
   def update
     if @project.update(project_params)
-      render json: @project
+      if params[:cat]
+        @project.category.update(category_params)
+      end
+      render :show
     else
       render json: {errors: @project.errors}, status: 401
     end
@@ -59,6 +65,21 @@ class Api::ProjectsController < ApiController
 
   def set_project
     @project = @profile.projects.find(params[:id])
+  end
+
+  def category_params
+    params.require(:cat).permit(
+      :music => [],
+      :photography => [],
+      :videography => [],
+      :muralist => [],
+      :painting => [],
+      :drawing => [],
+      :sculpture => [],
+      :graphic_design => [],
+      :performance => [],
+      :literature => [],
+      :hand_made => [])
   end
 
 end

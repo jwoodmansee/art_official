@@ -87,6 +87,16 @@ html, body {
 .white-space {
   height: 100px;
 }
+.img-scroll {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.banner {
+  background-color: white;
+  height: 400px;
+}
 
 //-- Typography --//
 

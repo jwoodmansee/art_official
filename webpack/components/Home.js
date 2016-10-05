@@ -4,8 +4,10 @@ import musicCollab from '../images/musicCollab.jpeg';
 import img065 from '../images/img065.JPG';
 import img116 from '../images/img116.JPG';
 import img200 from '../images/img200.JPG';
+import img447e from '../images/img447e.jpg';
 import Blurb from '../components/Blurb';
 import MoreInfo from './MoreInfo';
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div className='row'>
+      <div>
         <div className='container'>
           <div className='col-sm-12'>
             <span className='header-text'>
@@ -37,17 +39,22 @@ class Home extends React.Component {
             </h4>
           </span>
 
-          <div className='blurb-box'></div>
-
         </div>
 
         <div className='row'>
-          <div className='white-space'></div>
+          <div className='container'>
+            <div className='white-space hidden-xs'></div>
 
-          <Blurb />
-          
-          <div className='white-space'></div>
+            <Blurb />
+
+            <div className='white-space hidden-xs'></div>
+          </div>
         </div>
+
+          <img src={img447e}
+            className='img-scroll img-responsive' />
+
+
         <MoreInfo />
       </div>
 
