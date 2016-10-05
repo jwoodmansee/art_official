@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :profile
-  has_one :category
+  has_one :category, as: :cat
   after_create :create_project_category
 
   private

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-router';
+import { connect } from 'react-redux';
 import NewConversation from './NewConversation';
 
 class Projects extends Component {
@@ -10,6 +10,7 @@ class Projects extends Component {
    this.toggleProject = this.toggleProject.bind(this);
    this.view = this.view.bind(this);
    this.addProject = this.addProject.bind(this);
+   this.projectForm = this.projectForm.bind(this);
    this.toggleAdd = this.toggleAdd.bind(this);
    this.state = { projects: [], project: false, conversationView: false,
                   toggleAdd: false
@@ -19,7 +20,7 @@ class Projects extends Component {
  componentWillMount() {
    let url;
      if(this.props.profileId)
-       url = `/api/profiles/${this.props.profileId}/projects`;
+       url = `/api/profiles/${this.props.profileId}/projects/`;
      else
        url = '/api/all_projects';
      $.ajax({
@@ -44,12 +45,14 @@ toggleProject() {
    let description = this.refs.description.value;
    let active = this.refs.active.value;
    $.ajax({
-     url: `/api/profiles/${this.props.profileId}/projects`,
+     url: `/api/profiles/${this.props.profileId}/projects/`,
      type: 'POST',
-     data: {  name, description, active },
+     data: {project: {  name, description, active }},
      dataType: 'JSON'
    }).done (data => {
-     this.setState({ projects: data });
+     let projects = this.state.projects;
+     projects.push(data);
+     this.setState({ projects: projects });
    }).fail(data => {
      console.log(data)
    });
@@ -66,7 +69,8 @@ toggleProject() {
  }
 
 
- addProject() {
+ projectForm() {
+   if(this.props.currentUser === parseInt(this.props.profileId)){
    return(
      <div className="row">
        <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4'>
@@ -87,7 +91,7 @@ toggleProject() {
      </form>
    </div>
 
-   )
+  )}
  }
 
  view(projectUser, description) {
@@ -163,16 +167,9 @@ toggleProject() {
  }
 
  render() {
-   if(this.state.toggleAdd) {
      return(
        <div>
-        <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
-         { this.addProject() }
-       </div>
-     )
-   } else {
-     return(
-       <div>
+        { this.projectForm() }
         <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
          <ul>
            { this.displayProjects() }
@@ -180,7 +177,6 @@ toggleProject() {
        </div>
      )
    }
- }
 }
 
 

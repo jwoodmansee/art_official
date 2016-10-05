@@ -224,7 +224,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          { this.displayProjects() }
+          { this.displayMyProjects() }
         </div>
       )
     } else {
@@ -268,9 +268,6 @@ class Profile extends Component {
                   <dt> categories</dt>
                   {categories}
                 </dl>
-              </div>
-              <div>
-
               </div>
             </div>
           </div>
