@@ -9,7 +9,19 @@ class NewConversation extends Component {
 
   sendRequest(e) {
     e.preventDefault();
-    //this.props.sendTo (project user)
+    let subject = this.refs.subject.value;
+    let body = this.refs.body.value;
+    let sent_from = this.props.currentUser;
+    let sent_to = this.props.sentTo;
+    $.ajax({
+      url: '/api/conversations',
+      type: 'POST',
+      dataType: 'JSON',
+      data: { conversation: { subject, body, sent_from, sent_to } }
+    }).done( _ => {
+      alert("Message Sent!");
+    })
+    //this.props.sentTo (project user)
     //this.props.currentUser
   }
    

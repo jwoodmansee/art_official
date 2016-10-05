@@ -24,6 +24,7 @@ class Profile extends Component {
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
+    this.displayMyProjects = this.displayMyProjects.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.state = { profile: {
                    categories: {}
@@ -170,7 +171,7 @@ class Profile extends Component {
     )
   }
 
-  displayProjects() {
+  displayMyProjects() {
     return(
       <div style={styles.row}>
         <div className='container'>
@@ -217,7 +218,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          { this.displayProjects() }
+          { this.displayMyProjects() }
         </div>
       )
     } else {

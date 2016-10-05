@@ -1,5 +1,5 @@
 class Api::ConversationsController < ApiController
-  before_action :set_user, except: [:index, :update, :destroy]
+  before_action :set_user, except: [:index, :update, :destroy, :create]
   before_action :set_conversation, except: [:index, :create]
   def index
     render json: Conversations.all
@@ -10,9 +10,9 @@ class Api::ConversationsController < ApiController
   end
 
   def create
-    conversation = @user.conversation.new(converation_params)
-    if converation.save
-      render json: converation
+    conversation = Conversation.new(conversation_params)
+    if conversation.save
+      render json: conversation
     else
       render json: {errors: conversation.errors, status: 401, message: 'Invaild input'}
     end
@@ -22,7 +22,7 @@ class Api::ConversationsController < ApiController
     if @conversation.update(conversation_params)
       render json: @conversation
     else
-      render json: {errors: conversation.errors} status: 401
+      render json: {errors: conversation.errors, status: 401}
     end
   end
 
@@ -34,8 +34,8 @@ class Api::ConversationsController < ApiController
 
   private
 
-  def converastion_params
-    params.require(:conversation).permit(:subject, :user_id)
+  def conversation_params
+    params.require(:conversation).permit(:subject, :body, :sent_from, :sent_to)
   end
 
   def set_user
