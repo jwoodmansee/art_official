@@ -25,6 +25,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.onDrop = this.onDrop.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
@@ -233,13 +234,12 @@ class Profile extends Component {
         let category = cat[key]
 
         return (
-          <div>
-          { category.length ?
             <dd key={key} className="text-capitalize">
+            { category.length ?
               <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
-            </dd> : null
-          }
-          </div>
+              : null
+            }
+          </dd>
         )
       });
 
