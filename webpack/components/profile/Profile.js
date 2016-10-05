@@ -229,10 +229,10 @@ class Profile extends Component {
         </div>
       )
     } else {
+      let src = this.state.profile.image_url || foamgeode
       let cat = this.state.selectedCategories;
       let categories = Object.keys(cat).map( key => {
         let category = cat[key]
-
         return (
             <dd key={key} className="text-capitalize">
             { category.length ?
@@ -243,17 +243,20 @@ class Profile extends Component {
         )
       });
 
-
       return(
         <div>
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
+              <img src={ src } className='img-responsive img-rounded' />
               <DropZone
-                onDrop={this.addImage}
+                className='col-xs-6 pull-left'
+                onDrop={this.onDrop}
+                multiple={false}
                 accept='image/*'>
                 <div>
-                  <span> Drop image or click to upload </span>
+                  <br />
+                  <button type='button' className='btn btn-default'> Upload Avatar Image </button>
                 </div>
               </DropZone>
               </div>
