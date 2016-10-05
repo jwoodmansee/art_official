@@ -7,6 +7,7 @@ class Api::ProfilesController < ApiController
   end
 
   def show
+    @conversations = Conversation.where('sent_to = ? OR sent_from = ?', current_user.id, current_user.id)
   end
 
   def update

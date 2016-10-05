@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Message from './Message';
 import Profile from './Profile';
-import Project from 'Project';
 
 class Conversation extends Component {
-  constructor(props)      super(props);
+  constructor(props) {     
+    super(props);
     this.displayConversations = this.displayConversations.bind(this);
-    this.state = { converstions: {} }
+    this.state = { conversations: [] }
   }
 
   componentWillMount() {
     $.ajax({
-      url: `/api/profiles/${this.props.profileId}/conversations`,
+      url: `/api/profiles/${this.props.params.id}`,
       type: 'GET',
       dataType: 'JSON'
-    }).done(converations => {
-      this.setState({conversations});
+    }).done( data => {
+      this.setState({ conversations: data.conversations });
     }).fail()     
   }
 
@@ -53,7 +52,7 @@ class Conversation extends Component {
             </li>        
           );
     });
-    return conversatons:
+    return conversations;
   }
 
 

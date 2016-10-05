@@ -8,6 +8,7 @@ import DropZone from 'react-dropzone';
 import request from 'superagent';
 import { connect } from 'react-redux';
 import { loggedIn } from '../auth/actions';
+import Conversation from './Conversation';
 require('superagent-rails-csrf')(request);
 
 const styles = {
@@ -32,7 +33,9 @@ class Profile extends Component {
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.addImage = this.addImage.bind(this);
     this.displayMyProjects = this.displayMyProjects.bind(this);
-    this.state = { profile: {
+    this.state = { 
+                   conversations: [],
+                   profile: {
                    categories: {}
                    },
                    user: {},
@@ -67,7 +70,8 @@ class Profile extends Component {
       this.setState({
         profile: data.profile,
         user: data.user,
-        selectedCategories: {...data.profile.categories}
+        selectedCategories: {...data.profile.categories},
+        conversations: data.conversations
       });
     }).fail( data => {
       console.log(data)
@@ -274,7 +278,9 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-
+          <div>
+            <Conversation />
+          </div>
           <div>
             { this.displayMyProjects() }
           </div>
