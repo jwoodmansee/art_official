@@ -1,12 +1,11 @@
 import React from 'react';
 import Projects from './Projects';
 import Profiles from './Profiles';
-import Profiles2 from './Profiles2';
 
 class Browse extends React.Component {
   constructor(props) {
     super(props);
-    this.search = this.search.bind(this);
+    // this.search = this.search.bind(this);
     this.reset = this.reset.bind(this);
     this.state = {profiles: [], projects: []}
   }
@@ -28,7 +27,7 @@ class Browse extends React.Component {
     this.setState({ visibleItems: this.state.items, searching: false });
   }
 
-  search() {
+  /* search() {
 
     search = refs.search
 
@@ -47,6 +46,7 @@ class Browse extends React.Component {
     }
     this.setState({ visibleItems: items, searching: true });
   }
+  */
 
   render() {
     return (
