@@ -23,8 +23,9 @@ class Message extends Component {
     e.preventDefault();
     let body = this.refs.body.value;
     let timestamp = Date.now();
+    let conversationID = this.props.conversationID;
     $.ajax({
-      url: `api/conversations/:conversation_id/messages`,
+      url: `/api/conversations/${conversationID}/messages`,
       type: 'POST',
       data: { message: { body }}
     }).done( data => {
@@ -37,7 +38,7 @@ class Message extends Component {
     return(
       <div>
         <form onSubmit={this.sendMessage}>
-          <textarea ref='body' defaultValue="Sounds Great!"></textarea>
+          <textarea ref='body' placeholder="Sounds Great!"></textarea>
           <button type='submit' className='btn'>Send</button>
         </form>
       </div>

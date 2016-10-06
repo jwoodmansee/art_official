@@ -10,7 +10,8 @@ class Api::MessagesController < ApiController
   end
 
   def create
-    messages = @conversation.message.new(message_params)
+    message = @conversation.messages.new(message_params)  
+    message.user_id = current_user.id
     if message.save
       render json: message
     else
@@ -34,14 +35,14 @@ class Api::MessagesController < ApiController
   private
 
   def message_params
-    params.require(:message).permit(:body, :user_id, :conversation_id)
+    params.require(:message).permit(:body)
   end
 
   def set_converation
-    @conversation = Converation.find(params[:conversation_id])
+    @conversation = Conversation.find(params[:conversation_id])
   end
 
   def set_message
-    @message = Converation.message.find(params[:id])
+    @message = Conversation.message.find(params[:id])
   end
 end

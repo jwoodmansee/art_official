@@ -76,7 +76,7 @@ class Conversation extends Component {
                                 onClick={ () => {this.setState({ showMessageComponent: true })}} >
                                 Reply
                           </button>
-                          {this.state.showMessageComponent ? <Message /> : null}
+                          {this.state.showMessageComponent ? <Message conversationID={conversation.id} /> : null}
                       </div>
                     </div>
                   </div>
@@ -90,6 +90,7 @@ class Conversation extends Component {
 
 
   render() {
+    let conversationID = this.props.id;
     return(
       <div>
         <h1>All Conversations</h1>
