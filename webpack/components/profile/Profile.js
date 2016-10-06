@@ -200,6 +200,7 @@ class Profile extends Component {
 
 
   render() {
+    let profileID = this.props.params.id;
     let { zip_code, bio, inspirations, url } = this.state.profile;
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
@@ -279,7 +280,7 @@ class Profile extends Component {
             </div>
           </div>
           <div>
-            <Conversation />
+            <Conversation profileID={profileID} />
           </div>
           <div>
             { this.displayMyProjects() }

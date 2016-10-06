@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-import Profile from './Profile';
+import Profile from './profile/Profile';
 import Project from './Project';
 
 class Message extends Component {
   constructor(props) {
     super(props);
-    this.state = { message: {} }
+    this.sendMessage = this.sendMessage.bind(this);
+    this.state = { message: [] }
   }
 
   componentWillMount() {
@@ -20,14 +21,12 @@ class Message extends Component {
 
   sendMessage(e) {
     e.preventDefault();
-    let subject = this.refs.subject.value;
     let body = this.refs.body.value;
     let timestamp = Date.now();
     $.ajax({
-      url: `api/conversations/:conversation_id/messages`
-      type: 'POST'
-      data: { message: { subject, body }
-            }
+      url: `api/conversations/:conversation_id/messages`,
+      type: 'POST',
+      data: { message: { body }}
     }).done( data => {
       this.setState({ message: data.message })
     })
@@ -37,9 +36,8 @@ class Message extends Component {
   render() {
     return(
       <div>
-        <from onSubmit={this.sendMessage}>
-          <input ref='subjest' defaultValue={ subject } />
-          <textarea ref='body' defaultValue={ body }></textarea>
+        <form onSubmit={this.sendMessage}>
+          <textarea ref='body' defaultValue="Sounds Great!"></textarea>
           <button type='submit' className='btn'>Send</button>
         </form>
       </div>
@@ -47,5 +45,5 @@ class Message extends Component {
   }
 }
 
-export default Message
+export default Message;
 

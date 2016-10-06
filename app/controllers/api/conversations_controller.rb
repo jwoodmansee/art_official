@@ -1,5 +1,5 @@
 class Api::ConversationsController < ApiController
-  before_action :set_user, except: [:index, :update, :destroy, :create]
+  # before_action :set_user, except: [:index, :update, :destroy, :create]
   before_action :set_conversation, except: [:index, :create]
   def index
     render json: Conversations.all
@@ -27,7 +27,7 @@ class Api::ConversationsController < ApiController
   end
 
   def destroy
-    @convestaion.destrory
+    @conversation.destroy
     render json: {message: 'Deleted'}
 
   end
@@ -38,12 +38,12 @@ class Api::ConversationsController < ApiController
     params.require(:conversation).permit(:subject, :body, :sent_from, :sent_to)
   end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+  # def set_user
+  #   @user = User.find(params[:user_id])
+  # end
 
   def set_conversation
-    @conversation = User.converastion.find(params[:id])
+    @conversation = Conversation.find(params[:id])
   end
 
 end

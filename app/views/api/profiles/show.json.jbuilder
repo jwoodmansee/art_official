@@ -31,4 +31,5 @@ end
 json.conversations @conversations do |conversation|
   json.id conversation.id
   json.subject conversation.subject
+  json.body conversation.body
 end
