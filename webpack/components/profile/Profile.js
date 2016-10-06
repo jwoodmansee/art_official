@@ -202,7 +202,8 @@ class Profile extends Component {
 
 
   render() {
-    let profileID = this.props.params.id;
+
+    let src = this.state.profile.image_url || foamgeode
     let { zip_code, bio, inspirations, url } = this.state.profile;
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
@@ -210,6 +211,18 @@ class Profile extends Component {
         <div>
           <div className='container'>
             <div className='row'>
+            <div className='col-xs-6 pull-left'>
+              <img src={ src } className='img-responsive img-rounded' />
+              <DropZone
+                onDrop={this.onDrop}
+                multiple={false}
+                accept='image/*'>
+                <div>
+                  <br />
+                  <button type='button' className='btn btn-default'> Upload Avatar Image </button>
+                </div>
+              </DropZone>
+            </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
                 <p onClick={this.toggleEdit} style={styles.textLink}>Back</p>
@@ -255,17 +268,7 @@ class Profile extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
-              <img src={ src } className='img-responsive img-rounded' />
-              <DropZone
-                className='col-xs-6 pull-left'
-                onDrop={this.onDrop}
-                multiple={false}
-                accept='image/*'>
-                <div>
-                  <br />
-                  <button type='button' className='btn btn-default'> Upload Avatar Image </button>
-                </div>
-              </DropZone>
+                <img src={ src } className='img-responsive img-rounded' />
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
