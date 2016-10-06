@@ -18,7 +18,7 @@ const About = () => (
   <br />
     <h1>The Team</h1>
     <hr />
-    <div Name="row">
+    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -30,7 +30,7 @@ const About = () => (
         </div>
       </div>
     </div>
-    <div Name="row">
+    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -42,7 +42,7 @@ const About = () => (
         </div>
       </div>
     </div>
-    <div Name="row">
+    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -54,7 +54,7 @@ const About = () => (
         </div>
       </div>
     </div>
-    <div Name="row">
+    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />

@@ -33,7 +33,7 @@ class Profile extends Component {
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.addImage = this.addImage.bind(this);
     this.displayMyProjects = this.displayMyProjects.bind(this);
-    this.state = { 
+    this.state = {
                    conversations: [],
                    profile: {
                    categories: {}
@@ -62,8 +62,9 @@ class Profile extends Component {
   }
 
   componentWillMount() {
+    let id = this.props.params.id;
     $.ajax({
-      url: `/api/profiles/${this.props.params.id}`,
+      url: `/api/profiles/${id}`,
       type: 'GET',
       dataType: 'JSON'
     }).done( data =>{
@@ -109,8 +110,9 @@ class Profile extends Component {
     e.preventDefault();
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
+    let id = this.props.params.id;
     $.ajax({
-      url: `/api/profiles/${this.props.params.id}`,
+      url: `/api/profiles/${id}`,
       type: 'PUT',
       dataType: 'JSON',
       data: {
@@ -200,7 +202,7 @@ class Profile extends Component {
 
 
   render() {
-    let { zip_code, bio, inspirations, url } = this.state.profile;
+    let { zip_code, bio, inspirations, image_url } = this.state.profile;
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
       return(
@@ -279,7 +281,7 @@ class Profile extends Component {
             </div>
           </div>
           <div>
-            <Conversation />
+            {/* <Conversation /> */}
           </div>
           <div>
             { this.displayMyProjects() }
