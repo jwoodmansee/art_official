@@ -211,9 +211,11 @@ class Profile extends Component {
         <div>
           <div className='container'>
             <div className='row'>
+            <br/>
             <div className='col-xs-6 pull-left'>
               <img src={ src } className='img-responsive img-rounded' />
               <DropZone
+                className='dropzone'
                 onDrop={this.onDrop}
                 multiple={false}
                 accept='image/*'>
@@ -268,7 +270,9 @@ class Profile extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-xs-12 col-sm-6'>
+                <br/>
                 <img src={ src } className='img-responsive img-rounded' />
+                <br/>
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
