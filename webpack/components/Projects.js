@@ -13,12 +13,17 @@ class Projects extends Component {
    this.view = this.view.bind(this);
    this.addProject = this.addProject.bind(this);
    this.projectForm = this.projectForm.bind(this);
-   this.toggleAdd = this.toggleAdd.bind(this);
+   this.showForm = this.showForm.bind(this);
+   this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
+   this.artStyle = this.artStyle.bind(this);
+   this.displayProfileProjects = this.displayProfileProjects.bind(this);
    this.state = { projects: [],
                   categories: {},
                   project: false,
                   conversationView: false,
-                  toggleAdd: false,
+                  addform: false,
+                  category: false,
+                  currentuser: false,
                   selectedCategories: {
                     music: [],
                     photography: [],
@@ -57,6 +62,13 @@ toggleProject() {
   this.setState({ project: !this.state.project });
 }
 
+currentUser() {
+  this.setState({ currentuser: !this.state.currentuser });
+}
+
+toggleCategory() {
+  this.setState({ category: !this.state.category });
+}
 
  addProject(e) {
    e.preventDefault();
@@ -74,46 +86,47 @@ toggleProject() {
      let projects = this.state.projects;
      projects.push(data);
      this.setState({ projects: { data }});
+     this.setState({ addform: false });
    }).fail(data => {
      console.log(data)
    });
  }
 
- toggleProject() {
-   this.setState({
-     project: !this.state.project
-   });
- }
 
- toggleAdd() {
-   this.setState({ toggleAdd: !this.state.toggleAdd });
+ showForm() {
+   this.setState({ addform: !this.state.addform });
  }
 
 
- projectForm() {
-   if(this.props.currentUser === parseInt(this.props.profileId)){
-   return(
-     <div className="row">
-       <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4'>
-         <dl className='dl-horizontal'>
-           <dt> Project Name </dt>
-           <dd>
-             <input className='form-control' ref='name' type='text' />
-           </dd>
-           <dt> Description </dt>
-           <dd><input className='form-control'
-             ref='description' type='text' />
-         </dd>
-         <dt> Active Project </dt>
-         <dd><input type='checkbox' ref='active' /></dd>
+  projectForm() {
+    let addbtn = this.state.addform ? 'HIDE' : 'ADD PROJECT';
+      return(
+        <div className="row">
+          <button className='btn' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
+            { addbtn }
+          </button>
+          <div>
+            <form onSubmit={ this.addProject } className='col-xs-12 col-sm-6 collapse' id='hideForm'>
+              <dl className='dl-horizontal'>
+                <dt> Project Name </dt>
+                <dd>
+                  <input className='form-control' ref='name' type='text' />
+                </dd>
+                <dt> Description </dt>
+                <dd><textarea className='form-control' ref='description' type='text'></textarea></dd>
+                <dt> Active Project </dt>
+                <dd><input type='checkbox' ref='active' /></dd>
+                <dt> Add Categories </dt>
+                <dd> { this.artStyle() } </dd>
+              </dl>
+                <input type='submit' className='btn btn-primary btn-xs' />
+            </form>
+          </div>
+        </div>
+      )
 
-       </dl>
-       <input type='submit' className='btn btn-primary btn-xs' />
-     </form>
-   </div>
+  }
 
-  )}
- }
 
  view(projectUser, description) {
    if (this.state.conversationView) {
@@ -175,77 +188,71 @@ toggleProject() {
    this.setState({ selectedCategories: newObj })
  }
 
- catSelect(categoryKey) {
-   let options = this.generateCategoryOptions(categoryKey);
-   let subCat = this.categoryOptions[categoryKey];
-   return(
-     <Select
-       name="form-field-name"
-       value={this.state.selectedCategories[categoryKey]}
-       multi={true}
-       options={options}
-       onChange={ (val) => this.updateSelected(val, categoryKey) }
-     />
-   )
- }
 
  artStyle() {
    let categoryDropdowns = Object.keys(this.categoryOptions).map( categoryKey => {
-     let select = this.catSelect(categoryKey);
+     let options = this.generateCategoryOptions(categoryKey)
      return(
        <div key={categoryKey}>
-         <label onClick={ () => select } className='text-capitalize'>
-           {categoryKey.split("_").join(" ")}
-         </label>
-           select
+         <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
+         <Select
+           name="form-field-name"
+           value={this.state.selectedCategories[categoryKey]}
+           multi={true}
+           options={options}
+           onChange={ (val) => this.updateSelected(val, categoryKey) }
+         />
        </div>
      );
    });
    return categoryDropdowns;
  }
 
+
+  displayProfileProjects() {
+    let projects = this.state.projects.map( project => {
+      return(<li className="list-unstyled" key={project.id}>
+               <h5> {project.name} </h5>
+             </li>
+            )
+    });
+    return projects;
+  }
+
+
  displayProjects() {
    let projects = this.state.projects.map( project => {
      return(<li className="list-unstyled" key={project.id}>
-             <div>
-               <div className='jumbotron' style={styles.hover1} onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
-                 <h3>
-                 {project.name}
-                 </h3>
-                 <p><strong>Tags:</strong> {project.description}</p>
-                 <button className="btn btn-primary">More Info</button>
-               </div>
-               <div className="modal fade" id={"project-" + project.id} >
-                 <div className="modal-dialog">
-                   <div className="modal-content">
-                     <div className="modal-header">
-                       <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
-                       <h4 className="modal-title">{project.name}</h4>
-                     </div>
-                     {this.view(project.project_user, project.description)}
-                   </div>
-                 </div>
-               </div>
-             </div>
+              <h5> {project.name} </h5>
+              <p> {project.description}</p>
             </li>
-           );
+           )
    });
    return projects;
  }
 
- render() {
-     return(
-       <div>
-        { this.projectForm() }
-        <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
-         <ul>
-           { this.displayProjects() }
-           <dt> add cat </dt>
-           <dd> {this.artStyle() }</dd>
-         </ul>
-       </div>
-     )
-   }
+  render() {
+    if(this.props.currentUser === parseInt(this.props.profileId)) {
+      return(
+        <div className='row'>
+          <div className='col-xs-12 col-sm-6'>
+            { this.projectForm() }
+          </div>
+          <div className='col-xs-12 col-sm-6'>
+            { this.displayProfileProjects() }
+          </div>
+        </div>
+      )
+    } else {
+      return(
+        <div className='row'>
+          <div className='col-xs-12'>
+            { this.displayProjects() }
+          </div>
+        </div>
+      )
+    }
+  }
 }
 
 

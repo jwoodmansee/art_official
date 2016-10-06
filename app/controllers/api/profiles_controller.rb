@@ -18,15 +18,18 @@ class Api::ProfilesController < ApiController
       begin
         obj = s3.bucket(s3_bucket).object(name)
         obj.upload_file(file.tempfile)
-        presigner = Aws::S3::Presigner.new
-        url = presigner.presigned_url(
-          :get_object,
-          bucket: s3_bucket,
-          key: name
-        )
+        obj.acl.put({ acl: 'public-read' })
+        url = obj.public_url
+        # presigner = Aws::S3::Presigner.new
+        # url = presigner.presigned_url(
+        #   :get_object,
+        #   bucket: s3_bucket,
+        #   key: name
+        # )
         params[:profile] = params[:profile] || {}
         params[:profile][:image_url] = url
       rescue => e
+        binding.pry
         #figure out error handling
       end
     end
