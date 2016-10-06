@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'all_projects', to: 'projects#all_projects'
+    get 'browse_all', to: 'projects#browse_all'
+    # get 'search', to: 'projects#search'
     resources :profiles do
       resources :profile_categories
       resources :projects do

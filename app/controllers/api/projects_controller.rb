@@ -1,13 +1,25 @@
 class Api::ProjectsController < ApiController
-  before_action :set_profile, except: [:all_projects]
+  before_action :set_profile, except: [:browse_all, :all_projects]
   before_action :set_project, only: [:show, :update, :destroy]
 
   def index
-    render json: @profile.projects.all
+    render json: @profile.projects.all.order(created_at: :desc)
   end
 
   def all_projects
     @projects = Project.order(created_at: :desc)
+  end
+
+  def browse_all
+    @projects = Project.order(created_at: :desc)
+    @profiles = Profile.all
+    render json: {projects: @projects, profiles: @profiles}
+  end
+
+  def search
+    search = params[:search]
+    seach_results = Project.where('category LIKE ?', search)
+    render json: {projects: search_results }
   end
 
   def show

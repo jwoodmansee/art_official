@@ -3,7 +3,7 @@ class Api::ProfilesController < ApiController
   before_action :set_profile, except: [:index, :create]
 
   def index
-    render json: Profile.all
+    @profiles = Profile.all
   end
 
   def show

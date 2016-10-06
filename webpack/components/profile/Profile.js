@@ -78,7 +78,6 @@ class Profile extends Component {
     });
   }
 
-
   addImage(image_url) {
     let profile = Object.assign({}, this.state.profile, {image_url: image_url})
     this.setState({ profile });
@@ -121,6 +120,7 @@ class Profile extends Component {
     }).done( data => {
       this.setState({ profile: data.profile })
       this.toggleEdit();
+      window.scrollTo(0,0);
     }).fail( data => {
       console.log(data)
     });
