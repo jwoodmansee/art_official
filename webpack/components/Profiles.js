@@ -4,7 +4,8 @@ import { Link } from 'react-router';
 class Profiles extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { profiles: [] };
+    this.displayProfiles = this.displayProfiles.bind(this);
+    this.state = { profiles: [], user: {} };
   }
 
   componentWillMount() {
@@ -20,22 +21,27 @@ class Profiles extends React.Component {
   }
 
   displayProfiles() {
-    let profiles = this.state.profiles.map( profiles => {
-      return(<li key={profile.id}>
-                <Link to={`/api/profiles/${profile.id}`}>
-                  {profile.bio}
-                </Link>
+    let profiles = this.state.profiles.map( profile => {
+      let { username } = profile.user;
+      return(<li className="list-unstyled container" key={profile.id}>
+                <div className='jumbotron'>
+                  <h3>
+                    <Link to={`/profiles/${profile.id}`}>
+                      { username }
+                    </Link>
+                  </h3>
+                  <p><strong>Bio:</strong> { profile.bio }</p>
+                </div>
              </li>
-
-      )
-    });
+           )
+         });
     return profiles;
   }
 
   render() {
     return(
-      <div>
-        <h1>Artist</h1>
+      <div className="text-center">
+        <h1>All Artist Profiles</h1>
         <ul>
           { this.displayProfiles() }
         </ul>
@@ -43,5 +49,11 @@ class Profiles extends React.Component {
     )
   }
 }
+
+const styles = {
+ hover1: {
+   cursor: 'pointer'
+ },
+};
 
 export default Profiles;

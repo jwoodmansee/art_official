@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Project from './components/Project';
 import Profiles from './components/Profiles';
 import Profile from './components/profile/Profile';
+import Browse from './components/Browse';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Blurb from './components/Blurb';
@@ -29,6 +30,7 @@ export default (
       <Route path='profiles' component={Profiles} />
       <Route path='project/:id' component={Project} />
       <Route path='all_projects' component={Projects} />
+      <Route path='browse' component={Browse} />
       <Route path='about' component={About} />
       <Route path='featured' component={Featured} />
       <Route path='support' component={Support} />
