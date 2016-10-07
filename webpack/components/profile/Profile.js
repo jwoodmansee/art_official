@@ -283,8 +283,10 @@ class Profile extends Component {
           </div>
 
           <div>
-            <hr />
-            <Projects profileId={this.props.params.id} projects={this.state.projects} />
+            <Conversation />
+          </div>
+          <div>
+            { this.displayMyProjects() }
           </div>
 
           <div className='row'>
