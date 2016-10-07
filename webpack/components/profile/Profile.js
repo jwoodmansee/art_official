@@ -26,14 +26,14 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.updateProject = this.updateProject.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.toggleCategory = this.toggleCategory.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.addImage = this.addImage.bind(this);
-    this.displayMyProjects = this.displayMyProjects.bind(this);
-    this.state = { 
+    this.state = {
                    conversations: [],
                    profile: {
                    categories: {}
@@ -69,6 +69,7 @@ class Profile extends Component {
     }).done( data =>{
       this.setState({
         profile: data.profile,
+        projects: data.projects,
         user: data.user,
         selectedCategories: {...data.profile.categories},
         conversations: data.conversations
@@ -83,6 +84,9 @@ class Profile extends Component {
     this.setState({ profile });
   }
 
+  updateProject(projects) {
+    this.setState({ projects })
+  }
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
@@ -92,18 +96,6 @@ class Profile extends Component {
     this.setState({ category: !this.state.category });
   }
 
-
- displayMyProjects() {
-   return(
-     <div style={styles.row}>
-       <div className='container'>
-         <h1>My Projects </h1>
-         <br />
-         <Projects profileId={this.props.params.id} projects={this.state.projects} />
-       </div>
-     </div>
-   )
- }
 
   editProfile(e) {
     e.preventDefault();
@@ -250,8 +242,8 @@ class Profile extends Component {
 
       return(
         <div>
-          <div className='container'>
-            <div className='row'>
+          <div className='row'>
+            <div className='container'>
               <div className='col-xs-12 col-sm-6'>
               <img src={ src } className='img-responsive img-rounded' />
               <DropZone
@@ -279,13 +271,17 @@ class Profile extends Component {
               </div>
             </div>
           </div>
+
           <div>
-            <Conversation profileID={profileID} />
-          </div>
-          <div>
-            { this.displayMyProjects() }
+            <hr />
+            <Projects profileId={this.props.params.id} projects={this.state.projects} />
           </div>
 
+          <div className='row'>
+            <div className='container'>
+              <Conversation profileID={profileID} />
+            </div>
+          </div>
         </div>
       )
     }
