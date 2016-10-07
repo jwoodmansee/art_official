@@ -10,7 +10,11 @@ class Project extends Component {
     super(props);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.editProject = this.editProject.bind(this);
-    this.state = { project: {}, user: {}, edit: false };
+    this.addProject = this.addProject.bind(this);
+    this.projectForm = this.projectForm.bind(this);
+    this.toggleAdd = this.toggleAdd.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.state = { project: {}, user: {}, edit: false, addform: false };
   }
 
   componentWillMount() {
@@ -42,8 +46,65 @@ class Project extends Component {
     });
   }
 
+  addProject(e) {
+    e.preventDefault();
+    let name = this.refs.name.value;
+    let description = this.refs.description.value;
+    let active = this.refs.active.value;
+    $.ajax({
+      url: `/api/profiles/${this.props.profileId}/projects/`,
+      type: 'POST',
+      data: { project: {  name, description, active }},
+      dataType: 'JSON'
+    }).done (data => {
+      let projects = this.state.projects;
+      projects.push(data);
+      this.setState({ projects: projects });
+    }).fail(data => {
+      console.log(data)
+    });
+  }
+
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
+  }
+
+  toggleAdd() {
+    this.setState({ toggleAdd: !this.state.toggleAdd });
+  }
+
+  showForm() {
+    this.setState({ addform: !this.state.addform });
+  }
+
+  projectForm() {
+    let addbtn = this.state.addform ? 'HIDE' : 'ADD PROJECT';
+    if(this.props.currentUser === parseInt(this.props.profileId)){
+    return(
+      <div className="row">
+        <button className='btn' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
+           {addbtn}
+         </button>
+
+        <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4 collapse' id='hideForm'>
+          <dl className='dl-horizontal'>
+            <dt> Project Name </dt>
+            <dd>
+              <input className='form-control' ref='name' type='text' />
+            </dd>
+            <dt> Description </dt>
+            <dd><input className='form-control'
+              ref='description' type='text' />
+          </dd>
+          <dt> Active Project </dt>
+          <dd><input type='checkbox' ref='active' /></dd>
+
+        </dl>
+        <input type='submit' className='btn btn-primary btn-xs' />
+      </form>
+    </div>
+
+   )}
   }
 
   render() {
@@ -77,7 +138,7 @@ class Project extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.auth.id }
+  return { currentUser: parseInt(state.auth.id) }
 }
 
-export default Project;
+export default connect(mapStateToProps)(Projects);
