@@ -281,7 +281,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          
+
           <div>
             <hr />
             <Projects profileId={this.props.params.id} projects={this.state.projects} />

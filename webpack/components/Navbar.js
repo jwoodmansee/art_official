@@ -60,19 +60,18 @@ class Navbar extends React.Component {
               <span className='icon-bar'></span>
             </button>
             <Link to='/' className="navbar-brand" style={styles.logo}>
-              c o || art
+              c o \\ art
             </Link>
           </div>
 
 
           <div className="collapse navbar-collapse" id='mobile-nav'>
             <ul className="nav navbar-nav navbar-right">
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/about'>About</Link></li>
               <li><Link to='/all_projects'>All Projects</Link></li>
               <li><Link to='/profiles'>All Profiles</Link></li>
               <li><Link to='/browse'>Browse</Link></li>
               <li><Link to='/featured'>Featured</Link></li>
+              <li><Link to='/about'>About</Link></li>
               { this.authLink() }
             </ul>
           </div>
