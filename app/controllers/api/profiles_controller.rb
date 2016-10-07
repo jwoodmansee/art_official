@@ -23,7 +23,6 @@ class Api::ProfilesController < ApiController
         params[:profile] = params[:profile] || {}
         params[:profile][:image_url] = url
       rescue => e
-        binding.pry
       end
     end
 
