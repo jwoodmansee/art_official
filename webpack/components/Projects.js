@@ -21,7 +21,7 @@ class Projects extends Component {
                 };
  }
 
- componentWillMount() {
+  componentWillMount() {
      let url;
      if(this.props.profileId)
        url = `/api/profiles/${this.props.profileId}/projects/`;

@@ -9,7 +9,11 @@ class Conversation extends Component {
     this.displayConversations = this.displayConversations.bind(this);
     this.toggleConversation = this.toggleConversation.bind(this);
     this.deleteConversation = this.deleteConversation.bind(this);
-    this.state = { conversations: [], toggleConversation: false, showMessageComponent: false }
+    this.state = { conversations: [], 
+                   toggleConversation: false,
+                   showMessageComponent: false,
+                   messages : [],
+                 }
   }
 
   componentWillMount() {
@@ -21,7 +25,8 @@ class Conversation extends Component {
       this.setState({ conversations: data.conversations });
     }).fail(data => {
       console.log('fail');
-    })
+    });
+
   }
 
   deleteConversation(id) {
@@ -52,8 +57,18 @@ class Conversation extends Component {
                   <h2>  
                     {conversation.subject}
                   </h2>
-                  <button className='btn btn-primary' onClick={this.toggleConversation} data-toggle="modal" data-target={"#conversation-" + conversation.id} >View Talks</button>
-                  <button className='btn btn-danger' onClick={ () => this.deleteConversation(conversation.id)} >Delete</button>
+                  <button className='btn btn-primary' 
+                          onClick={this.toggleConversation} 
+                          data-toggle="modal" 
+                          data-target={"#conversation-" + conversation.id} 
+                          >
+                          View Talks
+                  </button>
+                  <button className='btn btn-danger' 
+                          onClick={ () => this.deleteConversation(conversation.id)} 
+                          >
+                          Delete
+                  </button>
                 </div>
                 <div className='modal fade' id={'conversation-' + conversation.id}>
                   <div className='modal-dialog'>
@@ -82,23 +97,11 @@ class Conversation extends Component {
                   </div>
                 </div>            
               </div>
-            </li>        
+            </li>       
           );
     });
     return conversations;
   }
-
-  displayMessages() {
-    let messages = this.state.messages.map( message => {
-      return(<li className='list_unstyled' key={message.id}>
-              <div>
-                <p>{message.body}</p>
-              </div>
-            </li>    
-      );
-    });
-  }
-
 
   render() {
     return(
