@@ -11,6 +11,7 @@ class Api::ProfilesController < ApiController
   end
 
   def update
+    params[:profile] = params[:profile] || {}
     if file = params[:file]
       s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
       s3_bucket = ENV['S3_BUCKET_NAME']
@@ -20,9 +21,9 @@ class Api::ProfilesController < ApiController
         obj.upload_file(file.tempfile)
         obj.acl.put({ acl: 'public-read' })
         url = obj.public_url
-        params[:profile] = params[:profile] || {}
         params[:profile][:image_url] = url
       rescue => e
+        logger.error e
       end
     end
 
