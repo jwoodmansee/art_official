@@ -19,6 +19,7 @@ html, body {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
+  font-weight: bold;
 }
 .navcon {
   padding-right: 40px;
@@ -109,6 +110,10 @@ html, body {
 }
 .main-text {
   padding-left: 20px;
+}
+
+.logo-text {
+  font-family: 'Bungee', sans-serif;
 }
 
 //-- Media --//

@@ -2,19 +2,18 @@ import React from 'react';
 
 const About = () => (
   <div className='container'>
-    <h1>Connect. Collab. Create.</h1>
+    <h1 className="header-text">Connect. Collab. Create.</h1>
     <hr />
-      <h4><strong>The story of Co Art</strong> is as refreshingly simple as our core purpose - a few creative individuals connected with eachother, collaborated creatively, and created a project together. In the age of self-promotion, we recognize that there are more things pulling you away from the creative process than ever before. Enter the Co Art community.
+      <h3><strong>The story of Co Art</strong></h3> <h4>...is as refreshingly simple as our core purpose: A few creative individuals connected with eachother, collaborated creatively, and created a project together. In the age of endless self-promotion, we recognize that there are more things pulling you away from the creative process than ever before. Enter the Co Art community.
       <br />
       <br />
-      Simply put, this website is not designed to make you famous. We are designed to connect artists directly together, with the hope that new art will be created and put into the world. The last thing artists need is another promotional/social channel to manage. We don't think soliciting for view-counts makes for an authentic community - that's why you don't see any 'like' buttons on our website. We are only as powerful as the users of our community, which means our only agenda is to connect open minded people together and enable creative output.
+      Simply put, this website is not designed to make you famous. We are designed to connect artists together, with the hope that new art will be created and put into the world. It's no secret that it can be tough meeting other artists to collaborate with. Currently you can spend hours sifting through social media and online forums, or physically attend local art/music events to network - both of which definitely have their place, but our hope is to give you more direct access. The last thing artists need is another time consuming promotional/social channel to manage. We don't think soliciting for view-counts makes for an authentic community - that's why you don't see any 'like' buttons on our website. We are only as powerful as the users of our community, which means our only agenda is to connect open minded people together and enable creative output.</h4>
       <br />
-      <br />
-      <strong>How it works:</strong> Signup and create a profile. Add your existing work so people can see what you're all about. You can also create an open project, which become searchable by other users. From there, you can start browsing to find other artists, or open projects, using as many/few filters as you wish. When you find an artist you could see yourself collaborating with, click the 'Collab' icon. If they also think it's a good fit and click 'Collab' in return, you'll be able to start messaging eachother directly. This one measure will ensure that only people you wish to connect with can contact you directly.
+      <h3><strong>How it works:</strong></h3> <h4>Signup and create a profile. Add your existing work so people can see what you're all about. You can also create an open project, which become searchable by other users. From there, you can start browsing to find other artists, or open projects, using as many/few filters as you wish. If you see a profile or project that looks interesting, or you simply want to just start a conversation, you can send a direct message. If you collaborate with someone on the site and complete a project, we would love for you to send it to us and we will highlight it on our Featured page.
       <br />
       <br />
       We know we have a lot of room to improve. We are building this site in our free time and will never charge a penny for membership. With that said, we look to our community to bear with us through our growth, and report site issues as they are discovered.
-    </h4>
+      </h4>
   <br />
     <h1>The Team</h1>
     <hr />
@@ -29,8 +28,6 @@ const About = () => (
           </div>
         </div>
       </div>
-    </div>
-    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -41,8 +38,6 @@ const About = () => (
           </div>
         </div>
       </div>
-    </div>
-    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -53,8 +48,6 @@ const About = () => (
           </div>
         </div>
       </div>
-    </div>
-    <div className="row">
       <div className="col-sm-6 col-md-3">
         <div className="thumbnail">
           <img className="profile-pic" src="http://www.fawkes-maske.de/wp-content/uploads/2012/02/Guy-Fawkes-Maske-Hut-300x237.jpg" alt="..." />
@@ -65,6 +58,11 @@ const About = () => (
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <h1 className="header-text">The Architecture</h1>
+      <h3>Ruby on Rails</h3>
+      <h3>React.js</h3>
     </div>
   </div>
 )

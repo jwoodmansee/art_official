@@ -289,7 +289,7 @@ class Profile extends Component {
             </div>
           </div>
           <div>
-            {/*<Conversation />*/}
+            <Conversation />
           </div>
           <div>
             { this.displayMyProjects() }
