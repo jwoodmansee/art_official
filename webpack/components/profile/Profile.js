@@ -33,6 +33,7 @@ class Profile extends Component {
     this.catSelect = this.catSelect.bind(this);
     this.generateCategoryOptions = this.generateCategoryOptions.bind(this);
     this.addImage = this.addImage.bind(this);
+    this.displayMyProjects = this.displayMyProjects.bind(this);
     this.state = {
                    conversations: [],
                    profile: {
@@ -97,7 +98,17 @@ class Profile extends Component {
     this.setState({ category: !this.state.category });
   }
 
-
+  displayMyProjects() {
+    return(
+      <div style={styles.row}>
+        <div className='container'>
+          <h1>My Projects </h1>
+          <br />
+          <Projects profileId={this.props.params.id} projects={this.state.projects} />
+        </div>
+      </div>
+    )
+  }
   editProfile(e) {
     e.preventDefault();
     let bio = this.refs.bio.value;
@@ -283,8 +294,7 @@ class Profile extends Component {
           </div>
 
           <div>
-            <hr />
-            <Projects profileId={this.props.params.id} projects={this.state.projects} />
+            { this.displayMyProjects() }
           </div>
 
           <div className='row'>

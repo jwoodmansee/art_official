@@ -170,16 +170,16 @@ toggleProject() {
  }
 
  render() {
-    return(
-      <div>
+     return(
+       <div>
+         <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
         { this.projectForm() }
-        <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
-        <ul>
-          { this.displayProjects() }
-        </ul>
-      </div>
-    )
-  }
+         <ul>
+           { this.displayProjects() }
+         </ul>
+       </div>
+     )
+   }
 }
 
 
