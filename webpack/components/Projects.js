@@ -142,7 +142,7 @@ toggleProject() {
 
  displayProjects() {
    let projects = this.state.projects.map( project => {
-     return(<li className="list-unstyled" key={project.id}>
+      return(<li className="list-unstyled" key={project.id}>
              <div>
                <div className='jumbotron' style={styles.hover1} onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
                  <h3>
@@ -170,16 +170,16 @@ toggleProject() {
  }
 
  render() {
-     return(
-       <div>
+    return(
+      <div>
         { this.projectForm() }
         <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
-         <ul>
-           { this.displayProjects() }
-         </ul>
-       </div>
-     )
-   }
+        <ul>
+          { this.displayProjects() }
+        </ul>
+      </div>
+    )
+  }
 }
 
 
