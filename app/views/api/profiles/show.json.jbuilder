@@ -33,3 +33,8 @@ json.conversations @conversations do |conversation|
   json.subject conversation.subject
   json.body conversation.body
 end
+
+json.messages @messages do |message|
+  json.id message.id
+  json.body message.body
+end

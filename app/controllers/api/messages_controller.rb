@@ -6,7 +6,7 @@ class Api::MessagesController < ApiController
   end
 
   def show
-    render json: @messages
+    render json: @message
   end
 
   def create

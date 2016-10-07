@@ -88,9 +88,19 @@ class Conversation extends Component {
     return conversations;
   }
 
+  displayMessages() {
+    let messages = this.state.messages.map( message => {
+      return(<li className='list_unstyled' key={message.id}>
+              <div>
+                <p>{message.body}</p>
+              </div>
+            </li>    
+      );
+    });
+  }
+
 
   render() {
-    let conversationID = this.props.id;
     return(
       <div>
         <h1>All Conversations</h1>

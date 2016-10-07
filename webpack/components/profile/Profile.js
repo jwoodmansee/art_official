@@ -202,7 +202,7 @@ class Profile extends Component {
 
 
   render() {
-
+    let profileID = this.props.params.id;
     let src = this.state.profile.image_url || foamgeode
     let { zip_code, bio, inspirations, url } = this.state.profile;
     let { categories } = this.state.profile.categories
@@ -289,7 +289,7 @@ class Profile extends Component {
             </div>
           </div>
           <div>
-            {/*<Conversation />*/}
+            <Conversation profileID={profileID} />
           </div>
           <div>
             { this.displayMyProjects() }

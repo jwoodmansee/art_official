@@ -38,7 +38,7 @@ class Message extends Component {
     return(
       <div>
         <form onSubmit={this.sendMessage}>
-          <textarea ref='body' placeholder="Sounds Great!"></textarea>
+          <textarea ref='body' placeholder="Message"></textarea>
           <button type='submit' className='btn'>Send</button>
         </form>
       </div>
