@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import NewConversation from './NewConversation';
+
 
 class Projects extends Component {
  constructor(props) {
    super(props);
    this.displayProjects = this.displayProjects.bind(this);
    this.toggleProject = this.toggleProject.bind(this);
-   this.state = { projects: [], project: false };
+   this.view = this.view.bind(this);
+   this.addProject = this.addProject.bind(this);
+   this.projectForm = this.projectForm.bind(this);
+   this.toggleAdd = this.toggleAdd.bind(this);
+   this.state = { projects: [], project: false, conversationView: false,
+                  toggleAdd: false
+                };
  }
 
  componentWillMount() {
@@ -20,10 +29,35 @@ class Projects extends Component {
        type: 'GET',
        dataType: 'JSON'
      }).done(projects => {
-       this.setState({projects});
+       this.setState({ projects });
      }).fail(data => {
        console.log(data);
      });
+ }
+
+
+toggleProject() {
+  this.setState({ project: !this.state.project });
+}
+
+
+ addProject(e) {
+   e.preventDefault();
+   let name = this.refs.name.value;
+   let description = this.refs.description.value;
+   let active = this.refs.active.value;
+   $.ajax({
+     url: `/api/profiles/${this.props.profileId}/projects/`,
+     type: 'POST',
+     data: {project: {  name, description, active }},
+     dataType: 'JSON'
+   }).done (data => {
+     let projects = this.state.projects;
+     projects.push(data);
+     this.setState({ projects: projects });
+   }).fail(data => {
+     console.log(data)
+   });
  }
 
  toggleProject() {
@@ -31,6 +65,80 @@ class Projects extends Component {
      project: !this.state.project
    });
  }
+
+ toggleAdd() {
+   this.setState({ toggleAdd: !this.state.toggleAdd });
+ }
+
+
+ projectForm() {
+   if(this.props.currentUser === parseInt(this.props.profileId)){
+   return(
+     <div className="row">
+       <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4'>
+         <dl className='dl-horizontal'>
+           <dt> Project Name </dt>
+           <dd>
+             <input className='form-control' ref='name' type='text' />
+           </dd>
+           <dt> Description </dt>
+           <dd><input className='form-control'
+             ref='description' type='text' />
+         </dd>
+         <dt> Active Project </dt>
+         <dd><input type='checkbox' ref='active' /></dd>
+
+       </dl>
+       <input type='submit' className='btn btn-primary btn-xs' />
+     </form>
+   </div>
+
+  )}
+ }
+
+ view(projectUser, description) {
+   if (this.state.conversationView) {
+     return (
+       <div>
+         <div className="modal-body">
+           <NewConversation sentTo={projectUser}/>
+         </div>
+         <div className="modal-footer">
+           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+           <button
+             onClick={() => { this.setState({ conversationView: false }) }}
+             type="button"
+             className="btn btn-primary"
+           >
+             Back
+           </button>
+         </div>
+       </div>
+     )
+   } else {
+      return (
+       <div>
+         <div className="modal-body">
+           <p><strong>Description:</strong> {description}</p>
+         </div>
+         <div className="modal-footer">
+           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+           { this.props.currentUser !== projectUser ? null
+             :
+             <button
+               onClick={() => { this.setState({ conversationView: true })} }
+               type="button"
+               className="btn btn-primary"
+             >
+               Request to Collab
+             </button>
+           }
+         </div>
+       </div>
+     )
+   }
+ }
+
 
  displayProjects() {
    let projects = this.state.projects.map( project => {
@@ -50,13 +158,7 @@ class Projects extends Component {
                        <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
                        <h4 className="modal-title">{project.name}</h4>
                      </div>
-                     <div className="modal-body">
-                       <p><strong>Description:</strong> {project.description}</p>
-                     </div>
-                     <div className="modal-footer">
-                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                       <button type="button" className="btn btn-primary">Request to Collab</button>
-                     </div>
+                     {this.view(project.project_user, project.description)}
                    </div>
                  </div>
                </div>
@@ -68,16 +170,16 @@ class Projects extends Component {
  }
 
  render() {
-   return(
-     <div>
-       <h1>All Open Projects</h1>
-       <hr />
-       <ul>
-         { this.displayProjects() }
-       </ul>
-     </div>
-   )
- }
+     return(
+       <div>
+        { this.projectForm() }
+        <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
+         <ul>
+           { this.displayProjects() }
+         </ul>
+       </div>
+     )
+   }
 }
 
 
