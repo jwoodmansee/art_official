@@ -230,7 +230,8 @@ class Profile extends Component {
                     <dt> inspirations </dt>
                     <dd><input className='form-control'
                                ref='inspirations' type='text'
-                               defaultValue={inspirations} /></dd>
+                               defaultValue={inspirations} />
+                   </dd>
                     <dt> Art Style </dt>
                     <dd> { this.artStyle() } </dd>
                   </dl>
