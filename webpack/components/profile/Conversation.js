@@ -81,6 +81,8 @@ class Conversation extends Component {
                         <p>{conversation.body}</p>
                       </div>
                       <div className='modal-footer'>
+                          {this.state.showMessageComponent ? 
+                          <Message conversationID={conversation.id} /> : null}
                         <button type='button' 
                                 className='btn btn-danger' 
                                 data-dismiss='modal'>
@@ -91,7 +93,6 @@ class Conversation extends Component {
                                 onClick={ () => {this.setState({ showMessageComponent: true })}} >
                                 Reply
                           </button>
-                          {this.state.showMessageComponent ? <Message conversationID={conversation.id} /> : null}
                       </div>
                     </div>
                   </div>
@@ -108,7 +109,7 @@ class Conversation extends Component {
       <div>
         <h1>All Conversations</h1>
         <hr />
-        <ul>
+        <ul className='list_unstyled'>
           { this.displayConversations() }
         </ul>
       </div>
