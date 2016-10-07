@@ -3,7 +3,7 @@ class Api::ProjectsController < ApiController
   before_action :set_project, only: [:show, :update, :destroy]
 
   def index
-    render json: @profile.projects.all.order(created_at: :desc)
+    @profile = @profile.projects.all.order(created_at: :desc)
   end
 
   def all_projects
