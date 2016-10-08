@@ -168,7 +168,7 @@ class Profile extends Component {
     return(
       <div key={categoryKey}>
         <label onClick={ () => select } className='text-capitalize'>
-          {categoryKey.split("_").join(" ")}
+          <p onClick={this.toggleCategory}>{categoryKey.split("_").join(" ")}</p>
         </label>
 
         { this.state.category ?

@@ -31,8 +31,8 @@ class Projects extends Component {
        url: url,
        type: 'GET',
        dataType: 'JSON'
-     }).done(projects => {
-       this.setState({ projects });
+     }).done( data => {
+       this.setState({ projects: data });
      }).fail(data => {
        console.log(data);
      });
@@ -58,6 +58,7 @@ toggleProject() {
      let projects = this.state.projects;
      projects.push(data);
      this.setState({ projects: projects });
+     this.refs.form.reset();
    }).fail(data => {
      console.log(data)
    });
@@ -87,7 +88,7 @@ toggleProject() {
           {addbtn}
         </button>
 
-       <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4 collapse' id='hideForm'>
+       <form onSubmit={ this.addProject } ref='form' className='col-xs-12 col-sm-4 collapse' id='hideForm'>
          <dl className='dl-horizontal'>
            <dt> Project Name </dt>
            <dd>
