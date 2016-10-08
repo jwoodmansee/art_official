@@ -13,14 +13,21 @@ class Api::ProjectsController < ApiController
 
   def browse_all
     @projects = Project.order(created_at: :desc)
-    @profiles = Profile.all
-    render json: {projects: @projects, profiles: @profiles}
+    # if params[:filter]
+      # Project.filter_search(choice )
+      @profiles = Profile.all
+    # else
+      render json: {projects: @projects, profiles: @profiles}
+    # end
   end
 
   def search
-    search = params[:search]
-    seach_results = Project.where('category LIKE ?', search)
-    render json: {projects: search_results }
+    if params[:search]
+      @projects = Project.search(params[:search])
+    else
+      @projects = Project.all
+    end
+    # render json: {projects: search_results }
   end
 
   def show
