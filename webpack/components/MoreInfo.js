@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class MoreInfo extends Component {
   render() {
     return(
-      <div>
+      <div className='row-color'>
         <div className='container'>
           <div className='row'>
             <div className='navbar-toggle collapsed text-center'
@@ -32,7 +32,7 @@ class MoreInfo extends Component {
                 </p>
               </div>
               <div className='divide col-sm-4 col-1-3 btn-text-grey'>
-                <Link to='/sign_up'>
+                <Link to='/sign_up' onClick={window.scrollTo(0,0)}>
                   <div className='custom-btn text-center'>
                     Sign Up \\ Collab
                   </div>

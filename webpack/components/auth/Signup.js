@@ -24,41 +24,39 @@ class Signup extends React.Component {
     return (
       <div className='row'>
         <div className='container'>
-          <div className='col-xs-12 col-xm-6'>
+          <div className='col-xs-12'>
             <h3 className='header-text'>Sign Up</h3>
             <hr />
-            <form className='form-horizontal' onSubmit={this.handleSubmit}>
+            <form className='form-horizontal col-xs-12 col-sm-6 col-md-4' onSubmit={this.handleSubmit}>
               <div className='form-group'>
-                <label className='col-sm-2 control-label'>First Name</label>
-                <div className='col-xs-12 col-sm-4'>
+                <label className='control-label'>First Name</label>
                   <input ref='first_name' className='form-control' required placeholder='First Name' />
-                </div>
               </div>
 
               <div className='form-group'>
-                <label className='col-sm-2 control-label'>Last Name</label>
-                <div className='col-xs-12 col-sm-4'>
+                <label className='control-label'>Last Name</label>
+                <div>
                   <input ref='last_name' className='form-control' required placeholder='Last Name' />
                 </div>
               </div>
 
               <div className='form-group'>
-                <label className='col-sm-2 control-label'>Username</label>
-                <div className='col-xs-12 col-sm-4'>
+                <label className='control-label'>Username</label>
+                <div>
                   <input ref='username' className='form-control' required placeholder='username' />
                 </div>
               </div>
 
               <div className='form-group'>
-                <label className='col-sm-2 control-label'>Email</label>
-                <div className='col-xs-12 col-sm-4'>
+                <label className='control-label'>Email</label>
+                <div>
                   <input ref='email' className='form-control' required placeholder='Email' />
                 </div>
               </div>
 
               <div className='form-group'>
-                <label className='col-sm-2 control-label'>Password</label>
-                <div className='col-xs-12 col-sm-4'>
+                <label className='control-label'>Password</label>
+                <div>
                   <input ref='password' className='form-control' required placeholder='Password' />
                 </div>
               </div>
@@ -70,13 +68,13 @@ class Signup extends React.Component {
               </div>
             </form>
 
+            <div className='col-xs-12 col-sm-4 col-sm-offset-2'>
+              <blockquote>
+                <p>Something goes here! write something good Bryan</p>
+              </blockquote>
+            </div>
           </div>
 
-          <div className='col-xs-12 col-sm-4'>
-            <blockquote>
-              <p>Search \\ Connect \\ Collab \\ Create</p>
-            </blockquote>
-          </div>
 
         </div>
         <div className='white-space hidden-xs'></div>
