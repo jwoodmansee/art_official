@@ -203,6 +203,15 @@ class Profile extends Component {
     )
   }
 
+  userBtn() {
+    let btn = this.state.edit ? 'BACK' : 'EDIT PROFILE';
+    if(this.props.currentUser === parseInt(this.props.params.id)) {
+      return(
+        <p onClick={this.toggleEdit} className='btn hover-black'>{btn}</p>
+      )
+    }
+  }
+
 
   render() {
     let profileID = this.props.params.id;
@@ -232,7 +241,7 @@ class Profile extends Component {
             </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
-                <p onClick={this.toggleEdit} className='btn hover-black'>Back</p>
+                { this.userBtn() }
                 <form onSubmit={this.editProfile}>
                   <dl className='dl-horizontal'>
                     <dt> Bio </dt>
@@ -285,8 +294,8 @@ class Profile extends Component {
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
+                { this.userBtn() }
                 <dl className='dl-horizontal'>
-                  <dd onClick={this.toggleEdit} className='btn hover-black'>EDIT PROFILE</dd>
                   <dt> Bio </dt>
                   <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
                   <dt> Inspirations </dt>
@@ -313,4 +322,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return { currentUser: parseInt(state.auth.id) }
+}
+
+export default connect(mapStateToProps)(Profile);
