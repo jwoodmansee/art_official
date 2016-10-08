@@ -168,7 +168,7 @@ class Profile extends Component {
     return(
       <div key={categoryKey}>
         <label onClick={ () => select } className='text-capitalize'>
-          <p onClick={this.toggleCategory} > {categoryKey.split("_").join(" ")} </p>
+          <p onClick={this.toggleCategory}>{categoryKey.split("_").join(" ")}</p>
         </label>
 
         { this.state.category ?
@@ -243,8 +243,9 @@ class Profile extends Component {
                                ref='inspirations' type='text'
                                defaultValue={inspirations} />
                    </dd>
-                    <dt> Art Style </dt>
-                    <dd> { this.artStyle() } </dd>
+                    <dt> Categories </dt>
+                    <dd><span className='glyphicon glyphicon-chevron-down'></span>
+                       { this.artStyle() } </dd>
                   </dl>
                   <input type='submit' className='btn btn-primary btn-xs' />
                 </form>

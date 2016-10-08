@@ -20,6 +20,7 @@ class AddProject extends Component {
      dataType: 'JSON'
    }).done (data => {
      this.props.addProjects(data);
+     this.refs.form.reset();
    }).fail(data => {
      console.log(data)
    });

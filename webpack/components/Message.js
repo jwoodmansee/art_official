@@ -7,37 +7,59 @@ class Message extends Component {
   constructor(props) {
     super(props);
     this.sendMessage = this.sendMessage.bind(this);
-    this.state = { message: [] }
+    this.displayMessages = this.displayMessages.bind(this);
+    this.state = { messages: [] }
   }
 
   componentWillMount() {
-        
+    let conversationID = this.props.conversationID;
+    $.ajax({
+      url: `/api/conversations/${conversationID}/messages`,
+      type: 'GET',
+      dataType: 'JSON'
+    }).done( data => {
+      this.setState({ messages: data })
+    }).fail( data => {
+      console.log('fail');
+    });
   }
-
-  toggleNewMessage() {
-    
-  }
-
 
   sendMessage(e) {
     e.preventDefault();
     let body = this.refs.body.value;
-    let timestamp = Date.now();
     let conversationID = this.props.conversationID;
     $.ajax({
       url: `/api/conversations/${conversationID}/messages`,
       type: 'POST',
-      data: { message: { body }}
+      data: { messages: { body }}
     }).done( data => {
-      this.setState({ message: data.message })
-    })
+      this.setState({ messages: [...this.state.messages,{id: data.id, body: data.body}] });
+      this.refs.form.reset();
+    }).fail( data => {
+      console.log('broken');
+    });
+  }
+
+  displayMessages() {
+    let messages = this.state.messages.map( message => {
+      return(<li className='list_unstyled' key={message.id}>
+              <div>
+                <p>{message.body}</p>
+              </div>
+            </li>    
+      );
+    });
+    return messages;
   }
 
 
   render() {
     return(
       <div>
-        <form onSubmit={this.sendMessage}>
+        <ul>
+          {this.displayMessages()}
+        </ul> 
+        <form ref='form' onSubmit={this.sendMessage}>
           <textarea ref='body' placeholder="Message"></textarea>
           <button type='submit' className='btn'>Send</button>
         </form>

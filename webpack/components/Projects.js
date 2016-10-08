@@ -13,23 +13,26 @@ class Projects extends Component {
    this.addProject = this.addProject.bind(this);
    this.projectForm = this.projectForm.bind(this);
    this.toggleAdd = this.toggleAdd.bind(this);
-   this.state = { projects: [], project: false, conversationView: false,
-                  toggleAdd: false
+   this.showForm = this.showForm.bind(this);
+   this.state = { projects: [],
+                  project: false,
+                  conversationView: false,
+                  addform: false
                 };
  }
 
- componentWillMount() {
+  componentWillMount() {
      let url;
      if(this.props.profileId)
-       url = `/api/profiles/${this.props.profileId}/projects`;
+       url = `/api/profiles/${this.props.profileId}/projects/`;
      else
        url = '/api/all_projects';
      $.ajax({
        url: url,
        type: 'GET',
        dataType: 'JSON'
-     }).done(projects => {
-       this.setState({ projects });
+     }).done( data => {
+       this.setState({ projects: data });
      }).fail(data => {
        console.log(data);
      });
@@ -49,12 +52,13 @@ toggleProject() {
    $.ajax({
      url: `/api/profiles/${this.props.profileId}/projects/`,
      type: 'POST',
-     data: {project: {  name, description, active }},
+     data: { project: {  name, description, active }},
      dataType: 'JSON'
    }).done (data => {
      let projects = this.state.projects;
      projects.push(data);
      this.setState({ projects: projects });
+     this.refs.form.reset();
    }).fail(data => {
      console.log(data)
    });
@@ -70,12 +74,21 @@ toggleProject() {
    this.setState({ toggleAdd: !this.state.toggleAdd });
  }
 
+ showForm() {
+   this.setState({ addform: !this.state.addform });
+ }
+
 
  projectForm() {
+   let addbtn = this.state.addform ? 'HIDE' : 'ADD PROJECT';
    if(this.props.currentUser === parseInt(this.props.profileId)){
    return(
      <div className="row">
-       <form onSubmit={ this.addProject } className='col-xs-12 col-sm-4'>
+       <button className='btn' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
+          {addbtn}
+        </button>
+
+       <form onSubmit={ this.addProject } ref='form' className='col-xs-12 col-sm-4 collapse' id='hideForm'>
          <dl className='dl-horizontal'>
            <dt> Project Name </dt>
            <dd>
@@ -123,7 +136,7 @@ toggleProject() {
          </div>
          <div className="modal-footer">
            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-           { this.props.currentUser !== projectUser ? null
+           { this.props.currentUser === projectUser ? null
              :
              <button
                onClick={() => { this.setState({ conversationView: true })} }
@@ -172,7 +185,6 @@ toggleProject() {
  render() {
      return(
        <div>
-         <button className="btn btn-success" onClick={ this.toggleAdd }>New Project</button>
         { this.projectForm() }
          <ul>
            { this.displayProjects() }
@@ -189,4 +201,8 @@ const styles = {
  },
 };
 
-export default Projects;
+const mapStateToProps = (state) => {
+  return { currentUser: parseInt(state.auth.id) }
+}
+
+export default connect(mapStateToProps)(Projects);

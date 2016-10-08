@@ -2,7 +2,8 @@ class Api::MessagesController < ApiController
   before_action :set_converation, only: :create
   before_action :set_message, except: [:index, :create]
   def index
-    render json: Messages.all
+    @messages = Message.all
+    render json: @messages
   end
 
   def show
@@ -10,7 +11,7 @@ class Api::MessagesController < ApiController
   end
 
   def create
-    message = @conversation.messages.new(message_params)  
+    message = @conversation.messages.new(message_params) 
     message.user_id = current_user.id
     if message.save
       render json: message
@@ -35,7 +36,7 @@ class Api::MessagesController < ApiController
   private
 
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:messages).permit(:body, :user_id)
   end
 
   def set_converation
@@ -43,6 +44,6 @@ class Api::MessagesController < ApiController
   end
 
   def set_message
-    @message = Conversation.message.find(params[:id])
+    @message = Conversation.messages.find(params[:id])
   end
 end
