@@ -45,13 +45,16 @@ class Login extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className='form-grou'>
+              <div className='form-group'>
                 <div className='col-sm-offset-2 col-sm-10'>
                   <button type='submit' className='btn btn-default'>Login</button>
                 </div>
               </div>
             </form>
-            <Link to='/sign_up'>Sign Up</Link>
+            <div>
+              <Link to='/sign_up'>Sign Up</Link>
+
+            </div>
         </div>
       </div>
     )

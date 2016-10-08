@@ -32,7 +32,7 @@ class MoreInfo extends Component {
                 </p>
               </div>
               <div className='divide col-sm-4 col-1-3 btn-text-grey'>
-                <Link to='/login'>
+                <Link to='/sign_up'>
                   <div className='custom-btn text-center'>
                     Sign Up \\ Collab
                   </div>
