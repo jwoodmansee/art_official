@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleSignup } from './actions';
+import MoreInfo from '../MoreInfo';
+
 
 class Signup extends React.Component {
   constructor(props) {
@@ -20,16 +22,63 @@ class Signup extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h3>Sign Up</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input ref='first_name' required placeholder='First Name' /><br />
-          <input ref='last_name' required placeholder='Last Name' /><br />
-          <input ref='username' required placeholder='Username' /><br />
-          <input ref='email' required placeholder='Email' /><br />
-          <input ref='password' type='password' required placeholder='Password' /><br />
-          <button type='submit' className='btn'>Sign Up</button>
-        </form>
+      <div className='row'>
+        <div className='container'>
+          <div className='col-xs-12'>
+            <h3 className='header-text'>Sign Up</h3>
+            <hr />
+            <form className='form-horizontal col-xs-12 col-sm-6 col-md-4' onSubmit={this.handleSubmit}>
+              <div className='form-group'>
+                <label className='control-label'>First Name</label>
+                  <input ref='first_name' className='form-control' required placeholder='First Name' />
+              </div>
+
+              <div className='form-group'>
+                <label className='control-label'>Last Name</label>
+                <div>
+                  <input ref='last_name' className='form-control' required placeholder='Last Name' />
+                </div>
+              </div>
+
+              <div className='form-group'>
+                <label className='control-label'>Username</label>
+                <div>
+                  <input ref='username' className='form-control' required placeholder='username' />
+                </div>
+              </div>
+
+              <div className='form-group'>
+                <label className='control-label'>Email</label>
+                <div>
+                  <input ref='email' className='form-control' required placeholder='Email' />
+                </div>
+              </div>
+
+              <div className='form-group'>
+                <label className='control-label'>Password</label>
+                <div>
+                  <input ref='password' className='form-control' required placeholder='Password' />
+                </div>
+              </div>
+
+              <div className='form-group'>
+                <div className='col-sm-offset-2 col-sm-10'>
+                  <button type='submit' className='btn btn-default'>Sign Up</button>
+                </div>
+              </div>
+            </form>
+
+            <div className='col-xs-12 col-sm-4 col-sm-offset-2'>
+              <blockquote>
+                <p>Something goes here! write something good Bryan</p>
+              </blockquote>
+            </div>
+          </div>
+
+
+        </div>
+        <div className='white-space hidden-xs'></div>
+        <MoreInfo />
       </div>
 
     )

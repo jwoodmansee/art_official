@@ -43,7 +43,7 @@ class Profile extends Component {
                    projects: [],
                    files: [],
                    edit: false,
-                   category: false,
+                   category: true,
                    toggleAdd: false,
                    selectedCategories: {
                      music: [],
@@ -203,6 +203,15 @@ class Profile extends Component {
     )
   }
 
+  userBtn() {
+    let btn = this.state.edit ? 'BACK' : 'EDIT PROFILE';
+    if(this.props.currentUser === parseInt(this.props.params.id)) {
+      return(
+        <p onClick={this.toggleEdit} className='btn hover-black'>{btn}</p>
+      )
+    }
+  }
+
 
   render() {
     let profileID = this.props.params.id;
@@ -216,7 +225,9 @@ class Profile extends Component {
             <div className='row'>
             <br/>
             <div className='col-xs-6 pull-left'>
-              <img src={ src } className='img-responsive img-rounded' />
+              <div className='profile-img'>
+                <img src={ src } className='img-responsive' />
+              </div>
               <DropZone
                 className='dropzone'
                 onDrop={this.onDrop}
@@ -230,15 +241,15 @@ class Profile extends Component {
             </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
-                <p onClick={this.toggleEdit} style={styles.textLink}>Back</p>
+                { this.userBtn() }
                 <form onSubmit={this.editProfile}>
                   <dl className='dl-horizontal'>
-                    <dt> bio </dt>
+                    <dt> Bio </dt>
                     <dd>
                       <textarea className='form-control' ref='bio' defaultValue={ bio }>
                       </textarea>
                     </dd>
-                    <dt> inspirations </dt>
+                    <dt> Inspirations </dt>
                     <dd><input className='form-control'
                                ref='inspirations' type='text'
                                defaultValue={inspirations} />
@@ -276,18 +287,20 @@ class Profile extends Component {
             <div className='container'>
               <div className='col-xs-12 col-sm-6'>
                 <br/>
-                <img src={ src } className='img-responsive img-rounded' />
+                <div className='profile-pic'>
+                  <img src={ src } className='img-responsive' />
+                </div>
                 <br/>
               </div>
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
+                { this.userBtn() }
                 <dl className='dl-horizontal'>
-                  <dd onClick={this.toggleEdit} style={styles.textLink}>EDIT PROFILE</dd>
-                  <dt> bio </dt>
+                  <dt> Bio </dt>
                   <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
-                  <dt> inspirations </dt>
+                  <dt> Inspirations </dt>
                   <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
-                  <dt> categories</dt>
+                  <dt> Categories</dt>
                   {categories}
                 </dl>
               </div>
@@ -309,4 +322,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return { currentUser: parseInt(state.auth.id) }
+}
+
+export default connect(mapStateToProps)(Profile);

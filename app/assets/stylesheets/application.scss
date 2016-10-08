@@ -98,6 +98,19 @@ html, body {
   background-color: white;
   height: 400px;
 }
+.row-color {
+  background-color: #EDEDEF;
+}
+
+.profile-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.profile-img img {
+  overflow: hidden;
+}
 
 .about-img {
   width: 100%;
@@ -176,4 +189,14 @@ html, body {
 
 .dropzone {
   border: none;
+}
+
+.hover-black {
+  padding: 2px 5px;
+  border: 2px solid black;
+  color: black;
+}
+.hover-black:hover {
+  background-color: black;
+  color: white;
 }
