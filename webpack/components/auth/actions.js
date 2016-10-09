@@ -30,8 +30,9 @@ export const handleSignup = (first_name, last_name, username, email, password, h
       localStorage.setItem('userId', id);
       dispatch(loggedIn(id, api_key));
       history.push(`/profiles/${id}`);
-    }).fail( res => {
-      console.log(res);
+    }).fail( data => {
+      // TODO handle errors for users
+      alert(data);
     });
   }
 }

@@ -67,10 +67,16 @@ class Navbar extends React.Component {
 
           <div className="collapse navbar-collapse" id='mobile-nav'>
             <ul className="nav navbar-nav navbar-right">
-              <li><Link to='/all_projects'>All Projects</Link></li>
-              <li><Link to='/profiles'>All Profiles</Link></li>
-              <li><Link to='/browse'>Browse</Link></li>
-              <li><Link to='/featured'>Featured</Link></li>
+              <li className='dropdown'>
+                <Link to='/browse' className='dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  Browse<span className='caret'></span>
+                </Link>
+                <ul className='dropdown-menu'>
+                  <li><Link to='/all_projects'>Projects</Link></li>
+                  <li><Link to='/profiles'>Profiles</Link></li>
+                  <li><Link to='/featured'>Featured</Link></li>
+                </ul>
+              </li>
               <li><Link to='/about'>About</Link></li>
               { this.authLink() }
             </ul>

@@ -75,18 +75,21 @@ toggleProject() {
  }
 
  showForm() {
+   this.refs.form.reset();
    this.setState({ addform: !this.state.addform });
  }
 
 
  projectForm() {
-   let addbtn = this.state.addform ? 'HIDE' : 'ADD PROJECT';
+   let addbtn = this.state.addform ? 'CANCEL' : 'ADD PROJECT';
    if(this.props.currentUser === parseInt(this.props.profileId)){
    return(
-     <div className="row">
-       <button className='btn' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
-          {addbtn}
-        </button>
+     <div>
+       <div>
+         <span className='btn hover-black' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
+           {addbtn}
+         </span>
+       </div>
 
        <form onSubmit={ this.addProject } ref='form' className='col-xs-12 col-sm-4 collapse' id='hideForm'>
          <dl className='dl-horizontal'>
@@ -159,9 +162,9 @@ toggleProject() {
              <div>
                <div className='jumbotron' style={styles.hover1} onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
                  <h3>
-                 {project.name}
+                 {project.name} <small></small>
                  </h3>
-                 <p><strong>Tags:</strong> {project.description}</p>
+                 <p><small>description:</small> {project.description}</p>
                  <button className="btn btn-primary">More Info</button>
                </div>
                <div className="modal fade" id={"project-" + project.id} >

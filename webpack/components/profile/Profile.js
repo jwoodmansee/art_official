@@ -124,6 +124,7 @@ class Profile extends Component {
       }
     }).done( data => {
       this.setState({ profile: data.profile })
+      debugger;
       this.toggleEdit();
       window.scrollTo(0,0);
     }).fail( data => {
@@ -197,8 +198,7 @@ class Profile extends Component {
     let { first_name, last_name, username } = this.state.user;
     return(
       <div>
-        <h2> { first_name } { last_name } </h2>
-        <h4><strong><i> { username } </i></strong></h4>
+        <h2> { first_name } { last_name } <small><i> { username } </i></small></h2>
       </div>
     )
   }
@@ -242,6 +242,7 @@ class Profile extends Component {
               <div className='col-xs-12 col-sm-6 pull-right'>
                 { this.displayUserInfo() }
                 { this.userBtn() }
+
                 <form onSubmit={this.editProfile}>
                   <dl className='dl-horizontal'>
                     <dt> Bio </dt>
