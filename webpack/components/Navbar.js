@@ -3,21 +3,6 @@ import { Link } from 'react-router';
 import { handleLogout } from './auth/actions';
 import { connect } from 'react-redux';
 
-const styles = {
-  nav: {
-    backgroundColor: '#282828',
-    borderColor: 'black',
-    padding: '10px',
-  },
-  logo: {
-    fontFamily: 'Bungee',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-};
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -59,14 +44,14 @@ class Navbar extends React.Component {
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
             </button>
-            <Link to='/' className="logo-text" style={styles.logo}>
+            <Link to='/' className="logo-text">
               c o \\ art
             </Link>
           </div>
 
 
           <div className="collapse navbar-collapse" id='mobile-nav'>
-            <ul className="nav navbar-nav">
+            <ul className="nav navbar-nav navbar-right">
               <li className='dropdown'>
                 <Link to='/browse' className='dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                   Browse<span className='caret'></span>

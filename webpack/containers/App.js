@@ -21,18 +21,27 @@ class App extends React.Component {
     let pathname = window.location.pathname;
     if (pathname !== '/') {
       $('body').removeClass('home-bg');
+      $('nav').removeClass('no-display');
     } else {
       $('body').addClass('home-bg');
+      $('nav').addClass('no-display');
+    }
+  }
+
+  displayFooter() {
+    let pathname = window.location.pathname;
+    if (pathname !== '/') {
+      <Footer histroy={this.props.history} />
     }
   }
 
   render() {
     return (
       <div>
-        {this.landingImg()}
+        { this.landingImg() }
           <Navbar auth={this.props.auth} history={this.props.history} />
             { this.props.children }
-
+          { this.displayFooter() }
       </div>
     )
   }

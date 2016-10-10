@@ -14,13 +14,18 @@ class Home extends React.Component {
       <div>
         <div className='container'>
           <div className='row'>
-            <div className='col-sm-12'>
+            <div className='col-xs-12 col-sm-6 col-sm-offset-6 no-bg-nav'>
+              <Link to='/about'> about </Link>
+              <Link to='/featured'> featured </Link>
+            </div>
               <span className='header-text'>
                 <h1 className='home-text'>
-                  Collaborative Community
+                  Collaborative Art
                 </h1>
               </span>
-            </div>
+          </div>
+
+
 
             <div className='col-xs-12 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-3 home-text p-left'>
               <p className='alt-font lead'>
@@ -34,14 +39,6 @@ class Home extends React.Component {
 
             </div>
 
-          </div>
-
-          <div className='row home-text'>
-            <div className='container'>
-
-
-            </div>
-          </div>
         </div>
       </div>
 
