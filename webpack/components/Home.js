@@ -14,10 +14,6 @@ class Home extends React.Component {
       <div>
         <div className='container'>
           <div className='row'>
-            <div className='col-xs-12 col-sm-6 col-sm-offset-6 no-bg-nav'>
-              <Link to='/about'> about </Link>
-              <Link to='/featured'> featured </Link>
-            </div>
               <span className='header-text'>
                 <h1 className='home-text'>
                   Collaborative Art

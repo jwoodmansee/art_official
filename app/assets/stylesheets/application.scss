@@ -78,15 +78,15 @@ html, body {
   border-top: 1px solid #DDDDDD;
 }
 .footer nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-weight: normal;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
 }
 .footer nav ul a {
-    padding: 10px 0px;
-    margin: 15px 20px 15px 0px;
-    color: #777;
+  padding: 10px 0px;
+  margin: 15px 20px 15px 0px;
+  color: #777;
 }
 .footer nav ul a:hover {
   background-color: transparent;
@@ -99,9 +99,8 @@ html, body {
   line-height: 20px;
   text-align: center;
 }
-.footer-color-black, .footer-transparent {
+.footer-color-black {
   background-color: rgba(30, 30, 30, 0.97);
-  color: #DDDDDD;
 }
 .copyright {
   margin-bottom: 0px;
@@ -111,6 +110,9 @@ html, body {
 }
 .dropdown-menu li a {
   color: black;
+}
+.dropdown-menu.login {
+  width: 100%;
 }
 
 //-- TODO: icons not showing up --//
@@ -172,7 +174,6 @@ html, body {
 }
 
 .enter-btn {
-  background: #C0E334;
   border: 2px solid black;
   border-radius: 2px;
   padding: 10px 15px;
@@ -184,7 +185,7 @@ html, body {
 
 
 .enter-btn a {
-  color: black;
+  color: white;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -234,7 +235,7 @@ html, body {
 }
 
 .home-text {
-  color: black;
+  color: white;
 }
 .p-left {
   padding-left: 30px;

@@ -26,7 +26,11 @@ class Navbar extends React.Component {
         ]
       )
     } else {
-      return(<li><Link to="/login">Login</Link></li>);
+      return(
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      );
     }
   }
 
