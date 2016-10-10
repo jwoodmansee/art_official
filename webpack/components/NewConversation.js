@@ -29,9 +29,18 @@ class NewConversation extends Component {
     return(
       <div>
         <form onSubmit={this.sendRequest}>
-          <input ref="subject" type="text" defaultValue="Request to collab"/>
-          <textarea ref="body" type="text" defaultValue="I like the way that you think, let's get together and collab!"></textarea>
-          <button type='submit' className='btn btn-primary'>Send</button>
+          <div>
+            <input ref="subject" type="text" defaultValue="Request to collab"/>
+          </div>
+          <div>  
+            <textarea ref="body" 
+                      type="text" 
+                      defaultValue="I like the way that you think, let's get together and collab!">
+            </textarea>
+          </div>
+          <div>  
+            <button type='submit' className='btn btn-primary'>Send</button>
+          </div>
         </form>
       </div>
     )

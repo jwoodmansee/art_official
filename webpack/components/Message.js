@@ -60,8 +60,12 @@ class Message extends Component {
           {this.displayMessages()}
         </ul> 
         <form ref='form' onSubmit={this.sendMessage}>
-          <textarea ref='body' placeholder="Message"></textarea>
-          <button type='submit' className='btn'>Send</button>
+          <div>
+            <textarea ref='body' placeholder="Message"></textarea>
+          </div>
+          <div>  
+            <button type='submit' className='btn'>Send</button>
+          </div>
         </form>
       </div>
     )

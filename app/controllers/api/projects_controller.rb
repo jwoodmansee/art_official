@@ -8,7 +8,7 @@ class Api::ProjectsController < ApiController
   end
 
   def all_projects
-    @projects = Project.order(created_at: :desc)
+    @projects = Project.paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
   end
 
   def browse_all
