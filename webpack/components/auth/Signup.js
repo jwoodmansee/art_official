@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { handleSignup } from './actions';
 import MoreInfo from '../MoreInfo';
+import together from '../../images/together.jpg';
 
 
 class Signup extends React.Component {
@@ -62,19 +63,22 @@ class Signup extends React.Component {
               </div>
 
               <div className='form-group'>
-                <div className='col-sm-offset-2 col-sm-10'>
-                  <button type='submit' className='btn btn-default'>Sign Up</button>
+                <div>
+                  <button type='submit' className='btn btn-default hover-black'>Sign Up</button>
                 </div>
               </div>
             </form>
 
-            <div className='col-xs-12 col-sm-4 col-sm-offset-2'>
+            <div className='col-xs-12 col-sm-6 col-md-6 col-md-offset-2'>
               <blockquote>
-                <p>Something goes here! write something good Bryan</p>
+                <h3 className="header-text">Welcome to co \\ art</h3>
+              </blockquote>
+              <img className="sign-up-pic img-responsive" src={ together } alt="together we create"/>
+              <blockquote>
+                <h3 className="header-text">Welcome to co \\ art</h3>
               </blockquote>
             </div>
           </div>
-
 
         </div>
         <div className='white-space hidden-xs'></div>

@@ -245,6 +245,11 @@ html, body {
   width: 200px;
 }
 
+.sign-up-pic {
+  height: 250px;
+  width: 100%;
+}
+
 //-- Form and List --//
 .profile-list {
   padding-bottom: 10px;
@@ -293,13 +298,18 @@ html, body {
   border: 2px solid black;
   color: black;
 }
+
+.hover-black a {
+  color: black;
+}
+
 .hover-black:hover {
   background-color: black;
   color: white;
 }
 
-.animate {
-  transition: 1.5s ease-in-out;
-  -moz-transition: 1.5s ease-in-out;
-  -webkit-transition: 1.5s ease-in-out;
+.hover-black:hover a {
+  background-color: black;
+  color: white;
+  text-decoration: none;
 }
