@@ -5,7 +5,7 @@ import NewConversation from './NewConversation';
 
 
 class Projects extends Component {
- constructor(props) {
+  constructor(props) {
    super(props);
    this.displayProjects = this.displayProjects.bind(this);
    this.toggleProject = this.toggleProject.bind(this);
@@ -20,7 +20,7 @@ class Projects extends Component {
                   conversationView: false,
                   addform: false
                 };
- }
+  }
 
   componentWillMount() {
      let url;
@@ -39,7 +39,7 @@ class Projects extends Component {
      });
  }
 
- paginate() {
+  paginate() {
   if(this.props.displayProjects > 0) {
     return(
       <div>
@@ -48,9 +48,9 @@ class Projects extends Component {
       </div>
     )
   }
- }
+  }
 
- changeView(e, view) {
+  changeView(e, view) {
     this.props.changeView(view)
     this.setState( {page: 1 } )
     let buttons = e.target.parentElement.children
@@ -59,21 +59,19 @@ class Projects extends Component {
     }
   }
 
- previousPage() {
+  previousPage() {
   this.setState( { page: (this.state.page += 1) } )
- }
+  }
 
- nextPage() {
+  nextPage() {
   this.setState( { page: (this.state.page -= 1 ) } )
- }
+  }
 
+  toggleProject() {
+    this.setState({ project: !this.state.project });
+  }
 
-toggleProject() {
-  this.setState({ project: !this.state.project });
-}
-
-
- addProject(e) {
+  addProject(e) {
    e.preventDefault();
    let name = this.refs.name.value;
    let description = this.refs.description.value;
@@ -91,9 +89,9 @@ toggleProject() {
    }).fail(data => {
      console.log(data)
    });
- }
+  }
 
- deleteProject(id) {
+  deleteProject(id) {
   let projects = this.state.projects
   $.ajax({
     url: `/api/profiles/${this.props.profileId}/projects/${id}`,
@@ -105,27 +103,27 @@ toggleProject() {
       [...projects.slice(0, deleteIndex),
        ...projects.slice(deleteIndex +1, projects.length)] });
   })
- }
+  }
 
- toggleProject() {
+  toggleProject() {
    this.setState({
      project: !this.state.project
    });
- }
+  }
 
- toggleAdd() {
+  toggleAdd() {
    this.setState({ toggleAdd: !this.state.toggleAdd });
- }
+  }
 
- showForm() {
+  showForm() {
    this.refs.form.reset();
    this.setState({ addform: !this.state.addform });
- }
+  }
 
 
- projectForm() {
+  projectForm() {
    let addbtn = this.state.addform ? 'CANCEL' : 'ADD PROJECT';
-   if(this.props.currentUser === parseInt(this.props.profileId)){
+   if(this.props.currentUser === parseInt(this.props.profileId)) {
    return(
      <div>
        <div>
@@ -153,9 +151,9 @@ toggleProject() {
    </div>
 
   )}
- }
+  }
 
- view(projectUser, description) {
+  view(projectUser, description) {
    if (this.state.conversationView) {
      return (
        <div>
@@ -196,49 +194,58 @@ toggleProject() {
        </div>
      )
    }
- }
+  }
 
 
- displayProjects() {
-   let projects = this.state.projects.map( project => {
-      return(<li className="list-unstyled" key={project.id}>
-             <div>
-               <div className='jumbotron' style={styles.hover1}>
-                 <h3>
+  displayProjects() {
+    let projects = this.state.projects.map( project => {
+      if(this.props.currentUser === parseInt(this.props.profileId)) {
+        return(
+          <li className='list-unstyled' key={project.id}>
+            <h4> { project.name } </h4>
+          </li>
+        )
+      } else {
+        return(
+          <li className="list-unstyled" key={project.id}>
+            <div>
+              <div className='jumbotron' style={styles.hover1}>
+                <h3>
                  {project.name} <small></small>
-                 </h3>
-                 <p><small>description:</small> {project.description}</p>
-                 <button className="btn btn-primary"
+                </h3>
+                <p><small>description:</small> {project.description}</p>
+                <button className="btn btn-primary"
                          onClick={this.toggleProject}
                          data-toggle="modal"
                          data-target={"#project-" + project.id}
-                        >
-                        More Info
-                 </button>
-                 <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger">Delete</button>
-               </div>
-               <div className="modal fade" id={"project-" + project.id} >
-                 <div className="modal-dialog">
-                   <div className="modal-content">
-                     <div className="modal-header">
-                       <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
-                       <h4 className="modal-title">{project.name}</h4>
-                     </div>
-                     {this.view(project.project_user, project.description)}
-                   </div>
-                 </div>
-               </div>
-             </div>
-            </li>
-           );
+                >
+                  More Info
+                </button>
+                <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger">Delete</button>
+              </div>
+              <div className="modal fade" id={"project-" + project.id} >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
+                      <h4 className="modal-title">{project.name}</h4>
+                    </div>
+                      {this.view(project.project_user, project.description)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        );
+      }
    });
    return projects;
- }
+  }
 
  render() {
    let header = this.props.profileId ? 'My Projects' : 'Projects';
      return(
-       <div className="text-center">
+       <div>
          { this.projectForm() }
          <ul>
           <h3 className="header-text">{header}</h3>

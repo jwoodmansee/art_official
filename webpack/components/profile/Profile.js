@@ -100,11 +100,12 @@ class Profile extends Component {
 
   displayMyProjects() {
     return(
-      <div>
+      <div className='col-xs-12 col-sm-6'>
         <Projects profileId={this.props.params.id} projects={this.state.projects} />
       </div>
     )
   }
+
   editProfile(e) {
     e.preventDefault();
     let bio = this.refs.bio.value;
@@ -216,23 +217,24 @@ class Profile extends Component {
     if(this.state.edit) {
       return(
         <div>
-          <div className='container'>
-            <div className='row'>
-            <br/>
-            <div className='col-xs-6 pull-left'>
-              <img src={ src } className='img-responsive profile-img' />
-              <DropZone
-                className='dropzone'
-                onDrop={this.onDrop}
-                multiple={false}
-                accept='image/*'>
-                <div>
-                  <br />
-                  <button type='button' className='btn btn-default'>Change Image</button>
+          <div className='row'>
+            <div className='container'>
+              <div className='col-xs-12 col-sm-4'>
+                <div className='profile-img'>
+                  <img src={ src } />
+                  <DropZone
+                    className='dropzone'
+                    onDrop={this.onDrop}
+                    multiple={false}
+                    accept='image/*'>
+                    <div>
+                      <br />
+                      <button type='button' className='btn btn-default'>Change Image</button>
+                    </div>
+                  </DropZone>
                 </div>
-              </DropZone>
-            </div>
-              <div className='col-xs-12 col-sm-6 pull-right'>
+              </div>
+              <div className='col-xs-12 col-sm-8'>
                 { this.displayUserInfo() }
                 { this.userBtn() }
 
@@ -282,8 +284,7 @@ class Profile extends Component {
           <div className='row'>
             <div className='container'>
               <div className='col-xs-12 col-sm-6'>
-                <br/>
-                <div className='profile-pic'>
+                <div className='profile-img'>
                   <img src={ src } className='img-responsive' />
                 </div>
                 <br/>
