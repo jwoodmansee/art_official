@@ -124,7 +124,6 @@ class Profile extends Component {
       }
     }).done( data => {
       this.setState({ profile: data.profile })
-      debugger;
       this.toggleEdit();
       window.scrollTo(0,0);
     }).fail( data => {

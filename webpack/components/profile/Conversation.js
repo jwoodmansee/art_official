@@ -26,7 +26,6 @@ class Conversation extends Component {
     }).fail(data => {
       console.log('fail');
     });
-
   }
 
   deleteConversation(id) {
@@ -91,7 +90,7 @@ class Conversation extends Component {
                         <button type='button' 
                                 className='btn btn-primary' 
                                 onClick={ () => {this.setState({ showMessageComponent: true })}} >
-                                Reply
+                                Show All
                           </button>
                       </div>
                     </div>

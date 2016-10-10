@@ -64,6 +64,20 @@ toggleProject() {
    });
  }
 
+ deleteProject(id) {
+  let projects = this.state.projects
+  $.ajax({
+    url: `/api/profiles/${this.props.profileId}/projects/${id}`,
+    type: 'DELETE',
+    dataType: 'JSON'
+  }).done( data => {
+    let deleteIndex = projects.findIndex( project => project.id === id )
+    this.setState({ projects: 
+      [...projects.slice(0, deleteIndex),
+       ...projects.slice(deleteIndex +1, projects.length)] });
+  })
+ }
+
  toggleProject() {
    this.setState({
      project: !this.state.project
@@ -160,12 +174,19 @@ toggleProject() {
    let projects = this.state.projects.map( project => {
       return(<li className="list-unstyled" key={project.id}>
              <div>
-               <div className='jumbotron' style={styles.hover1} onClick={this.toggleProject} data-toggle="modal" data-target={"#project-" + project.id}>
+               <div className='jumbotron' style={styles.hover1}>
                  <h3>
                  {project.name} <small></small>
                  </h3>
                  <p><small>description:</small> {project.description}</p>
-                 <button className="btn btn-primary">More Info</button>
+                 <button className="btn btn-primary" 
+                         onClick={this.toggleProject} 
+                         data-toggle="modal" 
+                         data-target={"#project-" + project.id}
+                        >
+                        More Info
+                 </button> 
+                 <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger">Delete</button>
                </div>
                <div className="modal fade" id={"project-" + project.id} >
                  <div className="modal-dialog">
