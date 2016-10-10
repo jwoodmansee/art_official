@@ -10,6 +10,7 @@ class Projects extends Component {
    this.displayProjects = this.displayProjects.bind(this);
    this.toggleProject = this.toggleProject.bind(this);
    this.view = this.view.bind(this);
+   this.paginate = this.paginate.bind(this);
    this.addProject = this.addProject.bind(this);
    this.projectForm = this.projectForm.bind(this);
    this.toggleAdd = this.toggleAdd.bind(this);
@@ -36,6 +37,34 @@ class Projects extends Component {
      }).fail(data => {
        console.log(data);
      });
+ }
+
+ paginate() {
+  if(this.props.displayProjects > 0) {
+    return(
+      <div>
+        {(this.state.page > 1) ? <button className="btn" onClick={this.previousPage}>Prev</button> : null }
+        {(this.props.displayProjects === 30) ? <button className="btn" onClick={this.nextPage}>Next</button> : null }
+      </div>
+    )
+  }
+ }
+
+ changeView(e, view) {
+    this.props.changeView(view)
+    this.setState( {page: 1 } )
+    let buttons = e.target.parentElement.children
+    for(var button of buttons) {
+      button.style.backgroundColor='#D0d7d5'
+    }
+  }
+
+ previousPage() {
+  this.setState( { page: (this.state.page += 1) } )
+ }
+
+ nextPage() {
+  this.setState( { page: (this.state.page -= 1 ) } )
  }
 
 
@@ -215,6 +244,7 @@ toggleProject() {
           <h3 className="header-text">{header}</h3>
            { this.displayProjects() }
          </ul>
+           { this.paginate() }
        </div>
      )
    }
