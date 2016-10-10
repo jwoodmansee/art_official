@@ -8,6 +8,14 @@ html, body {
   height: 100%;
 }
 
+.home-bg {
+  background: url('charlie.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 #wrap {
     min-height: 100%;
     height: auto !important;
@@ -19,7 +27,33 @@ html, body {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  font-weight: bold;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar a {
+  color: #EDEDED;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.navbar li a,
+.navbar li a:hover {
+  color: #CDCDCD;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.navbar .open > a, .nav .open > a:hover, .navbar .open > a:focus {
+  background-color: #292929;
+}
+
+.navbar li a:hover {
+  color: #636363;
+}
+
+.nav-bg {
+  background-color: #282828;
+
 }
 .navcon {
   padding-right: 40px;
@@ -58,6 +92,8 @@ html, body {
 .copyright {
   margin-bottom: 0px;
 }
+
+//-- TODO: icons not showing up --//
 .icon-facebook {
   background: url('facebook.png') no-repeat;
 }
@@ -67,8 +103,8 @@ html, body {
 .blurb-box {
   background-color: blue;
   height: 50px;
-  width: 90px;
-  transform: rotate(45deg);
+  width: 80px;
+  transform: rotate(35deg);
 }
 .blurb-div {
   margin-top: 25px;
@@ -91,12 +127,7 @@ html, body {
 .white-space {
   height: 100px;
 }
-.img-scroll {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 .banner {
   background-color: white;
   height: 400px;
@@ -120,6 +151,36 @@ html, body {
   height: 0px;
 }
 
+.enter-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid black;
+  border-radius: 2px;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
+
+
+.enter-btn a {
+  color: black;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.enter-btn:hover a {
+  color: white;
+}
+
+.enter-btn:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+
 //-- Typography --//
 
 .alt-font {
@@ -134,14 +195,26 @@ html, body {
 }
 
 .bg-img-text {
-  color: white;
+  color: black;
   text-shadow: 4px 2px black;
   background-color: black;
   border: 2px solid black;
 }
 
 .logo-text {
+  float: left;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
   font-family: 'Bungee', sans-serif;
+}
+
+.home-text {
+  color: black;
+}
+.p-left {
+  padding-left: 30px;
 }
 
 //-- Media --//
@@ -202,4 +275,10 @@ html, body {
 .hover-black:hover {
   background-color: black;
   color: white;
+}
+
+.animate {
+  transition: 1.5s ease-in-out;
+  -moz-transition: 1.5s ease-in-out;
+  -webkit-transition: 1.5s ease-in-out;
 }

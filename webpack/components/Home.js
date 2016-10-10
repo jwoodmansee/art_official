@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import musicCollab from '../images/musicCollab.jpeg';
-import img065 from '../images/img065.JPG';
-import img116 from '../images/img116.JPG';
-import img200 from '../images/img200.JPG';
-import img447e from '../images/img447e.jpg';
-import Blurb from '../components/Blurb';
-import MoreInfo from './MoreInfo';
 
 
 class Home extends React.Component {
@@ -14,48 +7,42 @@ class Home extends React.Component {
     super(props);
   }
 
+
+
   render() {
     return(
       <div>
         <div className='container'>
-          <div className='col-sm-12'>
-            <span className='header-text'>
-              <h1>
-                We Are A Collaborative Community<small> \\ \ </small>
-              </h1>
-            </span>
+          <div className='row'>
+            <div className='col-sm-12'>
+              <span className='header-text'>
+                <h1 className='home-text'>
+                  Collaborative Community
+                </h1>
+              </span>
+            </div>
+
+            <div className='col-xs-12 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-3 home-text p-left'>
+              <p className='alt-font lead'>
+                We provide a community for artists to CONNECT, COLLABORATE, and CREATE.
+                Creatively inspired, mentored. exposed to other creative mediums through collaboration.
+              </p>
+
+              <div className='enter-btn col-xs-4'>
+                <Link to='/about'>Why Collab?</Link>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div className='row home-text'>
+            <div className='container'>
+
+
+            </div>
           </div>
         </div>
-
-        <div className='row'>
-          <img src={musicCollab}
-               className='img-responsive col-xs-6 col-md-5' />
-          <img src={img065}
-               className='img-responsive col-xs-6 col-md-3' />
-          <img src={img200}
-               className='img-responsive col-xs-6 col-md-4' />
-          <span className='col-xs-6 col-md-3'>
-            <h4 className='main-text'> think of a great line to go right here
-            </h4>
-          </span>
-
-        </div>
-
-        <div className='row'>
-          <div className='container'>
-            <div className='white-space hidden-xs'></div>
-
-            <Blurb />
-
-            <div className='white-space hidden-xs'></div>
-          </div>
-        </div>
-
-          <img src={img447e}
-            className='img-scroll img-responsive' />
-
-
-        <MoreInfo />
       </div>
 
     );

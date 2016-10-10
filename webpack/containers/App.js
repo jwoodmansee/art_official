@@ -17,17 +17,22 @@ class App extends React.Component {
       this.props.dispatch(logout())
   }
 
+  landingImg() {
+    let pathname = window.location.pathname;
+    if (pathname !== '/') {
+      $('body').removeClass('home-bg');
+    } else {
+      $('body').addClass('home-bg');
+    }
+  }
+
   render() {
     return (
       <div>
-        <div id='wrap'>
+        {this.landingImg()}
           <Navbar auth={this.props.auth} history={this.props.history} />
             { this.props.children }
 
-        </div>
-        <div className='row'>
-          <Footer history={this.props.history} />
-        </div>
       </div>
     )
   }
