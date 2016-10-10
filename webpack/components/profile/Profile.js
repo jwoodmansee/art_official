@@ -100,12 +100,9 @@ class Profile extends Component {
 
   displayMyProjects() {
     return(
-      <div style={styles.row}>
-        <div className='container'>
-          <h1>My Projects </h1>
-          <br />
-          <Projects profileId={this.props.params.id} projects={this.state.projects} />
-        </div>
+      <div>
+        <h3>My Projects</h3>
+        <Projects profileId={this.props.params.id} projects={this.state.projects} />
       </div>
     )
   }
@@ -225,9 +222,7 @@ class Profile extends Component {
             <div className='row'>
             <br/>
             <div className='col-xs-6 pull-left'>
-              <div className='profile-img'>
-                <img src={ src } className='img-responsive' />
-              </div>
+              <img src={ src } className='img-responsive profile-img' />
               <DropZone
                 className='dropzone'
                 onDrop={this.onDrop}
@@ -235,7 +230,7 @@ class Profile extends Component {
                 accept='image/*'>
                 <div>
                   <br />
-                  <button type='button' className='btn btn-default'> Upload Avatar Image </button>
+                  <button type='button' className='btn btn-default'>Change Image</button>
                 </div>
               </DropZone>
             </div>
@@ -264,7 +259,9 @@ class Profile extends Component {
               </div>
             </div>
           </div>
+          <div>
           { this.displayMyProjects() }
+          </div>
         </div>
       )
     } else {

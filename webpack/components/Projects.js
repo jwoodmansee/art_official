@@ -187,9 +187,10 @@ toggleProject() {
 
  render() {
      return(
-       <div>
-        { this.projectForm() }
+       <div className="text-center">
+         { this.projectForm() }
          <ul>
+          <h1 className="header-text">Projects</h1>
            { this.displayProjects() }
          </ul>
        </div>

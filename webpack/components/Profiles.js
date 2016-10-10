@@ -41,7 +41,7 @@ class Profiles extends React.Component {
   render() {
     return(
       <div className="text-center">
-        <h1 className="header-text">All Artist Profiles</h1>
+        <h1 className="header-text">Profiles</h1>
         <ul>
           { this.displayProfiles() }
         </ul>
