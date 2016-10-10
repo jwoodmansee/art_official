@@ -72,7 +72,7 @@ toggleProject() {
     dataType: 'JSON'
   }).done( data => {
     let deleteIndex = projects.findIndex( project => project.id === id )
-    this.setState({ projects: 
+    this.setState({ projects:
       [...projects.slice(0, deleteIndex),
        ...projects.slice(deleteIndex +1, projects.length)] });
   })
@@ -179,13 +179,13 @@ toggleProject() {
                  {project.name} <small></small>
                  </h3>
                  <p><small>description:</small> {project.description}</p>
-                 <button className="btn btn-primary" 
-                         onClick={this.toggleProject} 
-                         data-toggle="modal" 
+                 <button className="btn btn-primary"
+                         onClick={this.toggleProject}
+                         data-toggle="modal"
                          data-target={"#project-" + project.id}
                         >
                         More Info
-                 </button> 
+                 </button>
                  <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger">Delete</button>
                </div>
                <div className="modal fade" id={"project-" + project.id} >
@@ -207,11 +207,12 @@ toggleProject() {
  }
 
  render() {
+   let header = this.props.profileId ? 'My Projects' : 'Projects';
      return(
        <div className="text-center">
          { this.projectForm() }
          <ul>
-          <h1 className="header-text">Projects</h1>
+          <h3 className="header-text">{header}</h3>
            { this.displayProjects() }
          </ul>
        </div>

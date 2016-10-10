@@ -101,7 +101,6 @@ class Profile extends Component {
   displayMyProjects() {
     return(
       <div>
-        <h3>My Projects</h3>
         <Projects profileId={this.props.params.id} projects={this.state.projects} />
       </div>
     )
