@@ -28,12 +28,6 @@ class App extends React.Component {
     }
   }
 
-  displayFooter() {
-    let pathname = window.location.pathname;
-    if (pathname !== '/') {
-      <Footer histroy={this.props.history} />
-    }
-  }
 
   render() {
     return (
@@ -41,7 +35,6 @@ class App extends React.Component {
         { this.landingImg() }
           <Navbar auth={this.props.auth} history={this.props.history} />
             { this.props.children }
-          { this.displayFooter() }
       </div>
     )
   }

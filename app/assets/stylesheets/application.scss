@@ -9,7 +9,7 @@ html, body {
 }
 
 .home-bg {
-  background: url('charlie.jpg') no-repeat center center fixed;
+  background: url('heart.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -41,7 +41,8 @@ html, body {
 }
 
 .navbar li a,
-.navbar li a:hover {
+.navbar li a:hover,
+.navbar li a:focus {
   color: #CDCDCD;
   background-color: transparent;
   text-decoration: none;
@@ -104,6 +105,12 @@ html, body {
 }
 .copyright {
   margin-bottom: 0px;
+}
+.dropdown-menu {
+  text-align: right;
+}
+.dropdown-menu li a {
+  color: black;
 }
 
 //-- TODO: icons not showing up --//

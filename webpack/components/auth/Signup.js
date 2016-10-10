@@ -58,7 +58,7 @@ class Signup extends React.Component {
               <div className='form-group'>
                 <label className='control-label'>Password</label>
                 <div>
-                  <input ref='password' className='form-control' required placeholder='Password' />
+                  <input ref='password' type='password' className='form-control' required placeholder='Password' />
                 </div>
               </div>
 
