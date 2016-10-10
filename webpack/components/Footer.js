@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import MoreInfo from './MoreInfo';
 
 
 class Footer extends Component {
@@ -7,6 +8,7 @@ class Footer extends Component {
   render() {
     return(
       <footer className='footer footer-color-black'>
+        <MoreInfo />
         <div className='container'>
           <nav className='pull-left navbar collapse navbar-collapse'>
             <ul className="nav navbar-nav">
