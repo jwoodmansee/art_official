@@ -42,7 +42,7 @@ const About = () => (
             <div className="caption">
               <h3>Alex Quan</h3>
               <p>The man with all the connections, it's no wonder the streets call him Quan-Ties. With a scattered past, little is known about the only man who is somehow one degree of seperation away from both the President of the United States, and an unknown basket merchant somewhere in the forgotten villages of yemen. Undoubtedly this wesbite would not be in front of you today without his efforts.</p>
-              <p><a href="https://www.linkedin.com/in/alex-quan-08808484" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/Alxquan" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              <p><a href="https://www.linkedin.com/in/alex-quan" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/Alxquan" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
             </div>
           </div>
         </div>
