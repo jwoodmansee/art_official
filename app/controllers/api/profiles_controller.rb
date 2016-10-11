@@ -40,9 +40,9 @@ class Api::ProfilesController < ApiController
   private
 
   def profile_params
-    params.require(:profile).permit(:zip_code, 
-                                    :bio, 
-                                    :inspirations, 
+    params.require(:profile).permit(:zip_code,
+                                    :bio,
+                                    :inspirations,
                                     :image_url,
                                     :youtube,
                                     :vimeo,
