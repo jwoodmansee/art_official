@@ -243,7 +243,7 @@ class Profile extends Component {
           <div className='row'>
             <div className='container row-color'>
               <br />
-              <div className='col-xs-12 col-sm-4'>
+              <div className='col-xs-12 col-sm-6 col-md-3 img-div'>
                 <div className='profile-img'>
                   <img src={ src } />
                 </div>
@@ -258,8 +258,8 @@ class Profile extends Component {
                     <button type='button' className='btn btn-default'>Change Image</button>
                   </DropZone>
               </div>
-              <div className='col-xs-12 col-sm-8'>
-                <div>
+              <div className='col-xs-12 col-sm-6 col-md-9'>
+                <div className='p-left'>
                   { this.displayUserInfo() }
                   { this.userBtn() }
                 </div>
@@ -358,12 +358,12 @@ class Profile extends Component {
           </div>
 
           <div className='row'>
-            <div className='col-xs-12 col-sm-4 pull-right'>
+            <div className='col-xs-12 col-sm-5 pull-right'>
               { this.displayMyProjects() }
             </div>
 
             <div className='container'>
-              <div className='col-xs-12 col-sm-8'>
+              <div className='col-xs-12 col-sm-7'>
                 <Conversation profileID={profileID} />
               </div>
             </div>

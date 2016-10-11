@@ -203,26 +203,26 @@ class Projects extends Component {
       if(this.props.currentUser === parseInt(this.props.profileId)) {
         return(
           <li className='list-unstyled' key={project.id}>
-            <h4> { project.name } </h4>
+            <p> { project.name } </p>
           </li>
         )
       } else {
         return(
           <li className="list-unstyled" key={project.id}>
             <div>
-              <div className='jumbotron' style={styles.hover1}>
-                <h3>
-                 {project.name} <small></small>
-                </h3>
+              <div style={styles.hover1}>
+                <h4>
+                 {project.name}
+                </h4>
                 <p><small>description:</small> {project.description}</p>
-                <button className="btn btn-primary"
+                <button className="btn btn-primary btn-xs"
                          onClick={this.toggleProject}
                          data-toggle="modal"
                          data-target={"#project-" + project.id}
                 >
                   More Info
                 </button>
-                <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger">Delete</button>
+                <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger btn-xs">Delete</button>
               </div>
               <div className="modal fade" id={"project-" + project.id} >
                 <div className="modal-dialog">
@@ -249,10 +249,9 @@ class Projects extends Component {
        <div>
          { this.projectForm() }
          <h3 className="header-text">{header}</h3>
-         <ul>
-           { this.displayProjects() }
-         </ul>
-           { this.paginate() }
+
+         { this.displayProjects() }
+         { this.paginate() }
        </div>
      )
    }
