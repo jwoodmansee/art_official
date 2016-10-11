@@ -61,7 +61,7 @@ const About = () => (
             <img className="profile-pic" src="https://s3-us-west-2.amazonaws.com/capstoneao-dev/Bryan_about.jpg" alt="..." />
             <div className="caption">
               <h3>Bryan Anderson</h3>
-              <p>Bryan was determined to help, and we thought his efforts were adorable so we put him to work. We couldnt have done this project without him making sure we always had coffee and snacks on hand.</p>
+              <p>Bryan, or Breezy Street as he's known in the underground SLC, is the father of this app. After spending years in the tutelage of a mysterious shaman, he was bestowed with a gift that allowed him to anticipate the needs of his fellow man. Ever altruistic, his goal with this app has been to bring all of mankind together and create a community where all are welcome. Through mutual collaboration, he knows we can achieve world peace. </p>
               <p><a href="https://www.linkedin.com/in/bryan-noble-anderson" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/BryanAnderson84" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
             </div>
           </div>
