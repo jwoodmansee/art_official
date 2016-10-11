@@ -12,7 +12,7 @@ class Api::ProfilesController < ApiController
 
   def update
     params[:profile] = params[:profile] || {}
-    if file = params[:file]
+    if file = params[:profile][:image_url]
       s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
       s3_bucket = ENV['S3_BUCKET_NAME']
       name = file.original_filename

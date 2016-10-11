@@ -195,7 +195,7 @@ class Profile extends Component {
     let file = files[0];
     let req = request.put(`/api/profiles/${this.state.profile.id}/`);
     req.setCsrfToken();
-    req.attach('file', file);
+    req.attach('profile[image_url]', file);
     req.end( (err, res) => {
       this.addImage(res.body.profile.image_url);
     });
