@@ -283,13 +283,12 @@ class Profile extends Component {
         <div>
           <div className='row'>
             <div className='container'>
-              <div className='col-xs-12 col-sm-6'>
+              <div className='col-xs-12 col-sm-4 img-div'>
                 <div className='profile-img'>
-                  <img src={ src } className='img-responsive' />
+                  <img src={ src } />
                 </div>
-                <br/>
               </div>
-              <div className='col-xs-12 col-sm-6 pull-right'>
+              <div className='col-xs-12 col-sm-8'>
                 { this.displayUserInfo() }
                 { this.userBtn() }
                 <dl className='dl-horizontal'>
