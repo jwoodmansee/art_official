@@ -5,6 +5,14 @@ json.profile do
   json.inspirations @profile.inspirations
   json.url api_profile_url(@profile)
   json.image_url @profile.image_url
+  json.youtube @profile.youtube
+  json.vimeo @profile.vimeo
+  json.soundcloud @profile.soundcloud
+  json.twitter @profile.twitter
+  json.facebook @profile.facebook
+  json.tumbler @profile.tumbler
+  json.instagram @profile.instagram
+  json.other @profile.other
   json.categories do
     json.music @profile.category.music
     json.photography @profile.category.photography

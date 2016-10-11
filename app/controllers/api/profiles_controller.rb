@@ -40,7 +40,19 @@ class Api::ProfilesController < ApiController
   private
 
   def profile_params
-    params.require(:profile).permit(:zip_code, :bio, :inspirations, :image_url)
+    params.require(:profile).permit(:zip_code, 
+                                    :bio, 
+                                    :inspirations, 
+                                    :image_url,
+                                    :youtube,
+                                    :vimeo,
+                                    :soundcloud,
+                                    :facebook,
+                                    :instagram,
+                                    :twitter,
+                                    :tumbler,
+                                    :other
+                                   )
   end
 
   def category_params

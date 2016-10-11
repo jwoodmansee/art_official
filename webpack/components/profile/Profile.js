@@ -110,13 +110,25 @@ class Profile extends Component {
     e.preventDefault();
     let bio = this.refs.bio.value;
     let inspirations = this.refs.inspirations.value;
+    let zip_code = this.refs.zip_code.value;
+    let youtube = this.refs.youtube.value;
+    let vimeo = this.refs.vimeo.value;
+    let soundcloud = this.refs.soundcloud.value;
+    let facebook = this.refs.facebook.value;
+    let instagram = this.refs.instagram.value;
+    let twitter = this.refs.twitter.value;
+    let tumbler = this.refs.tumbler.value;
+    let other = this.refs.other.value;
     let id = this.props.params.id;
     $.ajax({
       url: `/api/profiles/${id}`,
       type: 'PUT',
       dataType: 'JSON',
       data: {
-        profile: { bio, inspirations },
+        profile: { bio, 
+                   inspirations, 
+                   zip_code,
+                   youtube },
         cat: this.state.selectedCategories
       }
     }).done( data => {
@@ -212,7 +224,18 @@ class Profile extends Component {
   render() {
     let profileID = this.props.params.id;
     let src = this.state.profile.image_url || foamgeode
-    let { zip_code, bio, inspirations, url } = this.state.profile;
+    let { zip_code, 
+          bio, 
+          inspirations, 
+          url, 
+          youtube, 
+          vimeo, 
+          facebook, 
+          twitter, 
+          instagram,
+          soundcloud,
+          tumbler,
+          other  } = this.state.profile;
     let { categories } = this.state.profile.categories
     if(this.state.edit) {
       return(
@@ -252,10 +275,30 @@ class Profile extends Component {
                     <dd><input className='form-control'
                                ref='inspirations' type='text'
                                defaultValue={inspirations} />
-                   </dd>
+                    </dd>
+                    <dt> Zip Code </dt>
+                    <dd><input className='form-control'
+                               ref='zip_code' type='text' placeholder='Zip Code' />
+                    </dd>          
                     <dt> Categories </dt>
                     <dd><span className='glyphicon glyphicon-chevron-down'></span>
                        { this.artStyle() } </dd>
+                    <dt>YouTube</dt>
+                    <dd><input className='form-control' ref='youtube' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>vimeo</dt>
+                    <dd><input className='form-control' ref='vimeo' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>soundcloud</dt>
+                    <dd><input className='form-control' ref='soundcloud' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>facebook</dt>
+                    <dd><input className='form-control' ref='facebook' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>twitter</dt>
+                    <dd><input className='form-control' ref='twitter' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>instagram</dt>
+                    <dd><input className='form-control' ref='instagram' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>tumbler</dt>
+                    <dd><input className='form-control' ref='tumbler' placeholder='https://www.youtube.com/' /></dd>
+                    <dt>other</dt>
+                    <dd><input className='form-control' ref='other' placeholder='https://www.youtube.com/' /></dd>   
                   </dl>
                   <input type='submit' className='btn btn-primary btn-xs' />
                 </form>
@@ -303,8 +346,12 @@ class Profile extends Component {
                   <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
                   <dt> Inspirations </dt>
                   <dd> { inspirations ? inspirations : "let others know what you're about" } </dd>
+                  <dt> Zip Code </dt>
+                  <dd> { zip_code ? zip_code : "let other callaborators know you are close and open to collab"} </dd>
                   <dt> Categories</dt>
                   {categories}
+                  <dt>External Links</dt>
+                  <dd>{ youtube ? <a href={`${youtube}`}>Click</a> : null }</dd>
                 </dl>
               </div>
             </div>

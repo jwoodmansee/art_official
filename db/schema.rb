@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20161003221424) do
     t.string   "zip_code"
     t.text     "bio"
     t.string   "inspirations"
+    t.string   "youtube"
+    t.string   "soundcloud"
+    t.string   "vimeo"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "tumbler"
+    t.string   "instagram"
+    t.string   "other"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
