@@ -9,7 +9,7 @@ const Featured = () => (
     <hr />
     <div className='row col-sm-12'>
       <h3>
-        Sundaii feat. Broken Silence
+        Sundaii feat. Imij and Mycon
       </h3>
       <h4>
         'No Lie'
