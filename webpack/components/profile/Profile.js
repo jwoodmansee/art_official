@@ -222,6 +222,7 @@ class Profile extends Component {
               <div className='col-xs-12 col-sm-4'>
                 <div className='profile-img'>
                   <img src={ src } />
+                </div>
                   <DropZone
                     className='dropzone'
                     onDrop={this.onDrop}
@@ -229,10 +230,9 @@ class Profile extends Component {
                     accept='image/*'>
                     <div>
                       <br />
-                      <button type='button' className='btn btn-default'>Change Image</button>
                     </div>
+                    <button type='button' className='btn btn-default'>Change Image</button>
                   </DropZone>
-                </div>
               </div>
               <div className='col-xs-12 col-sm-8'>
                 { this.displayUserInfo() }
