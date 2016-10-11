@@ -203,7 +203,7 @@ class Projects extends Component {
       if(this.props.currentUser === parseInt(this.props.profileId)) {
         return(
           <li className='list-unstyled' key={project.id}>
-            <p> { project.name } </p>
+            <h4> { project.name } </h4>
           </li>
         )
       } else {

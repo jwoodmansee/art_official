@@ -134,8 +134,9 @@ h3 a {
 }
 
 .arrow {
-  width: 75px;
+  width: 100px;
   height: auto;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 //-- TODO: icons not showing up --//
 .icon-facebook {
@@ -180,10 +181,10 @@ h3 a {
   background-color: #EDEDEF;
 }
 .row-color-size {
-  margin-top: 450px;
-  margin-bottom: 150px;
+  margin-top: 50px;
+  margin-bottom: 100px;
   background-color: white;
-  height: 500px;
+  height: 300px;
 }
 
 .img-div {
@@ -227,6 +228,7 @@ h3 a {
   border: 2px solid black;
   border-radius: 2px;
   padding: 10px 15px;
+  margin-right: 15px;
   text-align: center;
   transition: 0.5s;
   -moz-transition: 0.5s;
@@ -235,7 +237,7 @@ h3 a {
 }
 
 .enter-btn a {
-  color: white;
+  color: black;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -267,13 +269,12 @@ h3 a {
 //font-family: 'Bungee', sans-serif;
 
 .landing-font {
-  padding-top: 100px;
   padding-right: 60px;
   color: white;
-  font-family: 'Rock Salt', cursive;
 }
 
 .padding-right-1 {
+  margin-top: 300px;
   padding-right: 60px;
 }
 
@@ -282,7 +283,6 @@ h3 a {
 }
 
 .padding-right-3 {
-  padding-top: 15px;
   padding-right: 60px;
 }
 

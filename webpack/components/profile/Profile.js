@@ -125,8 +125,8 @@ class Profile extends Component {
       type: 'PUT',
       dataType: 'JSON',
       data: {
-        profile: { bio, 
-                   inspirations, 
+        profile: { bio,
+                   inspirations,
                    zip_code,
                    youtube },
         cat: this.state.selectedCategories
@@ -224,14 +224,14 @@ class Profile extends Component {
   render() {
     let profileID = this.props.params.id;
     let src = this.state.profile.image_url || foamgeode
-    let { zip_code, 
-          bio, 
-          inspirations, 
-          url, 
-          youtube, 
-          vimeo, 
-          facebook, 
-          twitter, 
+    let { zip_code,
+          bio,
+          inspirations,
+          url,
+          youtube,
+          vimeo,
+          facebook,
+          twitter,
           instagram,
           soundcloud,
           tumbler,
@@ -279,7 +279,7 @@ class Profile extends Component {
                     <dt> Zip Code </dt>
                     <dd><input className='form-control'
                                ref='zip_code' type='text' placeholder='Zip Code' />
-                    </dd>          
+                    </dd>
                     <dt> Categories </dt>
                     <dd><span className='glyphicon glyphicon-chevron-down'></span>
                        { this.artStyle() } </dd>
@@ -298,7 +298,7 @@ class Profile extends Component {
                     <dt>tumbler</dt>
                     <dd><input className='form-control' ref='tumbler' placeholder='https://www.youtube.com/' /></dd>
                     <dt>other</dt>
-                    <dd><input className='form-control' ref='other' placeholder='https://www.youtube.com/' /></dd>   
+                    <dd><input className='form-control' ref='other' placeholder='https://www.youtube.com/' /></dd>
                   </dl>
                   <input type='submit' className='btn btn-primary btn-xs' />
                 </form>
@@ -316,7 +316,7 @@ class Profile extends Component {
       let categories = Object.keys(cat).map( key => {
         let category = cat[key]
         return (
-            <dd key={key} className="text-capitalize">
+          <dd key={key} className="text-capitalize">
             { category.length ?
               <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
               : null
