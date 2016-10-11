@@ -8,6 +8,10 @@ html, body {
   height: 100%;
 }
 
+.dl-horizontal dd {
+  padding-bottom: 10px;
+
+}
 .home-bg {
   background: url('heart.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -57,7 +61,7 @@ html, body {
 }
 
 .nav-bg {
-  background-color: #282828;
+  background-color: rgba(0,0,0,0.65);
 
 }
 .no-bg-nav {
@@ -220,6 +224,14 @@ html, body {
 .thumbnail {
   background-color: #282828;
 }
+
+.bg-profile-project {
+  min-height: 250px;
+  border-left: 10px solid black;
+  margin-top: 20px;
+  padding: 15px;
+}
+
 
 
 //-- Typography --//

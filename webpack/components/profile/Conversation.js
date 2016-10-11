@@ -4,12 +4,12 @@ import Profile from './Profile';
 import Message from '../Message';
 
 class Conversation extends Component {
-  constructor(props) {     
+  constructor(props) {
     super(props);
     this.displayConversations = this.displayConversations.bind(this);
     this.toggleConversation = this.toggleConversation.bind(this);
     this.deleteConversation = this.deleteConversation.bind(this);
-    this.state = { conversations: [], 
+    this.state = { conversations: [],
                    toggleConversation: false,
                    showMessageComponent: false,
                    messages : [],
@@ -36,9 +36,9 @@ class Conversation extends Component {
       dataType: 'JSON'
     }).done( data => {
       let deleteIndex = conversations.findIndex( conversation =>  conversation.id === id )
-      this.setState({ conversations: 
-        [...conversations.slice(0, deleteIndex), 
-         ...conversations.slice(deleteIndex +1, 
+      this.setState({ conversations:
+        [...conversations.slice(0, deleteIndex),
+         ...conversations.slice(deleteIndex +1,
           conversations.length )] });
     })
   }
@@ -50,21 +50,20 @@ class Conversation extends Component {
 
   displayConversations() {
     let conversations = this.state.conversations.map( conversation => {
-      return(<li className='list_unstyled' key={conversation.id}>
-              <div>
-                <div className='jumbotron'>
-                  <h2>  
+      return(<div className='list_unstyled' key={conversation.id}>
+                <div>
+                  <h4>
                     {conversation.subject}
-                  </h2>
-                  <button className='btn btn-primary' 
-                          onClick={this.toggleConversation} 
-                          data-toggle="modal" 
-                          data-target={"#conversation-" + conversation.id} 
+                  </h4>
+                  <button className='btn btn-primary'
+                          onClick={this.toggleConversation}
+                          data-toggle="modal"
+                          data-target={"#conversation-" + conversation.id}
                           >
                           View Talks
                   </button>
-                  <button className='btn btn-danger' 
-                          onClick={ () => this.deleteConversation(conversation.id)} 
+                  <button className='btn btn-danger'
+                          onClick={ () => this.deleteConversation(conversation.id)}
                           >
                           Delete
                   </button>
@@ -80,24 +79,23 @@ class Conversation extends Component {
                         <p>{conversation.body}</p>
                       </div>
                       <div className='modal-footer'>
-                          {this.state.showMessageComponent ? 
+                          {this.state.showMessageComponent ?
                           <Message conversationID={conversation.id} /> : null}
-                        <button type='button' 
-                                className='btn btn-danger' 
+                        <button type='button'
+                                className='btn btn-danger'
                                 data-dismiss='modal'>
                                 Close
                         </button>
-                        <button type='button' 
-                                className='btn btn-primary' 
+                        <button type='button'
+                                className='btn btn-primary'
                                 onClick={ () => {this.setState({ showMessageComponent: true })}} >
                                 Show All
                           </button>
                       </div>
                     </div>
                   </div>
-                </div>            
-              </div>
-            </li>       
+                </div>
+            </div>
           );
     });
     return conversations;
@@ -106,7 +104,7 @@ class Conversation extends Component {
   render() {
     return(
       <div>
-        <h1>All Conversations</h1>
+        <h3>All Conversations</h3>
         <hr />
         <ul className='list_unstyled'>
           { this.displayConversations() }

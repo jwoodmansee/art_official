@@ -131,23 +131,24 @@ class Projects extends Component {
            {addbtn}
          </span>
        </div>
-
-       <form onSubmit={ this.addProject } ref='form' className='col-xs-12 col-sm-4 collapse' id='hideForm'>
-         <dl className='dl-horizontal'>
-           <dt> Project Name </dt>
-           <dd>
-             <input className='form-control' ref='name' type='text' />
+       <div>
+         <form onSubmit={ this.addProject } ref='form' className='collapse' id='hideForm'>
+           <dl className='dl-horizontal'>
+             <dt> Project Name </dt>
+             <dd>
+               <input className='form-control' ref='name' type='text' />
+             </dd>
+             <dt> Description </dt>
+             <dd><input className='form-control'
+               ref='description' type='text' />
            </dd>
-           <dt> Description </dt>
-           <dd><input className='form-control'
-             ref='description' type='text' />
-         </dd>
-         <dt> Active Project </dt>
-         <dd><input type='checkbox' ref='active' /></dd>
+           <dt> Active Project </dt>
+           <dd><input type='checkbox' ref='active' /></dd>
 
-       </dl>
-       <input type='submit' className='btn btn-primary btn-xs' />
-     </form>
+         </dl>
+         <input type='submit' onClick={this.state.addform} className='btn btn-primary btn-xs' />
+       </form>
+       </div>
    </div>
 
   )}
@@ -247,8 +248,8 @@ class Projects extends Component {
      return(
        <div>
          { this.projectForm() }
+         <h3 className="header-text">{header}</h3>
          <ul>
-          <h3 className="header-text">{header}</h3>
            { this.displayProjects() }
          </ul>
            { this.paginate() }

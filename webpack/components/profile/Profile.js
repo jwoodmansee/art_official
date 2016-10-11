@@ -100,7 +100,7 @@ class Profile extends Component {
 
   displayMyProjects() {
     return(
-      <div className='col-xs-12 col-sm-6'>
+      <div className='bg-profile-project p-left'>
         <Projects profileId={this.props.params.id} projects={this.state.projects} />
       </div>
     )
@@ -218,7 +218,8 @@ class Profile extends Component {
       return(
         <div>
           <div className='row'>
-            <div className='container'>
+            <div className='container row-color'>
+              <br />
               <div className='col-xs-12 col-sm-4'>
                 <div className='profile-img'>
                   <img src={ src } />
@@ -235,9 +236,11 @@ class Profile extends Component {
                   </DropZone>
               </div>
               <div className='col-xs-12 col-sm-8'>
-                { this.displayUserInfo() }
-                { this.userBtn() }
-
+                <div>
+                  { this.displayUserInfo() }
+                  { this.userBtn() }
+                </div>
+                <br />
                 <form onSubmit={this.editProfile}>
                   <dl className='dl-horizontal'>
                     <dt> Bio </dt>
@@ -282,15 +285,19 @@ class Profile extends Component {
       return(
         <div>
           <div className='row'>
-            <div className='container'>
-              <div className='col-xs-12 col-sm-4 img-div'>
+            <div className='container row-color'>
+              <br />
+              <div className='col-xs-12 col-sm-6 col-md-3 img-div'>
                 <div className='profile-img'>
                   <img src={ src } />
                 </div>
               </div>
-              <div className='col-xs-12 col-sm-8'>
-                { this.displayUserInfo() }
-                { this.userBtn() }
+              <div className='col-xs-12 col-sm-6 col-md-9'>
+                <div className='p-left'>
+                  { this.displayUserInfo() }
+                  { this.userBtn() }
+                </div>
+                <br />
                 <dl className='dl-horizontal'>
                   <dt> Bio </dt>
                   <dd> { bio ? bio : 'help collaborators know more about you, add your bio' } </dd>
@@ -303,14 +310,17 @@ class Profile extends Component {
             </div>
           </div>
 
-          <div>
-            { this.displayMyProjects() }
-          </div>
-
           <div className='row'>
-            <div className='container'>
-              <Conversation profileID={profileID} />
+            <div className='col-xs-12 col-sm-4 pull-right'>
+              { this.displayMyProjects() }
             </div>
+
+            <div className='container'>
+              <div className='col-xs-12 col-sm-8'>
+                <Conversation profileID={profileID} />
+              </div>
+            </div>
+
           </div>
         </div>
       )
