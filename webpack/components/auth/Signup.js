@@ -70,19 +70,17 @@ class Signup extends React.Component {
             </form>
 
             <div className='col-xs-12 col-sm-6 col-md-6 col-md-offset-2'>
+              <img className="sign-up-pic img-responsive image-shadow" src={ together } alt="together we create"/>
+              <br />
               <blockquote>
-                <h3 className="header-text">Welcome to co \\ art</h3>
-              </blockquote>
-              <img className="sign-up-pic img-responsive" src={ together } alt="together we create"/>
-              <blockquote>
-                <h3 className="header-text">Welcome to co \\ art</h3>
+                <h3 className="header-text">Creation</h3>
+                <h3 className="header-text">Through</h3>
+                <h3 className="header-text">Collaboration</h3>
               </blockquote>
             </div>
           </div>
-
         </div>
         <div className='white-space hidden-xs'></div>
-        <MoreInfo />
       </div>
 
     )

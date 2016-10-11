@@ -1,23 +1,29 @@
 import React from 'react';
 import together from '../images/together.jpg';
+import { Link } from 'react-router';
 
 const About = () => (
   <div>
     <div className='container'>
-      <h1 className="header-text">Connect. Collab. Create.</h1>
+      <h1 className="header-text">About Us</h1>
+      <h4 className="header-text">Our Story \\ How It Works \\ The Team \\ The Architecture</h4>
       <hr />
-        <h3><strong>The story of Co Art</strong></h3> <h4>...is as refreshingly simple as our core purpose: A few creative individuals connected with eachother, collaborated creatively, and created a project together. In the age of endless self-promotion, we recognize that there are more things pulling you away from the creative process than ever before. Enter the Co Art community.
+        <h3><strong>Our story</strong></h3> <h4>...is as refreshingly simple as our core purpose: A few creative individuals connected with eachother, collaborated creatively, and created a project together. In the age of endless self-promotion, we recognize that there are more things pulling you away from the creative process than ever before. Enter c o \\ art.
         <br />
         <br />
         Simply put, this website is not designed to make you famous. We are designed to connect artists together, with the hope that new art will be created and put into the world. It's no secret that it can be tough meeting other artists to collaborate with. Currently you can spend hours sifting through social media and online forums, or physically attend local art/music events to network - both of which definitely have their place, but our hope is to give you more direct access. The last thing artists need is another time consuming promotional/social channel to manage. We don't think soliciting for view-counts makes for an authentic community - that's why you don't see any 'like' buttons on our website. We are only as powerful as the users of our community, which means our only agenda is to connect open minded people together and enable creative output.</h4>
         <br />
-        <h3><strong>How it works:</strong></h3> <h4>Signup and create a profile. Add your existing work so people can see what you're all about. You can also create an open project, which becomes searchable by other users. From there, you can start browsing to find other artists, or open projects. If you see a profile or project that looks interesting, or you simply want to just start a conversation, you can send a direct message. If you collaborate with someone on the site and complete a project, we would love for you to send it to us and we will highlight it on our Featured page.
+        <h3><strong>How it works</strong></h3> <h4>Signup and create a profile. Add your existing work so people can see what you're all about. You can also create an open project, which becomes searchable by other users. From there, you can start browsing to find other artists, or open projects. If you see a profile or project that looks interesting, or you simply want to just start a conversation, you can send a direct message. If you collaborate with someone on the site and complete a project, we would love for you to send it to us and we will highlight it on our Featured page.
         <br />
         <br />
         We know we have a lot of room to improve. We are building this site in our free time and will never charge a penny for membership. With that said, we look to our community to grow with us, and report site issues as they are discovered.
         </h4>
+        <div>
+          <button className="btn btn-default hover-black"><Link to='/sign_up'>Get Started</Link></button>
+        </div>
     <br />
-      <h1>The Team</h1>
+    <br />
+      <h1 className="header-text">The Team</h1>
       <hr />
       <div className="row">
         <div className="col-sm-6 col-md-3">
@@ -25,7 +31,7 @@ const About = () => (
             <img className="profile-pic" src="https://s3-us-west-2.amazonaws.com/capstoneao-dev/Ann_about.jpg" alt="..." />
             <div className="caption">
               <h3>Annie Hall</h3>
-              <p>Annie Hall - AKA Annie Tha Danga, has been referred to as "..the hottest up and coming rapper from the streets of St. George, showing the world the real struggles of SG life", and "the most dangerous influence on our youth since NWA..". She puts the G in design, and gave us the edge and street credit needed to standout in this digital market.</p>
+              <p>Annie Hall - AKA Annie Tha Danga, has been referred to as "..the hottest up and coming rapper from the streets of St. George, showing the world the real struggles of SG life", and "the most dangerous influence on our youth since NWA..". She puts the G in design, and gave us the edge and street cred needed to standout in this digital market.</p>
               <p><a href="https://www.linkedin.com/in/annie-hall-367280124" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/amaesato" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
             </div>
           </div>
