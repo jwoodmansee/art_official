@@ -14,6 +14,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Blurb from './components/Blurb';
 import Support from './components/Support';
+import AllProjects from './components/AllProjects';
 import NoMatch from './components/NoMatch';
 
 const UserIsAuthendticated = UserAuthWrapper({
@@ -29,7 +30,7 @@ export default (
       <IndexRoute component={Home} />
       <Route path='profiles' component={Profiles} />
       <Route path='project/:id' component={Project} />
-      <Route path='all_projects' component={Projects} />
+      <Route path='all_projects' component={AllProjects} />
       <Route path='browse' component={Browse} />
       <Route path='about' component={About} />
       <Route path='featured' component={Featured} />

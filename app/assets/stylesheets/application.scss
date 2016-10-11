@@ -61,9 +61,13 @@ html, body {
 }
 
 .nav-bg {
-  background-color: rgba(0,0,0,0.65);
-
+  background-color: #282828;
 }
+
+.nav-bg-opacity {
+  background-color: rgba(255,255,255,0.85);
+}
+
 .no-bg-nav {
   text-align: right;
   padding-top: 10px;
@@ -119,6 +123,10 @@ html, body {
   width: 100%;
 }
 
+.arrow {
+  width: 75px;
+  height: auto;
+}
 //-- TODO: icons not showing up --//
 .icon-facebook {
   background: url('facebook.png') no-repeat;
@@ -160,6 +168,12 @@ html, body {
 }
 .row-color {
   background-color: #EDEDEF;
+}
+.row-color-size {
+  margin-top: 450px;
+  margin-bottom: 150px;
+  background-color: white;
+  height: 500px;
 }
 
 .img-div {
@@ -233,19 +247,40 @@ html, body {
 }
 
 
-
 //-- Typography --//
 //font-family: 'Rock Salt', cursive;
 //font-family: 'Changa One', cursive;
 //font-family: 'Bungee', sans-serif;
 
+.landing-font {
+  padding-top: 100px;
+  padding-right: 60px;
+  color: white;
+  font-family: 'Rock Salt', cursive;
+}
+
+.padding-right-1 {
+  padding-right: 60px;
+}
+
+.padding-right-2 {
+  padding-right: 100px;
+}
+
+.padding-right-3 {
+  padding-top: 15px;
+  padding-right: 60px;
+}
+
 .alt-font {
   font-family: 'Questrial', sans-serif;
 }
+
 .header-text {
   font-family: 'Roboto Mono', monospace;
   font-weight: bold;
 }
+
 .main-text {
   padding-left: 20px;
 }

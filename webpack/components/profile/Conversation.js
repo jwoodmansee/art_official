@@ -50,24 +50,25 @@ class Conversation extends Component {
 
   displayConversations() {
     let conversations = this.state.conversations.map( conversation => {
-      return(<div className='list_unstyled' key={conversation.id}>
-                <div>
-                  <h4>
-                    {conversation.subject}
-                  </h4>
-                  <button className='btn btn-primary'
-                          onClick={this.toggleConversation}
-                          data-toggle="modal"
-                          data-target={"#conversation-" + conversation.id}
-                          >
-                          View Talks
-                  </button>
-                  <button className='btn btn-danger'
-                          onClick={ () => this.deleteConversation(conversation.id)}
-                          >
-                          Delete
-                  </button>
-                </div>
+      return(
+        <div key={conversation.id}>
+          <div>
+            <h4>
+              {conversation.subject}
+            </h4>
+            <button className='btn btn-primary'
+                    onClick={this.toggleConversation}
+                    data-toggle="modal"
+                    data-target={"#conversation-" + conversation.id}
+                    >
+                    View Talks
+            </button>
+            <button className='btn btn-danger'
+                    onClick={ () => this.deleteConversation(conversation.id)}
+                    >
+                    Delete
+            </button>
+          </div>
                 <div className='modal fade' id={'conversation-' + conversation.id}>
                   <div className='modal-dialog'>
                     <div className='modal-content'>
@@ -104,7 +105,7 @@ class Conversation extends Component {
   render() {
     return(
       <div>
-        <h3>All Conversations</h3>
+        <h3>All Conversations <span className='glyphicon glyphicon-inbox'></span><span className='badge'></span> </h3>
         <hr />
         <ul className='list_unstyled'>
           { this.displayConversations() }
