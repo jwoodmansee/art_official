@@ -32,7 +32,7 @@ export const handleSignup = (first_name, last_name, username, email, password, h
       history.push(`/profiles/${id}`);
     }).fail( data => {
       // TODO handle errors for users
-      alert(data);
+      alert("Username has already been taken. Please select a different username.");
     });
   }
 }
