@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import arrow from '../images/arrow.png';
+import facebook from '../images/facebook.png';
+import instagram from '../images/instagram.png';
+import twitter from '../images/twitter.png';
 
 
 class Home extends React.Component {
@@ -20,16 +23,23 @@ class Home extends React.Component {
               <h1 className='padding-right-3'>Collaborate.</h1>
               <h1 className='padding-right-2'>Create.</h1>
             </div>
+            <div className='col-xs-12 social'>
+              <img src={facebook} alt='facebook' />
+              <img src={instagram} alt='instagram' />
+              <img src={twitter} alt='instagram' />
+            </div>
           </div>
         </div>
 
         <div className='col-xs-12'>
-          <img src={arrow} className='col-xs-3 col-sm-1 col-sm-offset-5'/>
+          <div className='col-xs-4 col-xs-offset-4'>
+            <a href='#scrollDown'><img src={arrow} className='arrow'/> </a>  
+          </div>
         </div>
         <div>
 
           <div className='row-color-size'>
-            <div className='container'>
+            <div className='container' id='scrollDown'>
               <span className='header-text'>
                 <h1>
                   Collaborative Art
@@ -46,7 +56,7 @@ class Home extends React.Component {
               <div className='enter-btn col-xs-3'>
                 <Link to='/sign_up'>Sign Up</Link>
               </div>
-              <div className='enter-btn col-xs-3'>
+              <div className='enter-btn animate-btn col-xs-3'>
                 <Link to='/about'>Learn More</Link>
               </div>
             </div>

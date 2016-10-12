@@ -21,8 +21,10 @@ class App extends React.Component {
     let pathname = window.location.pathname;
     if (pathname !== '/') {
       $('body').removeClass('home-bg');
+      $('nav').removeClass('nav-bg-opacity');
     } else {
       $('body').addClass('home-bg');
+      $('nav').addClass('nav-bg-opacity');
     }
   }
 

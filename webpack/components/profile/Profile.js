@@ -215,7 +215,7 @@ class Profile extends Component {
     let btn = this.state.edit ? 'BACK' : 'EDIT PROFILE';
     if(this.props.currentUser === parseInt(this.props.params.id)) {
       return(
-        <p onClick={this.toggleEdit} className='btn hover-black'>{btn}</p>
+        <p onClick={this.toggleEdit} className='btn hover-black animate-btn'>{btn}</p>
       )
     }
   }
@@ -300,7 +300,7 @@ class Profile extends Component {
                     <dt>other</dt>
                     <dd><input className='form-control' ref='other' placeholder='https://www.youtube.com/' /></dd>
                   </dl>
-                  <input type='submit' className='btn btn-primary btn-xs' />
+                  <input type='submit' className='btn btn-primary btn-xs animate-btn' />
                 </form>
               </div>
             </div>
