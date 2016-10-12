@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { handleLogout } from './auth/actions';
 import { connect } from 'react-redux';
+import Login from './auth/Login';
 
 
 class Navbar extends React.Component {
@@ -27,7 +28,7 @@ class Navbar extends React.Component {
       )
     } else {
       return(
-        <li>
+        <li className='dropdown'>
           <Link to="/login">Login</Link>
         </li>
       );

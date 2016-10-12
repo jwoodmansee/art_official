@@ -55,6 +55,7 @@ class Login extends React.Component {
               </div>
             </div>
           </form>
+          <div className='white-space'></div>
         </div>
       </div>
     )

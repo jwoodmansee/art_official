@@ -14,7 +14,7 @@ class Footer extends Component {
             <ul className="nav navbar-nav">
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
-              <li><Link to='#'>Why Collab?</Link></li>
+              <li><Link to='/about'>Why Collab?</Link></li>
             </ul>
           </nav>
           <div className='social-area pull-right'>

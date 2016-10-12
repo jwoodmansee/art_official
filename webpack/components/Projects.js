@@ -127,7 +127,7 @@ class Projects extends Component {
    return(
      <div>
        <div>
-         <span className='btn hover-black' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
+         <span className='btn hover-black animate-btn' onClick={this.showForm} data-toggle='collapse' aria-expanded='false' aria-controls='hideForm' data-target='#hideForm'>
            {addbtn}
          </span>
        </div>
