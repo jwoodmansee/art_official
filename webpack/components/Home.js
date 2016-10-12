@@ -12,16 +12,15 @@ class Home extends React.Component {
   }
 
 
-
   render() {
     return(
       <div>
         <div className='row'>
           <div className='container'>
-            <div className='col-xs-12 pull-right text-right landing-font'>
+            <div className='col-xs-12 pull-right text-right landing-font text-lrg'>
               <h1 className='padding-right-1'>Connect.</h1>
-              <h1 className='padding-right-3'>Collaborate.</h1>
-              <h1 className='padding-right-2'>Create.</h1>
+              <h1>Collaborate.</h1>
+              <h1>Create.</h1>
             </div>
             <div className='col-xs-12 social'>
               <img src={facebook} alt='facebook' />
@@ -32,8 +31,8 @@ class Home extends React.Component {
         </div>
 
         <div className='col-xs-12'>
-          <div className='col-xs-4 col-xs-offset-4'>
-            <a href='#scrollDown'><img src={arrow} className='arrow'/> </a>  
+          <div className='col-xs-4 col-xs-offset-4 text-center'>
+            <a href='#scrollDown' className='animation-slide'><img src={arrow} className='arrow'/> </a>
           </div>
         </div>
         <div>
@@ -53,7 +52,7 @@ class Home extends React.Component {
               <strong>Creatively inspired.</strong> Born from\\flourished by exposure to other creative mediums through collaboration.
               </h4>
 
-              <div className='enter-btn col-xs-3'>
+              <div className='enter-btn animate-btn col-xs-3'>
                 <Link to='/sign_up'>Sign Up</Link>
               </div>
               <div className='enter-btn animate-btn col-xs-3'>

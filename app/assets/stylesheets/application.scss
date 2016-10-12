@@ -137,12 +137,18 @@ h3 a {
   width: 75px;
   margin: 0 auto;
 }
-//-- TODO: icons not showing up --//
-.icon-facebook {
-  background: url('facebook.png') no-repeat;
+.arrow-up {
+  transform: rotate(180deg);
 }
 
+
 //-- Custom Divs --//
+
+.section-border {
+  margin-top: 30px;
+  border-left: 2px solid black;
+  padding-left: 15px;
+}
 
 .social {
   text-align: right;
@@ -187,7 +193,7 @@ h3 a {
   padding-left: 35px;
 }
 .white-space {
-  height: 100px;
+  height: 150px;
 }
 
 .banner {
@@ -199,11 +205,22 @@ h3 a {
   box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
+.row-sm-width {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
 .row-color-size {
   margin-top: 50px;
   margin-bottom: 100px;
   background-color: white;
   height: 300px;
+}
+
+.animation-slide {
+  transition: 1s;
+  -webkit-transition-duration: 1s; /* Safari */
+  transition-duration: 1s;
 }
 
 .img-div {
@@ -284,6 +301,8 @@ h3 a {
   padding: 15px;
 }
 
+
+
 //-- Typography --//
 //font-family: 'Rock Salt', cursive;
 //font-family: 'Changa One', cursive;
@@ -296,16 +315,8 @@ h3 a {
 
 .padding-right-1 {
   margin-top: 300px;
-  padding-right: 60px;
 }
 
-.padding-right-2 {
-  padding-right: 100px;
-}
-
-.padding-right-3 {
-  padding-right: 60px;
-}
 
 .alt-font {
   font-family: 'Questrial', sans-serif;
@@ -349,14 +360,18 @@ h3 a {
 }
 
 .caption h3, .caption p{
-  color: #F2F2F2;
+  color: #EDEDED;
+}
+
+.text-lrg {
+  font-size: 32px;
+  text-transform: uppercase;
 }
 
 //-- Media --//
 
 .profile-pic {
-  height: 242px;
-  width: 200px;
+  max-width: 100%;
 }
 
 .sign-up-pic {
@@ -376,6 +391,10 @@ h3 a {
 
 .dl-horizontal dd {
   margin-left: 120px;
+}
+
+.about-nav ul li {
+  padding-top: 5px;
 }
 
 

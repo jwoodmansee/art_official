@@ -113,9 +113,9 @@ class Projects extends Component {
         <li className="list-unstyled" key={project.id}>
           <div className='jumbotron projects-wrapper'>
             <div style={styles.hover1}>
-              <h4>
+              <h3>
                {project.name}
-              </h4>
+              </h3>
               <p><small>description:</small> {project.description}</p>
               <button className="btn btn-primary btn-xs"
                        onClick={this.toggleProject}
@@ -147,7 +147,8 @@ class Projects extends Component {
   render() {
     return(
       <div className='container'>
-        <h2> Projects </h2>
+        <h2 className='header-text'> Projects </h2>
+        <hr />
         { this.displayProjects() }
         { this.paginate() }
       </div>

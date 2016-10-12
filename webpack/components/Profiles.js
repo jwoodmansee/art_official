@@ -40,8 +40,9 @@ class Profiles extends React.Component {
 
   render() {
     return(
-      <div className="text-center">
-        <h1 className="header-text">Profiles</h1>
+      <div className="container">
+        <h2 className="header-text">Profiles</h2>
+        <hr />
         <ul>
           { this.displayProfiles() }
         </ul>
