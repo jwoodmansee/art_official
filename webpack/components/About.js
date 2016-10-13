@@ -6,6 +6,8 @@ import bryan from '../images/bryan.jpg';
 import justin from '../images/justin.jpg';
 import { Link } from 'react-router';
 import dpl from '../images/dpl.png';
+import github from '../images/github.png';
+import linkedin from '../images/linkedin.png';
 
 const About = () => (
   <div>
@@ -67,9 +69,18 @@ const About = () => (
               <p> She puts the G in design ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore1" aria-expanded='false' aria-controls='viewMore1' aria-controls='viewMore'></span></p>
               <div className='collapse' id='viewMore1'>
                 <p>AKA Annie Tha Danga, has been referred to as "..the hottest up and coming rapper from the streets of St. George, showing the world the real struggles of SG life", and "the most dangerous influence on our youth since NWA..". She puts the G in design, and gave us the edge and street cred needed to standout in this digital market.</p>
-                <p><a href="https://www.linkedin.com/in/annie-hall-367280124" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/amaesato" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+
               </div>
             </div>
+          </div>
+          <div className='pull-right'>
+            <a href='https://www.linkedin.com/in/annie-hall-367280124' target='_blank'>
+              <img src={linkedin} alt='linkedin' />
+            </a>
+
+            <a href='https://github.com/amaesato' target='_blank'>
+              <img src={github} alt='github' className='left-indent'/>
+            </a>
           </div>
         </div>
 
@@ -84,11 +95,21 @@ const About = () => (
               <p>The man with the connections ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore2" aria-expanded='false' aria-controls='viewMore2' aria-controls='viewMore2'></span></p>
               <div className='collapse' id='viewMore2'>
               <p>it's no wonder the streets call him Quan-Ties. With a scattered past, little is known about the only man who is somehow one degree of seperation away from both the President of the United States, and an unknown basket merchant somewhere in the forgotten villages of yemen. Undoubtedly this wesbite would not be in front of you today without his efforts.</p>
-              <p><a href="https://www.linkedin.com/in/alex-quan" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/Alxquan" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
               </div>
             </div>
           </div>
+          <div className='pull-right'>
+            <a href='https://www.linkedin.com/in/alex-quan' target='_blank'>
+              <img src={linkedin} alt='linkedin' />
+            </a>
+
+            <a href='https://github.com/Alxquan' target='_blank'>
+              <img src={github} alt='github' className='left-indent'/>
+            </a>
+          </div>
         </div>
+
+
         <div className="col-xs-6 col-sm-4 col-md-3">
           <img className="img-rounded img-responsive" src={justin} alt="..." />
           <div className="thumbnail">
@@ -97,11 +118,21 @@ const About = () => (
               <p>What words can be said ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore3" aria-expanded='false' aria-controls='viewMore3' aria-controls='viewMore3'></span></p>
               <div className='collapse' id='viewMore3'>
               <p>to describe a person who is a living, breathing scientific anomoly? Often referrred to in the medical community as the "white hole" of mortal human life, his ability to turn endless letters and numbers into useable products continually defies universal law. Only time will tell what his continual reduction of entropy will continue to add to our app.</p>
-              <p><a href="https://www.linkedin.com/in/justin-woodmansee-940a19a8?trk=hp-identity-name" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/jwoodmansee" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
               </div>
             </div>
           </div>
+          <div className='pull-right'>
+            <a href='https://www.linkedin.com/in/justin-woodmansee-940a19a8?trk=hp-identity-name' target='_blank'>
+              <img src={linkedin} alt='linkedin' />
+            </a>
+
+            <a href='https://github.com/jwoodmansee' target='_blank'>
+              <img src={github} alt='github' className='left-indent'/>
+            </a>
+          </div>
         </div>
+
+
         <div className="col-xs-6 col-sm-4 col-md-3">
           <img className="img-rounded img-responsive" src={bryan} alt="..." />
           <div className="thumbnail">
@@ -110,9 +141,17 @@ const About = () => (
               <p>No Records found ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore4" aria-expanded='false' aria-controls='viewMore4' aria-controls='viewMore4'></span></p>
               <div className='collapse' id='viewMore4'>
                 <p>for Bryan. Seriously.</p>
-              <p><a href="https://www.linkedin.com/in/bryan-noble-anderson" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/BryanAnderson84" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
               </div>
             </div>
+          </div>
+          <div className='pull-right'>
+            <a href='https://www.linkedin.com/in/bryan-noble-anderson' target='_blank'>
+              <img src={linkedin} alt='linkedin' />
+            </a>
+
+            <a href='https://github.com/BryanAnderson84' target='_blank'>
+              <img src={github} alt='github' className='left-indent'/>
+            </a>
           </div>
         </div>
       </div>

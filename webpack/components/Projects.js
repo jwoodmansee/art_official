@@ -174,7 +174,7 @@ class Projects extends Component {
        </div>
       )
     } else {
-      let user = this.props.currentUser === projectUser;
+      let user = this.props.currentUser !== projectUser;
       return (
        <div>
          <div className="modal-body">
