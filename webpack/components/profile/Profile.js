@@ -128,7 +128,9 @@ class Profile extends Component {
         profile: { bio,
                    inspirations,
                    zip_code,
-                   youtube },
+                   youtube, vimeo, soundcloud, facebook,
+                   instagram, twitter, tumbler, other
+                 },
         cat: this.state.selectedCategories
       }
     }).done( data => {
@@ -176,9 +178,7 @@ class Profile extends Component {
     let select = this.catSelect(categoryKey);
     return(
       <div key={categoryKey}>
-        <label onClick={ () => select } className='text-capitalize'>
-          <p onClick={this.toggleCategory}>{categoryKey.split("_").join(" ")}</p>
-        </label>
+        <label className='text-capitalize'>{categoryKey.split("_").join(" ")}</label>
 
         { this.state.category ?
           select
@@ -281,8 +281,7 @@ class Profile extends Component {
                                ref='zip_code' type='text' placeholder='Zip Code' />
                     </dd>
                     <dt> Categories </dt>
-                    <dd><span className='glyphicon glyphicon-chevron-down'></span>
-                       { this.artStyle() } </dd>
+                    <dd> { this.artStyle() } </dd>
                     <dt>YouTube</dt>
                     <dd><input className='form-control' ref='youtube' placeholder='https://www.youtube.com/' /></dd>
                     <dt>vimeo</dt>
@@ -316,12 +315,14 @@ class Profile extends Component {
       let categories = Object.keys(cat).map( key => {
         let category = cat[key]
         return (
-          <dd key={key} className="text-capitalize">
-            { category.length ?
+          <div>
+          { category.length ?
+            <dd key={key} className="text-capitalize">
               <span><strong>{key}:{' '}</strong>{cat[key].join(", ")}</span>
-              : null
-            }
-          </dd>
+            </dd>
+            : null
+          }
+          </div>
         )
       });
 

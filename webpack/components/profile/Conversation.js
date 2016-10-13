@@ -56,14 +56,14 @@ class Conversation extends Component {
             <h4>
               {conversation.subject}
             </h4>
-            <button className='btn btn-primary'
+            <button className='btn btn-primary btn-xs'
                     onClick={this.toggleConversation}
                     data-toggle="modal"
                     data-target={"#conversation-" + conversation.id}
                     >
                     View Talks
             </button>
-            <button className='btn btn-danger'
+            <button className='btn btn-danger btn-xs'
                     onClick={ () => this.deleteConversation(conversation.id)}
                     >
                     Delete
@@ -90,8 +90,8 @@ class Conversation extends Component {
                         <button type='button'
                                 className='btn btn-primary'
                                 onClick={ () => {this.setState({ showMessageComponent: true })}} >
-                                Show All
-                          </button>
+                                Reply
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -105,9 +105,9 @@ class Conversation extends Component {
   render() {
     return(
       <div>
-        <h3>All Conversations <span className='glyphicon glyphicon-inbox'></span><span className='badge'></span> </h3>
+        <h3>Inbox <span className='glyphicon glyphicon-inbox'></span><span className='badge'></span> </h3>
         <hr />
-        <ul className='list_unstyled'>
+        <ul>
           { this.displayConversations() }
         </ul>
       </div>

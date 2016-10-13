@@ -124,7 +124,6 @@ class Projects extends Component {
               >
                 More Info
               </button>
-              <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger btn-xs">Delete</button>
             </div>
             <div className="modal fade" id={"project-" + project.id} >
               <div className="modal-dialog">

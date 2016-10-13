@@ -139,13 +139,13 @@ class Projects extends Component {
                <input className='form-control' ref='name' type='text' />
              </dd>
              <dt> Description </dt>
-             <dd><input className='form-control'
-               ref='description' type='text' />
-           </dd>
-           <dt> Active Project </dt>
-           <dd><input type='checkbox' ref='active' /></dd>
+             <dd><textarea className='form-control'
+               ref='description' type='text'/>
+             </dd>
+             <dt> Active Project </dt>
+             <dd><input type='checkbox' ref='active' /></dd>
 
-         </dl>
+           </dl>
          <input type='submit' onClick={this.state.addform} className='btn btn-primary btn-xs' />
        </form>
        </div>
@@ -154,26 +154,27 @@ class Projects extends Component {
   )}
   }
 
-  view(projectUser, description) {
-   if (this.state.conversationView) {
-     return (
+  view(projectUser, description, id) {
+    if (this.state.conversationView) {
+      return (
        <div>
          <div className="modal-body">
            <NewConversation sentTo={projectUser}/>
          </div>
          <div className="modal-footer">
-           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+           <button type="button" className="btn btn-default btn-xs" data-dismiss="modal">Close</button>
            <button
-             onClick={() => { this.setState({ conversationView: false }) }}
+             onClick={() => this.setState({ conversationView: false }) }
              type="button"
-             className="btn btn-primary"
+             className="btn btn-primary btn-xs"
            >
              Back
            </button>
          </div>
        </div>
-     )
-   } else {
+      )
+    } else {
+      let user = this.props.currentUser === projectUser;
       return (
        <div>
          <div className="modal-body">
@@ -181,20 +182,19 @@ class Projects extends Component {
          </div>
          <div className="modal-footer">
            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-           { this.props.currentUser === projectUser ? null
+           { user ?
+             <button onClick={() => this.deleteProject(project.id)} className="btn btn-danger btn-xs">Delete</button>
              :
              <button
                onClick={() => { this.setState({ conversationView: true })} }
                type="button"
                className="btn btn-primary"
-             >
-               Request to Collab
-             </button>
+             > Request to Collab </button>
            }
          </div>
        </div>
-     )
-   }
+      )
+      }
   }
 
 
@@ -202,8 +202,24 @@ class Projects extends Component {
     let projects = this.state.projects.map( project => {
       if(this.props.currentUser === parseInt(this.props.profileId)) {
         return(
-          <li className='list-unstyled' key={project.id}>
-            <h4> { project.name } </h4>
+          <li key={project.id}>
+            <p onClick={this.toggleProject}
+            data-toggle="modal"
+            data-target={"#project-" + project.id}
+            className='header-text'
+            style={styles.hover1}> { project.name }</p>
+
+            <div className="modal fade" id={"project-" + project.id} >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 className="modal-title">{project.name}</h4>
+                  </div>
+                    {this.view(project.project_user, project.description, project.id)}
+                </div>
+              </div>
+            </div>
           </li>
         )
       } else {
@@ -231,7 +247,7 @@ class Projects extends Component {
                       <button type="button" className="close" data-dismiss="modal"><span>&times;</span></button>
                       <h4 className="modal-title">{project.name}</h4>
                     </div>
-                      {this.view(project.project_user, project.description)}
+                      {this.view(project.project_user, project.description, project.id)}
                   </div>
                 </div>
               </div>
@@ -250,7 +266,9 @@ class Projects extends Component {
          { this.projectForm() }
          <h3 className="header-text">{header}</h3>
 
-         { this.displayProjects() }
+         <ul>
+           { this.displayProjects() }
+         </ul>
          { this.paginate() }
        </div>
      )

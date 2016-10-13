@@ -46,7 +46,7 @@ class Message extends Component {
               <div>
                 <p>{message.body}</p>
               </div>
-            </li>    
+            </li>
       );
     });
     return messages;
@@ -58,13 +58,13 @@ class Message extends Component {
       <div>
         <ul>
           {this.displayMessages()}
-        </ul> 
+        </ul>
         <form ref='form' onSubmit={this.sendMessage}>
           <div>
-            <textarea ref='body' placeholder="Message"></textarea>
+            <textarea ref='body' className='form-control' placeholder="Message"></textarea>
           </div>
-          <div>  
-            <button type='submit' className='btn'>Send</button>
+          <div>
+            <button type='submit' className='btn btn-default pull-left'>Send</button>
           </div>
         </form>
       </div>
@@ -73,4 +73,3 @@ class Message extends Component {
 }
 
 export default Message;
-
