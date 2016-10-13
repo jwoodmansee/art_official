@@ -4,6 +4,7 @@ import arrow from '../images/arrow.png';
 import facebook from '../images/facebook.png';
 import instagram from '../images/instagram.png';
 import twitter from '../images/twitter.png';
+import down from '../images/down.gif';
 
 
 class Home extends React.Component {
@@ -16,26 +17,24 @@ class Home extends React.Component {
     return(
       <div>
         <div className='row'>
-          <div className='container'>
+          <div className='container pad-top'>
             <div className='col-xs-12 pull-right text-right landing-font text-lrg'>
               <h1 className='padding-right-1'>Connect.</h1>
               <h1>Collaborate.</h1>
               <h1>Create.</h1>
             </div>
+
             <div className='col-xs-12 social'>
               <img src={facebook} alt='facebook' />
               <img src={instagram} alt='instagram' />
               <img src={twitter} alt='instagram' />
             </div>
-          </div>
-        </div>
 
-        <div className='col-xs-12'>
-          <div className='col-xs-4 col-xs-offset-4 text-center'>
-            <a href='#scrollDown' className='animation-slide'><img src={arrow} className='arrow'/> </a>
+            <div className='text-center'>
+              <a href='#scrollDown' className='animation-slide'><img src={down} className='arrow'/> </a>
+            </div>
           </div>
-        </div>
-        <div>
+
 
           <div className='row-color-size'>
             <div className='container' id='scrollDown'>
@@ -59,8 +58,8 @@ class Home extends React.Component {
                 <Link to='/about'>Learn More</Link>
               </div>
             </div>
-
           </div>
+
         </div>
 
       </div>

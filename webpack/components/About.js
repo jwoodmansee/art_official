@@ -5,6 +5,7 @@ import ann from '../images/ann.jpg';
 import bryan from '../images/bryan.jpg';
 import justin from '../images/justin.jpg';
 import { Link } from 'react-router';
+import dpl from '../images/dpl.png';
 
 const About = () => (
   <div>
@@ -21,21 +22,22 @@ const About = () => (
         <br />
 
         <div className='p-left col-xs-3'>
+
           <div className='enter-btn animate-btn'>
             <Link to='/sign_up'>Get Started</Link>
           </div>
-
           <br />
           <nav className='about-nav'>
-            <ul>
+            <ul >
               <li><a href="#story" className='header-text'> our story </a></li>
               <li><a href="#works" className='header-text'> how it works </a></li>
               <li><a href="#team" className='header-text'> the team </a></li>
               <li><a href="#arch" className='header-text'> the architecture </a></li>
+              <li><a href="#education" className='header-text'> our education </a></li>
             </ul>
           </nav>
-        </div>
 
+        </div>
       </div>
     </div>
 
@@ -46,14 +48,14 @@ const About = () => (
           <br />
           We know we have a lot of room to improve. We are building this site in our free time and will never charge a penny for membership. With that said, we look to our community to grow with us, and report site issues as they are discovered.
         </p>
-
       </div>
     </div>
+
     <br />
     <br />
     <div className='container' id='team'>
       <div className="row">
-        <h1 className="header-text">The Team</h1>
+        <h3 className="header-text">The Team</h3>
         <hr />
         <div className="col-xs-6 col-sm-4 col-md-3">
           <div className='profile-pic'>
@@ -62,9 +64,11 @@ const About = () => (
           <div className="thumbnail">
             <div className="caption">
               <h3>Annie Hall</h3>
-              <div> She puts the G in design </div>
-              <p>AKA Annie Tha Danga, has been referred to as "..the hottest up and coming rapper from the streets of St. George, showing the world the real struggles of SG life", and "the most dangerous influence on our youth since NWA..". She puts the G in design, and gave us the edge and street cred needed to standout in this digital market.</p>
-              <p><a href="https://www.linkedin.com/in/annie-hall-367280124" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/amaesato" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              <p> She puts the G in design ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore1" aria-expanded='false' aria-controls='viewMore1' aria-controls='viewMore'></span></p>
+              <div className='collapse' id='viewMore1'>
+                <p>AKA Annie Tha Danga, has been referred to as "..the hottest up and coming rapper from the streets of St. George, showing the world the real struggles of SG life", and "the most dangerous influence on our youth since NWA..". She puts the G in design, and gave us the edge and street cred needed to standout in this digital market.</p>
+                <p><a href="https://www.linkedin.com/in/annie-hall-367280124" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/amaesato" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              </div>
             </div>
           </div>
         </div>
@@ -77,8 +81,11 @@ const About = () => (
           <div className="thumbnail">
             <div className="caption">
               <h3>Alex Quan</h3>
-              <p>The man with all the connections, it's no wonder the streets call him Quan-Ties. With a scattered past, little is known about the only man who is somehow one degree of seperation away from both the President of the United States, and an unknown basket merchant somewhere in the forgotten villages of yemen. Undoubtedly this wesbite would not be in front of you today without his efforts.</p>
+              <p>The man with the connections ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore2" aria-expanded='false' aria-controls='viewMore2' aria-controls='viewMore2'></span></p>
+              <div className='collapse' id='viewMore2'>
+              <p>it's no wonder the streets call him Quan-Ties. With a scattered past, little is known about the only man who is somehow one degree of seperation away from both the President of the United States, and an unknown basket merchant somewhere in the forgotten villages of yemen. Undoubtedly this wesbite would not be in front of you today without his efforts.</p>
               <p><a href="https://www.linkedin.com/in/alex-quan" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/Alxquan" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              </div>
             </div>
           </div>
         </div>
@@ -87,8 +94,11 @@ const About = () => (
           <div className="thumbnail">
             <div className="caption">
               <h3>Justin Woodmansee</h3>
-              <p>What words can be said to describe a person who is a living, breathing scientific anomoly? Often referrred to in the medical community as the "white hole" of mortal human life, his ability to turn endless letters and numbers into useable products continually defies universal law. Only time will tell what his continual reduction of entropy will continue to add to our app.</p>
+              <p>What words can be said ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore3" aria-expanded='false' aria-controls='viewMore3' aria-controls='viewMore3'></span></p>
+              <div className='collapse' id='viewMore3'>
+              <p>to describe a person who is a living, breathing scientific anomoly? Often referrred to in the medical community as the "white hole" of mortal human life, his ability to turn endless letters and numbers into useable products continually defies universal law. Only time will tell what his continual reduction of entropy will continue to add to our app.</p>
               <p><a href="https://www.linkedin.com/in/justin-woodmansee-940a19a8?trk=hp-identity-name" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/jwoodmansee" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              </div>
             </div>
           </div>
         </div>
@@ -97,19 +107,42 @@ const About = () => (
           <div className="thumbnail">
             <div className="caption">
               <h3>Bryan Anderson</h3>
-              <p>Bryan, or Breezy Street as he's known in the underground SLC, is the father of this app. After spending years in the tutelage of a mysterious shaman, he was bestowed with a gift that allowed him to anticipate the needs of his fellow man. Ever altruistic, his goal with this app has been to bring all of mankind together and create a community where all are welcome. Through mutual collaboration, he knows we can achieve world peace. </p>
+              <p>No Records found ... <span className="glyphicon glyphicon-chevron-down" data-toggle='collapse' data-target="#viewMore4" aria-expanded='false' aria-controls='viewMore4' aria-controls='viewMore4'></span></p>
+              <div className='collapse' id='viewMore4'>
+                <p>for Bryan. Seriously.</p>
               <p><a href="https://www.linkedin.com/in/bryan-noble-anderson" className="btn btn-primary" role="button" target="_blank">LinkedIn</a> <a href="https://github.com/BryanAnderson84" className="btn btn-default" role="button" target="_blank">GitHub</a></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-      <div>
-        <h1 className="header-text" id='arch'>The Architecture</h1>
-        <h3>Ruby on Rails</h3>
-        <h3>React.js</h3>
+
+    <br />
+    <div className='row'>
+      <div className='container'>
+        <h3 className="header-text" id='arch'>The Architecture</h3>
+        <hr />
+        <div className='col-xs-12 col-sm-8 col-sm-offset-3'>
+          <p className='lead'>Ruby on Rails  .  ReactJS  .  JavaScript  .  Redux  .  PostgreSQL</p>
+          <p className='lead'>Bootsrap  .  HTML5  .  CSS3  .  NodeJS  .  AWS</p>
+          <p className='lead'>DropzoneJS  .  Heroku  .  Webpack  .  RSPEC  . JQuery</p>
+        </div>
       </div>
     </div>
+
+      <br />
+      <br />
+      <div className='container'>
+        <h3 className='header-text' id='education'>Our Education</h3>
+        <hr />
+        <Link to='http://www.devpointlabs.com/' target='_blank'> <img className='col-xs-12 col-sm-4' src={dpl} alt='DPL' /> </Link>
+      </div>
+      <br />
+      <br />
+  </div>
+
+
 
 )
 

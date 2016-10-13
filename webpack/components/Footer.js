@@ -14,15 +14,11 @@ class Footer extends Component {
             <ul className="nav navbar-nav">
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
-              <li><Link to='/about'>Why Collab?</Link></li>
+              <li><Link to='/support'>Support</Link></li>
             </ul>
           </nav>
-          <div className='social-area pull-right'>
-            <Link to='#'><span className="social social-facebook"></span></Link>
-            <Link to='#'><span className="social social-instagram"></span></Link>
-            <Link to='#'><span className="social social-twitter"></span></Link>
-          </div>
-          <div className='copyright'>
+
+          <div className='copyright pull-right'>
             © 2016 co \\ art collaborative
           </div>
         </div>

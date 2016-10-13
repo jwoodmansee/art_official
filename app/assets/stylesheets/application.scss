@@ -19,9 +19,7 @@ h3 a {
 
 }
 .home-bg {
-  background: url('
-https://s3-us-west-2.amazonaws.com/capstoneao-dev/heart.jpeg
-') no-repeat center center fixed;
+  background: url('heart.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -136,8 +134,9 @@ https://s3-us-west-2.amazonaws.com/capstoneao-dev/heart.jpeg
 }
 
 .arrow {
-  width: 75px;
+  width: 100px;
   margin: 0 auto;
+
 }
 .arrow-up {
   transform: rotate(180deg);
@@ -213,7 +212,6 @@ https://s3-us-west-2.amazonaws.com/capstoneao-dev/heart.jpeg
 }
 
 .row-color-size {
-  margin-top: 50px;
   margin-bottom: 100px;
   background-color: white;
   height: 300px;
@@ -303,6 +301,10 @@ https://s3-us-west-2.amazonaws.com/capstoneao-dev/heart.jpeg
   padding: 15px;
 }
 
+.pad-top {
+  padding-top: 100px;
+}
+
 
 
 //-- Typography --//
@@ -316,7 +318,7 @@ https://s3-us-west-2.amazonaws.com/capstoneao-dev/heart.jpeg
 }
 
 .padding-right-1 {
-  margin-top: 300px;
+  margin-top: 275px;
 }
 
 

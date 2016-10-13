@@ -18,17 +18,14 @@ class MoreInfo extends Component {
             <div className='collapse navbar-collapse' id='more-info'>
               <div className='col-sm-4 col-1-3'>
                 <h5> Who We Are <small>what we do </small></h5>
-                <span><p> Connecting artist together for creative collaborations. This website is not designed to make you famous. We are designed to connect artists directly together, with the hope that new art will be created and put into the world.</p> </span>
+                <span><p> We connect artists to inspire creative collaborations. Our goal is to foster relationships and help get artists back to what matters most: The creative process.</p> </span>
               </div>
               <div className='col-sm-4 divide col-1-3'>
-                <h5> address \\ email \\ tele <small>contact us </small></h5>
+                <h5>Contact</h5>
                 <p>
-                  Via 370 300 E, Salt Lake City, UT 84111
+                  370 300 E, Salt Lake City, UT 84111
                   <br />
-                  E  collabart@collaborate.com
-                  <br />
-                  P  801.000.0000
-                  <br />
+                  CoArtCommunity@gmail.com
                 </p>
               </div>
               <div className='divide col-sm-4 col-1-3 btn-text-grey'>
