@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev_server": "./node_modules/.bin/webpack-dev-server --config config/webpack.config.js",
-    "build": "webpack --config=config/webpack.config.js -p",
-    "webpack:deploy": "npm run build",
+    "webpack:deploy": "webpack --config=config/webpack.config.js -p",
     "heroku-postbuild": "npm run webpack:deploy"
   },
   "dependencies": {
